@@ -1,0 +1,69 @@
+﻿<div class="col-md-6 col-xs-12" *ngIf="!isRegistrationSuccess">
+    <form [formGroup]="registrationForm" (ngSubmit)="registerUser(registrationForm.value)" autocomplete="off">
+
+        <div class="form-group" [ngClass]="{'error': firstName.invalid && firstName.dirty}">
+            <label for="firstName">First Name:</label>  
+            <em *ngIf="registrationForm.controls.firstName?.invalid && (registrationForm.controls.firstName?.dirty)">Required</em>           
+            <input (ngModel)="firstName" name="firstName" required id="firstName" type="text" class="form-control" maxlength="100" placeholder="First Name" formControlName="firstName"/> 
+        </div>
+
+        <div class="form-group" [ngClass]="{'error': lastName.invalid && lastName.dirty}">
+            <label for="lastName">Last Name:</label>
+            <em *ngIf="registrationForm.controls.lastName?.invalid && (registrationForm.controls.lastName?.dirty)">Required</em>     
+            <input (ngModel)="lastName" name="lastName" required id="lastName" type="text" class="form-control" maxlength="100" placeholder="Last Name" formControlName="lastName"/>
+        </div>
+
+        <div class="form-group" [ngClass]="{'error': email.invalid && email.dirty}">
+            <label for="email">Email:</label>
+            <em *ngIf="registrationForm.controls.email?.invalid && (registrationForm.controls.email?.dirty)">Required</em>
+            <em *ngIf="email?.invalid && email?.dirty && email.errors.pattern"> Email is invalid </em>
+            <input (ngModel)="email" name="email" required id="email" type="email" class="form-control" placeholder="Email" formControlName="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"/>
+        </div>
+
+        <div class="form-group">
+            <label for="state">State:</label>            
+            <select class="form-control" [(ngModel)]="selectedState.StateId" formControlName="stateId" name="stateId" required (change)="onSelect($event.target.value)">
+                <option *ngFor="let state of states" value = {{state.StateId}}> {{state.StateName}} </option>
+            </select> 
+        </div>
+
+        <div class="form-group">
+            <label for="city">City:</label>
+            <select class="form-control" name="cityId" formControlName="cityId" required >               
+                <option *ngFor="let city of cities" value = {{city.CityId}} > {{city.CityName}} </option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="state">Occupation:</label>
+            <select class="form-control" formControlName="occupationId" name="occupationId" required>              
+                <option *ngFor="let occupation of occupations" value={{occupation.OccupationId}}> {{occupation.OccupationName}} </option>
+            </select>
+        </div>
+
+        <div class="form-group" [ngClass]="{'error': password.invalid && password.dirty}">
+            <label for="password">Password:</label>
+            <em *ngIf="registrationForm.controls.password?.invalid && (registrationForm.controls.password?.dirty)">Required</em> 
+            <input (ngModel)="password" name="password" required  type="password" class="form-control" placeholder="Password" formControlName="password" />
+        </div>
+
+        <div class="form-group" [ngClass]="{'error': confirmPassword.invalid && confirmPassword.dirty}">
+            <label for="confirmPassword">Confirm Password:</label>    
+            <em *ngIf="registrationForm.controls.confirmPassword?.invalid && (registrationForm.controls.confirmPassword?.dirty)">Required</em> 
+            <em *ngIf="registrationForm.controls.confirmPassword?.invalid && registrationForm.controls.confirmPassword?.dirty && registrationForm.controls.confirmPassword?.errors?.matchPassword">Password mismatch</em>    
+            <input (ngModel)="confirmPassword" name="confirmPassword" required type="password" class="form-control" formControlName="confirmPassword"/>
+        </div>
+        
+        <button type="submit" [disabled]="!registrationForm.valid" class="btn btn-primary">Submit</button>
+        <button type="button" class="btn btn-default" (click)="resetForm()" data-dismiss="modal">Cancel</button>
+    </form>
+</div>
+
+
+
+<div class="col-md-12 col-xs-12" *ngIf="isRegistrationSuccess">
+    <div class="msgDiv">
+        <h3 class="centerText">Congratulations !!!</h3>
+        <h5 class="centerText">You are successfully registered with the BTMV Community.</h5>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+﻿.textWhite
+{
+    color: white !important;
+}
+.custom-navbar{
+    background-color: #033c73;
+    border-radius: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.navbar-nav > li > a:hover{
+    background-color: #022f5a !important;
+}
+
+.home-img{
+    opacity: 0.6;
+    height: 100%;
+    width: 100%;
+}
+.aboutUsImage{
+    margin-right: 20px;
+    margin-top: 30px;
+    padding-left: 30px;
+    padding-bottom: 20px;
+}
+
+.centerText{
+    text-align: center;
+}
+
