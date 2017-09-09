@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Mvc;
+using System.Security.Cryptography;
 
 namespace BTMV_ng2.Controllers
 {
@@ -30,23 +31,30 @@ namespace BTMV_ng2.Controllers
                 {
                     return new HttpResponseMessage(HttpStatusCode.ExpectationFailed);
                 }
+                if(string.IsNullOrEmpty(userModel.Email) && string.IsNullOrEmpty(userModel.Password))
+                {
+                    // incorrect credentials
+                    return new HttpResponseMessage(HttpStatusCode.ExpectationFailed);
+                }
+
+                var hashedPassword = ComputeHash(userModel.Email, userModel.Password);
 
                 var user = new UserInformation
                 {
                     FirstName = userModel.FirstName,
                     LastName = userModel.LastName,
                     Email = userModel.Email,
-                    //DOB = Convert.ToDateTime(userModel.DOB),                   
-                    Phone = "7205595660",
-                    AltPhone = "7205595660",
-                    Address = "HIG 228",
-                    Gender = "Female",
+                    DOB = Convert.ToDateTime("04/19/2016"),                   
+                    //Phone = "7205595660",
+                    //AltPhone = "7205595660",
+                    //Address = "HIG 228",
+                    //Gender = "Female",
                     //StateId = 1,
                     CityId = userModel.CityId,
                     OccupationId = userModel.OccupationId,
                     RoleId = 2,
-                    isSelected = true,
-                    Password = userModel.Password
+                    isSelected = false,
+                    Password = hashedPassword
                 };
 
                 db.UserInformation.Add(user);
@@ -131,6 +139,45 @@ namespace BTMV_ng2.Controllers
 
         }
 
+        [System.Web.Http.HttpPost]
+        public IHttpActionResult Login(UserLoginViewModel userModel)
+        {
+            try
+            {
+                var db = new BTMVContext();
+                if (string.IsNullOrEmpty(userModel.Email) && string.IsNullOrEmpty(userModel.Password))
+                {
+                    // incorrect credentials
+                    return null;
+                }
 
+                //var userDetails = _publicUserService.Queryable().FirstOrDefault(x => x.userId == candidateId);
+                //var aspUserDetails = UserManager.FindById(candidateId);
+                var userCredentials = db.UserInformation
+                    .Where(x => x.Email == userModel.Email)
+                    .Select(x => new { Email = x.Email, Password = x.Password })
+                    .Single();
+
+                var isValidUser =  Verify(userModel.Email, userModel.Password, userCredentials.Password);               
+                return Json(new { isUserValid = isValidUser});
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+        }
+
+        public static string ComputeHash(string salt,string password)
+        {
+            byte[] saltBytes = System.Text.Encoding.UTF32.GetBytes(salt);           
+            using (var rfc2898DeriveBytes = new Rfc2898DeriveBytes(password, saltBytes, 1000))
+            return Convert.ToBase64String(rfc2898DeriveBytes.GetBytes(256));
+        }
+
+        public static bool Verify(string salt, string password, string hashedPassword)
+        {
+            return hashedPassword == ComputeHash(salt, password);
+        }
     }
 }

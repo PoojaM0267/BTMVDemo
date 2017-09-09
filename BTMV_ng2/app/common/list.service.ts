@@ -37,14 +37,6 @@ export class ListService {
     }
 
     getOccupations() {
-        //return [
-        //    //new Occupation(0, 'Select Occupation'),
-        //    new Occupation(1, 'Employee'),
-        //    new Occupation(2, 'Teacher'),
-        //    new Occupation(3, 'Student'),
-        //    new Occupation(4, 'Business'),
-        //    new Occupation(5, 'HouseWife'),
-        //];
 
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });

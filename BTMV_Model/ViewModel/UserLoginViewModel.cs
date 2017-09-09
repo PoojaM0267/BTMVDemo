@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace BTMV_Model.ViewModel
 {
-    class UserLoginViewModel
+    public class UserLoginViewModel
     {
+        public string Email { get; set; }
+        public string Password { get; set; }
     }
 }

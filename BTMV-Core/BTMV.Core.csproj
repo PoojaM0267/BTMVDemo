@@ -40,11 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IAccountService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\AccountService.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Service\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="ReadMe.txt" />
   </ItemGroup>

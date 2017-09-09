@@ -11,7 +11,8 @@ import {
     HomeComponent,
     AboutUsComponent,
     RegisterComponent,
-    RegisterService
+    AccountService,
+    LoginComponent
 } from './home/index'
 
 import {
@@ -40,13 +41,14 @@ declare let jQuery: Object;
         CommonModalComponent,
         CommonModalTriggerDirective,
         RegisterComponent,
+        LoginComponent
       //  CustomValidation      
     ],
     providers: [
         {
             provide: JQ_TOKEN, useValue: jQuery,
         },
-        RegisterService,
+        AccountService,
         ListService
     ],
     bootstrap: [AppComponent]

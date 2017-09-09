@@ -32,10 +32,7 @@ namespace BTMV_Model.DataModel
         public int OccupationId { get; set; }        
         public bool isSelected { get; set; }
         public int RoleId { get; set; }        
-        public string Password { get; set; }
-
-        //[ForeignKey("StateId")]
-        //public virtual State State { get; set; }
+        public string Password { get; set; }        
 
         [ForeignKey("CityId")]
         public virtual City City { get; set; }

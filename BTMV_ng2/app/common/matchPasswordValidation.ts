@@ -5,13 +5,12 @@ export function matchPassword(formControl: FormControl) {
     debugger;
 
     let password = formControl.parent.controls["password"].value;
-    let confirmPassword = formControl.value;
-  
+    let confirmPassword = formControl.value; 
 
         if (password != '' && password != undefined) {
             if (password != confirmPassword) {
-                //formControl.setErrors({ matchPassword: true });
-               return formControl.setErrors({ matchPassword: true });
+                formControl.setErrors({ matchPassword: true });
+               //return formControl.setErrors({ matchPassword: true });
                 //return Observable.of([]);
                 // return Observable.empty();
                 // return;
@@ -19,9 +18,9 @@ export function matchPassword(formControl: FormControl) {
             }
             else {
                 // return Observable.empty();
-                 //return;
+                 return;
                 // return Observable.of(true);
-               return formControl.setErrors(null);
+              // return formControl.setErrors(null);
             }
         }
         else {

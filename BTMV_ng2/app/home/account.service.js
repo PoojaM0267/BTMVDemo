@@ -11,37 +11,43 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var http_1 = require("@angular/http");
 var core_1 = require("@angular/core");
-var ListService = (function () {
-    function ListService(http) {
+var Rx_1 = require("rxjs/Rx");
+var AccountService = (function () {
+    function AccountService(http) {
         this.http = http;
     }
-    ListService.prototype.getStates = function () {
+    AccountService.prototype.registerUser = function (userInfo) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
-        return this.http.get('/api/Account/GetAllStates').map(function (response) { return response.json(); });
+        return this.http.post('/api/Account/Register', JSON.stringify(userInfo), options).do(function (resp) {
+            if (resp.ok) {
+                debugger;
+                alert("user registered");
+                console.log('user registered');
+            }
+        }).catch(function (error) {
+            return Rx_1.Observable.of(false);
+        });
     };
-    ListService.prototype.getCities = function (stateId) {
-        try {
-            var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-            var options = new http_1.RequestOptions({ headers: headers });
-            var body = { stateId: stateId };
-            // return this.http.get('/api/Account/GetAllCities').map(response => response.json());
-            return this.http.post('/api/Account/GetCitiesByState', JSON.stringify(body), options).map(function (response) { return response.json(); });
-        }
-        catch (Ex) {
-            console.log(JSON.stringify(Ex));
-        }
-    };
-    ListService.prototype.getOccupations = function () {
+    AccountService.prototype.loginUser = function (userLoginInfo) {
+        debugger;
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
-        return this.http.get('/api/Account/GetAllOccupations').map(function (response) { return response.json(); });
+        return this.http.post('/api/Account/Login', JSON.stringify(userLoginInfo), options).do(function (resp) {
+            //if (resp.ok) {
+            debugger;
+            alert("user logged in");
+            console.log(resp);
+            //  }
+        }).catch(function (error) {
+            return Rx_1.Observable.of(false);
+        });
     };
-    ListService = __decorate([
+    AccountService = __decorate([
         core_1.Injectable(),
         __metadata("design:paramtypes", [http_1.Http])
-    ], ListService);
-    return ListService;
+    ], AccountService);
+    return AccountService;
 }());
-exports.ListService = ListService;
-//# sourceMappingURL=list.service.js.map
+exports.AccountService = AccountService;
+//# sourceMappingURL=account.service.js.map

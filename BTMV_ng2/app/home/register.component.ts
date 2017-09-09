@@ -1,16 +1,14 @@
 ﻿import { Component, OnInit } from '@angular/core'
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms'
-import { Http, Headers, Response, RequestOptions } from '@angular/http'
-import { Router } from '@angular/router'
 import { Observable } from 'rxjs/Rx'
 
 import { User } from '../models/userModel'
 import { State } from '../models/state'
 import { City } from '../models/city'
 import { Occupation } from '../models/occupation'
-import { RegisterService } from './register.service'
+import { AccountService } from './account.service'
 import { ListService } from '../common/list.service'
-import { matchPassword } from '../common/customValidators'
+import { matchPassword } from '../common/matchPasswordValidation'
 
 
 @Component({
@@ -35,7 +33,7 @@ export class RegisterComponent {
     cityId: FormControl
     occupationId: FormControl
     password: FormControl
-    confirmPassword: FormControl
+   // confirmPassword: FormControl
 
     selectedState: State = new State(0, 'Select State');
     states: State[];
@@ -43,7 +41,8 @@ export class RegisterComponent {
     occupations: Occupation[];
     isRegistrationSuccess: boolean = false;
 
-    constructor(private router: Router, private http: Http, private registerService: RegisterService, private listService: ListService) {
+    constructor(private accountService: AccountService, private listService: ListService) {
+
         this.listService.getStates().subscribe(
             states => this.states = states            
         );
@@ -61,7 +60,7 @@ export class RegisterComponent {
         this.cityId = new FormControl('', Validators.required)
         this.occupationId = new FormControl('', Validators.required)
         this.password = new FormControl('', Validators.required)
-        this.confirmPassword = new FormControl('', Validators.required, matchPassword)        
+       // this.confirmPassword = new FormControl('', Validators.required, matchPassword)        
 
         this.registrationForm = new FormGroup({
             firstName: this.firstName,
@@ -71,16 +70,13 @@ export class RegisterComponent {
             cityId: this.cityId,
             occupationId: this.occupationId,
             password: this.password,
-            confirmPassword: this.confirmPassword
+            //confirmPassword: this.confirmPassword
 
         },
              //matchPassword('confirmPassword','password')
            
         );
     }
-
-
-
 
     onSelect(stateId) {
         debugger;
@@ -94,13 +90,9 @@ export class RegisterComponent {
         this.isSubmitted = true;
         console.log(formValues)
 
-        this.registerService.registerUser(formValues).subscribe();
+        this.accountService.registerUser(formValues).subscribe();
         console.log('registration successfull');
         this.isRegistrationSuccess = true;
-    }
-
-    cancel() {
-       // this.router.navigate(['/home'])
     }
 
     resetForm() {

@@ -11,19 +11,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
-var http_1 = require("@angular/http");
-var router_1 = require("@angular/router");
 var state_1 = require("../models/state");
-var register_service_1 = require("./register.service");
+var account_service_1 = require("./account.service");
 var list_service_1 = require("../common/list.service");
-var customValidators_1 = require("../common/customValidators");
 var RegisterComponent = (function () {
-    function RegisterComponent(router, http, registerService, listService) {
+    function RegisterComponent(accountService, listService) {
         var _this = this;
-        this.router = router;
-        this.http = http;
-        this.registerService = registerService;
+        this.accountService = accountService;
         this.listService = listService;
+        // confirmPassword: FormControl
         this.selectedState = new state_1.State(0, 'Select State');
         this.isRegistrationSuccess = false;
         this.isSubmitted = false;
@@ -38,7 +34,7 @@ var RegisterComponent = (function () {
         this.cityId = new forms_1.FormControl('', forms_1.Validators.required);
         this.occupationId = new forms_1.FormControl('', forms_1.Validators.required);
         this.password = new forms_1.FormControl('', forms_1.Validators.required);
-        this.confirmPassword = new forms_1.FormControl('', forms_1.Validators.required, customValidators_1.matchPassword);
+        // this.confirmPassword = new FormControl('', Validators.required, matchPassword)        
         this.registrationForm = new forms_1.FormGroup({
             firstName: this.firstName,
             lastName: this.lastName,
@@ -47,7 +43,6 @@ var RegisterComponent = (function () {
             cityId: this.cityId,
             occupationId: this.occupationId,
             password: this.password,
-            confirmPassword: this.confirmPassword
         });
     };
     RegisterComponent.prototype.onSelect = function (stateId) {
@@ -59,12 +54,9 @@ var RegisterComponent = (function () {
         debugger;
         this.isSubmitted = true;
         console.log(formValues);
-        this.registerService.registerUser(formValues).subscribe();
+        this.accountService.registerUser(formValues).subscribe();
         console.log('registration successfull');
         this.isRegistrationSuccess = true;
-    };
-    RegisterComponent.prototype.cancel = function () {
-        // this.router.navigate(['/home'])
     };
     RegisterComponent.prototype.resetForm = function () {
         this.registrationForm.reset();
@@ -76,7 +68,7 @@ var RegisterComponent = (function () {
             styles: ["\n        em{ float: right; color: #E05C65; padding-left: 10px}\n       .error input, .error select, .error textarea { border-left: 5px solid #a94442; border-right : 1px solid #a94442; border-top : 1px solid #a94442; border-bottom : 1px solid #a94442; }\n       .valid input, .valid select, .valid textarea { border-left: 5px solid #42A948; border-right: 1px solid #42A948;   border-top: 1px solid #42A948; border-bottom: 1px solid #42A948; }\n    "],
             providers: [list_service_1.ListService]
         }),
-        __metadata("design:paramtypes", [router_1.Router, http_1.Http, register_service_1.RegisterService, list_service_1.ListService])
+        __metadata("design:paramtypes", [account_service_1.AccountService, list_service_1.ListService])
     ], RegisterComponent);
     return RegisterComponent;
 }());

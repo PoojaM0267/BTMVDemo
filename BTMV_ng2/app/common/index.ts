@@ -2,5 +2,6 @@
 export * from './commonModal.component'
 export * from './commonModalTrigger.directive'
 export * from './list.service'
-export * from './customValidators'
+export * from './matchPasswordValidation'
+export * from './emailValidator'
  

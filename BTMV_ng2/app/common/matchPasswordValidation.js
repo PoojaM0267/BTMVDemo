@@ -6,8 +6,8 @@ function matchPassword(formControl) {
     var confirmPassword = formControl.value;
     if (password != '' && password != undefined) {
         if (password != confirmPassword) {
-            //formControl.setErrors({ matchPassword: true });
-            return formControl.setErrors({ matchPassword: true });
+            formControl.setErrors({ matchPassword: true });
+            //return formControl.setErrors({ matchPassword: true });
             //return Observable.of([]);
             // return Observable.empty();
             // return;
@@ -15,9 +15,9 @@ function matchPassword(formControl) {
         }
         else {
             // return Observable.empty();
-            //return;
+            return;
             // return Observable.of(true);
-            return formControl.setErrors(null);
+            // return formControl.setErrors(null);
         }
     }
     else {
@@ -27,4 +27,4 @@ function matchPassword(formControl) {
     }
 }
 exports.matchPassword = matchPassword;
-//# sourceMappingURL=customValidators.js.map
+//# sourceMappingURL=matchPasswordValidation.js.map

@@ -7,5 +7,6 @@ __export(require("./jQuery.service"));
 __export(require("./commonModal.component"));
 __export(require("./commonModalTrigger.directive"));
 __export(require("./list.service"));
-__export(require("./customValidators"));
+__export(require("./matchPasswordValidation"));
+__export(require("./emailValidator"));
 //# sourceMappingURL=index.js.map
