@@ -16,7 +16,7 @@ var account_service_1 = require("./account.service");
 var LoginComponent = (function () {
     function LoginComponent(accountService) {
         this.accountService = accountService;
-        this.isSubmitted = false;
+        this.hasErrorMessage = false;
     }
     LoginComponent.prototype.ngOnInit = function () {
         // this.email = new FormControl('', [Validators.required, validateEmail]);
@@ -28,20 +28,37 @@ var LoginComponent = (function () {
         });
     };
     LoginComponent.prototype.loginUser = function (formValues) {
-        debugger;
+        var _this = this;
+        //debugger;
         console.log(formValues);
-        this.accountService.loginUser(formValues).subscribe();
-        console.log('login successfull');
-        // redirect to dashboard here or in component.ts file
+        this.accountService.loginUser(formValues).subscribe(function (data) {
+            console.log(data);
+            var isUserValid = data.isUserValid;
+            var message = data.message;
+            if (isUserValid) {
+                _this.isLoginSuccess = true;
+                _this.hasErrorMessage = false;
+                // redirect to dashboard here
+            }
+            else {
+                _this.isLoginSuccess = false;
+                _this.hasErrorMessage = true;
+                _this.errorMessage = message;
+            }
+        }, function (err) {
+            _this.hasErrorMessage = true;
+            _this.errorMessage = "Something went wrong. Please try again after sometime";
+        });
     };
     LoginComponent.prototype.resetForm = function () {
         this.loginForm.reset();
+        this.hasErrorMessage = false;
     };
     LoginComponent = __decorate([
         core_1.Component({
             selector: 'login-form',
             templateUrl: 'app/home/login.component.html',
-            styles: ["\n        em{ float: right; color: #E05C65; padding-left: 10px}\n       .error input, .error select, .error textarea { border-left: 5px solid #a94442; border-right : 1px solid #a94442; border-top : 1px solid #a94442; border-bottom : 1px solid #a94442; }\n       .valid input, .valid select, .valid textarea { border-left: 5px solid #42A948; border-right: 1px solid #42A948;   border-top: 1px solid #42A948; border-bottom: 1px solid #42A948; }\n       .modal-body {  min-height: 250px;}           \n    "]
+            styles: ["\n        em{ float: right; color: #E05C65; padding-left: 10px}\n       .error input, .error select, .error textarea { border-left: 5px solid #a94442; border-right : 1px solid #a94442; border-top : 1px solid #a94442; border-bottom : 1px solid #a94442; }\n       .valid input, .valid select, .valid textarea { border-left: 5px solid #42A948; border-right: 1px solid #42A948;   border-top: 1px solid #42A948; border-bottom: 1px solid #42A948; }\n       .modal-body {  min-height: 300px;}                 \n    "]
         }),
         __metadata("design:paramtypes", [account_service_1.AccountService])
     ], LoginComponent);

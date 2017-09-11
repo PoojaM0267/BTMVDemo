@@ -9,4 +9,5 @@ __export(require("./commonModalTrigger.directive"));
 __export(require("./list.service"));
 __export(require("./matchPasswordValidation"));
 __export(require("./emailValidator"));
+__export(require("./baseConfig"));
 //# sourceMappingURL=index.js.map

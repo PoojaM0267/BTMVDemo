@@ -36,15 +36,15 @@ var AppModule = (function () {
                 index_2.CommonModalComponent,
                 index_2.CommonModalTriggerDirective,
                 index_1.RegisterComponent,
-                index_1.LoginComponent
-                //  CustomValidation      
+                index_1.LoginComponent,
             ],
             providers: [
                 {
                     provide: index_2.JQ_TOKEN, useValue: jQuery,
                 },
                 index_1.AccountService,
-                index_2.ListService
+                index_2.ListService,
+                index_2.BaseConfig
             ],
             bootstrap: [app_component_1.AppComponent]
         })

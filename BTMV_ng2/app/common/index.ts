@@ -4,4 +4,5 @@ export * from './commonModalTrigger.directive'
 export * from './list.service'
 export * from './matchPasswordValidation'
 export * from './emailValidator'
+export * from './baseConfig'
  

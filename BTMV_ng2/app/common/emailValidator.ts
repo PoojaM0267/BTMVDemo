@@ -1,4 +1,9 @@
-﻿import { FormControl } from '@angular/forms';
+﻿import { Directive } from '@angular/core'
+import { FormControl } from '@angular/forms'
+
+//@Directive({
+//    selector: '[validateEmail]' 
+//})
 
 export function validateEmail(email: FormControl) {
     debugger;

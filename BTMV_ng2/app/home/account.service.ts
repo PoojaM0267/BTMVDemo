@@ -4,41 +4,41 @@ import { Observable } from 'rxjs/Rx'
 
 import { User } from '../models/userModel'
 import { UserLoginModel } from '../models/userLoginModel'
+import { BaseConfig } from '../common/baseConfig'
 
 @Injectable()
 export class AccountService {
-    constructor(private http: Http) { }
+    constructor(private http: Http, private baseConfig : BaseConfig) { }
 
-    registerUser(userInfo : User) {
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
+    registerUser(userInfo: User): Observable<any>
+    {        
 
-        return this.http.post('/api/Account/Register', JSON.stringify(userInfo), options).do(resp => {
-            if (resp.ok) {
-                debugger;
-                alert("user registered");
-                console.log('user registered');
-            }
-        }).catch(error => {
+        var options = this.baseConfig.getBaseHttpConfiguration();
+
+        return this.http.post('/api/Account/Register', JSON.stringify(userInfo), options)
+            .map(response => response.json())
+       
+        .catch(error => {
             return Observable.of(false);
         })
     }
 
-    loginUser(userLoginInfo: UserLoginModel)
+    loginUser(userLoginInfo: UserLoginModel) : Observable<any>
     {
         debugger;
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
 
-        return this.http.post('/api/Account/Login', JSON.stringify(userLoginInfo), options).do(resp => {
-            //if (resp.ok) {
-                debugger;
-                alert("user logged in");
-                console.log(resp);
-          //  }
-        }).catch(error => {
-            return Observable.of(false);
-        })
+        var options = this.baseConfig.getBaseHttpConfiguration();
+
+        return this.http.post('/api/Account/Login', JSON.stringify(userLoginInfo), options)
+           .map(response => {
+               debugger;
+               var res = response.json();
+               return res;
+            })
+            .catch(error => {
+                return Observable.of(false);
+            })
+         
     }
 }
 

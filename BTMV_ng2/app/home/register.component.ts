@@ -40,6 +40,9 @@ export class RegisterComponent {
     cities: City[];
     occupations: Occupation[];
     isRegistrationSuccess: boolean = false;
+    //isSuccess: boolean;
+    hasErrorMessage: boolean = false;
+    errorMessage: string;
 
     constructor(private accountService: AccountService, private listService: ListService) {
 
@@ -70,7 +73,7 @@ export class RegisterComponent {
             cityId: this.cityId,
             occupationId: this.occupationId,
             password: this.password,
-            //confirmPassword: this.confirmPassword
+           // confirmPassword: this.confirmPassword
 
         },
              //matchPassword('confirmPassword','password')
@@ -79,20 +82,43 @@ export class RegisterComponent {
     }
 
     onSelect(stateId) {
-        debugger;
+        //debugger;
         this.listService.getCities(stateId).subscribe(cities => this.cities = cities);           
     }
 
     isSubmitted = false;
 
     registerUser(formValues) {
-        debugger;
+        //debugger;
         this.isSubmitted = true;
         console.log(formValues)
 
-        this.accountService.registerUser(formValues).subscribe();
-        console.log('registration successfull');
-        this.isRegistrationSuccess = true;
+        let result = this.accountService.registerUser(formValues).subscribe(
+            data =>
+            {  
+               // debugger;
+                console.log(data);
+                let isSuccess = data.isSuccess;
+                let message = data.message;
+
+                if (isSuccess) {
+                   // debugger;
+                    this.isRegistrationSuccess = true;
+                    this.hasErrorMessage = false;
+                }
+                else {
+                   // debugger;
+                    //show error msg                    
+                    this.isRegistrationSuccess = false;
+                    this.hasErrorMessage = true;
+                    this.errorMessage = message;
+                }                  
+                
+            },
+            err =>
+            {
+                // show error msg
+            });       
     }
 
     resetForm() {

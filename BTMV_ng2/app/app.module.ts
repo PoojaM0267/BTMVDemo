@@ -20,6 +20,7 @@ import {
     CommonModalTriggerDirective,
     CommonModalComponent,
     ListService,
+    BaseConfig
    // CustomValidation
 } from './common/index'
 
@@ -41,7 +42,7 @@ declare let jQuery: Object;
         CommonModalComponent,
         CommonModalTriggerDirective,
         RegisterComponent,
-        LoginComponent
+        LoginComponent,        
       //  CustomValidation      
     ],
     providers: [
@@ -49,7 +50,8 @@ declare let jQuery: Object;
             provide: JQ_TOKEN, useValue: jQuery,
         },
         AccountService,
-        ListService
+        ListService,
+        BaseConfig
     ],
     bootstrap: [AppComponent]
 })

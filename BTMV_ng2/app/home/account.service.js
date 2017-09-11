@@ -12,40 +12,36 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var http_1 = require("@angular/http");
 var core_1 = require("@angular/core");
 var Rx_1 = require("rxjs/Rx");
+var baseConfig_1 = require("../common/baseConfig");
 var AccountService = (function () {
-    function AccountService(http) {
+    function AccountService(http, baseConfig) {
         this.http = http;
+        this.baseConfig = baseConfig;
     }
     AccountService.prototype.registerUser = function (userInfo) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        var options = new http_1.RequestOptions({ headers: headers });
-        return this.http.post('/api/Account/Register', JSON.stringify(userInfo), options).do(function (resp) {
-            if (resp.ok) {
-                debugger;
-                alert("user registered");
-                console.log('user registered');
-            }
-        }).catch(function (error) {
+        var options = this.baseConfig.getBaseHttpConfiguration();
+        return this.http.post('/api/Account/Register', JSON.stringify(userInfo), options)
+            .map(function (response) { return response.json(); })
+            .catch(function (error) {
             return Rx_1.Observable.of(false);
         });
     };
     AccountService.prototype.loginUser = function (userLoginInfo) {
         debugger;
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        var options = new http_1.RequestOptions({ headers: headers });
-        return this.http.post('/api/Account/Login', JSON.stringify(userLoginInfo), options).do(function (resp) {
-            //if (resp.ok) {
+        var options = this.baseConfig.getBaseHttpConfiguration();
+        return this.http.post('/api/Account/Login', JSON.stringify(userLoginInfo), options)
+            .map(function (response) {
             debugger;
-            alert("user logged in");
-            console.log(resp);
-            //  }
-        }).catch(function (error) {
+            var res = response.json();
+            return res;
+        })
+            .catch(function (error) {
             return Rx_1.Observable.of(false);
         });
     };
     AccountService = __decorate([
         core_1.Injectable(),
-        __metadata("design:paramtypes", [http_1.Http])
+        __metadata("design:paramtypes", [http_1.Http, baseConfig_1.BaseConfig])
     ], AccountService);
     return AccountService;
 }());

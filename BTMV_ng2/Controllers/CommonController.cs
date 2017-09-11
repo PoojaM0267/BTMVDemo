@@ -12,6 +12,8 @@ namespace BTMV_ng2.Controllers
 {
     public class CommonController : ApiController
     {
+        protected readonly BTMVContext UserDB = new BTMVContext();
+
         // GET api/<controller>
         public IEnumerable<string> Get()
         {
@@ -38,8 +40,7 @@ namespace BTMV_ng2.Controllers
         public void Delete(int id)
         {
         }
-
-        protected readonly BTMVContext UserDB = new BTMVContext();
+                
         protected HttpResponseMessage ToJson(dynamic obj)
         {
             var response = Request.CreateResponse(HttpStatusCode.OK);

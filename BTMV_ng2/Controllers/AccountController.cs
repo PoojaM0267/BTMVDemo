@@ -20,54 +20,54 @@ namespace BTMV_ng2.Controllers
         }
 
         [System.Web.Http.HttpPost]
-        public HttpResponseMessage Register(UserRegistrationViewModel userModel)
+        public IHttpActionResult Register(UserRegistrationViewModel userModel)
         {
-            // return null;
             try
             {
                 var db = new BTMVContext();
 
                 if (!ModelState.IsValid)
                 {
-                    return new HttpResponseMessage(HttpStatusCode.ExpectationFailed);
+                    return Json(new { isSuccess = false, message = "Please provide appropriate data." });
                 }
+
                 if(string.IsNullOrEmpty(userModel.Email) && string.IsNullOrEmpty(userModel.Password))
                 {
-                    // incorrect credentials
-                    return new HttpResponseMessage(HttpStatusCode.ExpectationFailed);
+                    return Json(new { isSuccess = false, message = "Input Fields cannot be empty." });
+                }
+                
+                var userExists = db.UserInformation
+                   .Where(x => x.Email == userModel.Email)
+                   .SingleOrDefault();
+
+                if (userExists != null)
+                {
+                    return Json(new { isSuccess = false, message = "User with this Email Already Exists." });                    
                 }
 
-                var hashedPassword = ComputeHash(userModel.Email, userModel.Password);
+                    var hashedPassword = ComputeHash(userModel.Email, userModel.Password);
 
-                var user = new UserInformation
-                {
-                    FirstName = userModel.FirstName,
-                    LastName = userModel.LastName,
-                    Email = userModel.Email,
-                    DOB = Convert.ToDateTime("04/19/2016"),                   
-                    //Phone = "7205595660",
-                    //AltPhone = "7205595660",
-                    //Address = "HIG 228",
-                    //Gender = "Female",
-                    //StateId = 1,
-                    CityId = userModel.CityId,
-                    OccupationId = userModel.OccupationId,
-                    RoleId = 2,
-                    isSelected = false,
-                    Password = hashedPassword
-                };
+                    var user = new UserInformation
+                    {
+                        FirstName = userModel.FirstName,
+                        LastName = userModel.LastName,
+                        Email = userModel.Email,
+                        DOB = Convert.ToDateTime("04/19/2016"),
+                        CityId = userModel.CityId,
+                        OccupationId = userModel.OccupationId,
+                        RoleId = 2,
+                        isSelected = false,
+                        Password = hashedPassword
+                    };
 
-                db.UserInformation.Add(user);
-                db.SaveChanges();
+                    db.UserInformation.Add(user);
+                    db.SaveChanges();
 
-                return new HttpResponseMessage(HttpStatusCode.OK);
+                return Json(new { isSuccess = true, message = "Registration Successful." });
             }
             catch (Exception ex)
             {
-                // If we got this far, something failed, redisplay form
-                //Elmah.ErrorSignal.FromCurrentContext().Raise(ex);
-                //ModelState.AddModelError("Error", BTV_Constants.ModelError);
-                return new HttpResponseMessage(HttpStatusCode.InternalServerError);
+                return Json(new { isSuccess = false, message = "Something went wrong. Please try again." });
             }
         }
         
@@ -82,7 +82,6 @@ namespace BTMV_ng2.Controllers
             }
             catch (Exception ex)
             {
-                //return new HttpResponseMessage(HttpStatusCode.InternalServerError);
                 return null;
             }
             
@@ -99,13 +98,11 @@ namespace BTMV_ng2.Controllers
             }
             catch (Exception ex)
             {
-                // return new HttpResponseMessage(HttpStatusCode.InternalServerError);
                 return null;
             }
 
         }
-
-        //[System.Web.Http.AcceptVerbs(HttpVerbs.Post | HttpVerbs.Head | HttpVerbs.Options)]
+        
         [System.Web.Http.AcceptVerbs("Post", "Head", "Options")]
         public IHttpActionResult GetCitiesByState(State state)
         {
@@ -145,21 +142,29 @@ namespace BTMV_ng2.Controllers
             try
             {
                 var db = new BTMVContext();
+                var isUserValid = false;
+
                 if (string.IsNullOrEmpty(userModel.Email) && string.IsNullOrEmpty(userModel.Password))
                 {
-                    // incorrect credentials
-                    return null;
+                    return Json(new { isUserValid = false, message = "Input Fields cannot be empty." });
                 }
 
-                //var userDetails = _publicUserService.Queryable().FirstOrDefault(x => x.userId == candidateId);
-                //var aspUserDetails = UserManager.FindById(candidateId);
                 var userCredentials = db.UserInformation
                     .Where(x => x.Email == userModel.Email)
                     .Select(x => new { Email = x.Email, Password = x.Password })
-                    .Single();
+                    .SingleOrDefault();
 
-                var isValidUser =  Verify(userModel.Email, userModel.Password, userCredentials.Password);               
-                return Json(new { isUserValid = isValidUser});
+                if(userCredentials == null)
+                {                   
+                    // return User does not exists.
+                    return Json(new { isUserValid = false, message = "User Not Found." });
+                }
+
+                // TODO: update last login date time in db here
+                // TODO: update login failure count on failed login
+
+                isUserValid =  Verify(userModel.Email, userModel.Password, userCredentials.Password);               
+                return Json(new { isUserValid = isUserValid, message = (isUserValid)? "Login Successful" : "Invalid Credentials" });
             }
             catch (Exception ex)
             {

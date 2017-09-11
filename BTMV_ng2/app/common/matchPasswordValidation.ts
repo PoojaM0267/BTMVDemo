@@ -10,7 +10,7 @@ export function matchPassword(formControl: FormControl) {
         if (password != '' && password != undefined) {
             if (password != confirmPassword) {
                 formControl.setErrors({ matchPassword: true });
-               //return formControl.setErrors({ matchPassword: true });
+                //return Observable.of(formControl.setErrors({ matchPassword: true }));
                 //return Observable.of([]);
                 // return Observable.empty();
                 // return;
@@ -18,15 +18,17 @@ export function matchPassword(formControl: FormControl) {
             }
             else {
                 // return Observable.empty();
-                 return;
+                // return
                 // return Observable.of(true);
               // return formControl.setErrors(null);
+                return Observable.of([]);
             }
         }
         else {
             //return Observable.empty();
             //return;
-            return null;
+           // return null;
+            return Observable.of([]);
         }
     }
 

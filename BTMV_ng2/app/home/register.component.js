@@ -22,6 +22,8 @@ var RegisterComponent = (function () {
         // confirmPassword: FormControl
         this.selectedState = new state_1.State(0, 'Select State');
         this.isRegistrationSuccess = false;
+        //isSuccess: boolean;
+        this.hasErrorMessage = false;
         this.isSubmitted = false;
         this.listService.getStates().subscribe(function (states) { return _this.states = states; });
         this.listService.getOccupations().subscribe(function (occupations) { return _this.occupations = occupations; });
@@ -47,16 +49,34 @@ var RegisterComponent = (function () {
     };
     RegisterComponent.prototype.onSelect = function (stateId) {
         var _this = this;
-        debugger;
+        //debugger;
         this.listService.getCities(stateId).subscribe(function (cities) { return _this.cities = cities; });
     };
     RegisterComponent.prototype.registerUser = function (formValues) {
-        debugger;
+        var _this = this;
+        //debugger;
         this.isSubmitted = true;
         console.log(formValues);
-        this.accountService.registerUser(formValues).subscribe();
-        console.log('registration successfull');
-        this.isRegistrationSuccess = true;
+        var result = this.accountService.registerUser(formValues).subscribe(function (data) {
+            // debugger;
+            console.log(data);
+            var isSuccess = data.isSuccess;
+            var message = data.message;
+            if (isSuccess) {
+                // debugger;
+                _this.isRegistrationSuccess = true;
+                _this.hasErrorMessage = false;
+            }
+            else {
+                // debugger;
+                //show error msg                    
+                _this.isRegistrationSuccess = false;
+                _this.hasErrorMessage = true;
+                _this.errorMessage = message;
+            }
+        }, function (err) {
+            // show error msg
+        });
     };
     RegisterComponent.prototype.resetForm = function () {
         this.registrationForm.reset();
