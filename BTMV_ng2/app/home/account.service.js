@@ -17,21 +17,22 @@ var AccountService = (function () {
     function AccountService(http, baseConfig) {
         this.http = http;
         this.baseConfig = baseConfig;
+        this.options = this.baseConfig.getBaseHttpConfiguration();
     }
     AccountService.prototype.registerUser = function (userInfo) {
-        var options = this.baseConfig.getBaseHttpConfiguration();
-        return this.http.post('/api/Account/Register', JSON.stringify(userInfo), options)
+        //  let options = this.baseConfig.getBaseHttpConfiguration();
+        return this.http.post('/api/Account/Register', JSON.stringify(userInfo), this.options)
             .map(function (response) { return response.json(); })
             .catch(function (error) {
             return Rx_1.Observable.of(false);
         });
     };
     AccountService.prototype.loginUser = function (userLoginInfo) {
-        debugger;
-        var options = this.baseConfig.getBaseHttpConfiguration();
-        return this.http.post('/api/Account/Login', JSON.stringify(userLoginInfo), options)
+        // debugger;
+        // let options = this.baseConfig.getBaseHttpConfiguration();
+        return this.http.post('/api/Account/Login', JSON.stringify(userLoginInfo), this.options)
             .map(function (response) {
-            debugger;
+            // debugger;
             var res = response.json();
             return res;
         })

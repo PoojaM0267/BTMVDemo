@@ -23,5 +23,12 @@ namespace BTMV_Model.ViewModel
         public bool isSelected { get; set; }
         public int RoleId { get; set; }
         public string Password { get; set; }
-    }
+        public string RoleName { get; set; }
+        public string CityName { get; set; }
+        public string  StateName { get; set; }
+        public string OccupationName { get; set; }
+
+
+
+}
 }

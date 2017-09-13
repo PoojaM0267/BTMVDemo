@@ -1,5 +1,6 @@
-﻿import { Component, OnInit } from '@angular/core'
+﻿import { Component, OnInit, ViewChild, ElementRef } from '@angular/core'
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms'
+import { Router } from '@angular/router'
 
 import { UserLoginModel } from '../models/userLoginModel'
 import { AccountService } from './account.service'
@@ -28,12 +29,14 @@ export class LoginComponent {
     hasErrorMessage: boolean = false;
     errorMessage: string;
 
-    constructor(private accountService: AccountService){}
+    @ViewChild('closeLoginModal') closeBtn: ElementRef;
+
+    constructor(private accountService: AccountService, private router: Router){}
 
     ngOnInit() {
        // this.email = new FormControl('', [Validators.required, validateEmail]);
-        this.email = new FormControl('', [Validators.required, Validators.email]);
-        this.password = new FormControl('', Validators.required);
+        this.email = new FormControl('linda@test.in', [Validators.required, Validators.email]);
+        this.password = new FormControl('Pooja123@', Validators.required);
 
         this.loginForm = new FormGroup({
             email: this.email,
@@ -52,11 +55,18 @@ export class LoginComponent {
                 console.log(data);
                 let isUserValid = data.isUserValid;
                 let message = data.message;
+                let userId = data.id;
+               // let roleId = data.roleId;
 
                 if (isUserValid) {
                     this.isLoginSuccess = true;  
                     this.hasErrorMessage = false;
-                    // redirect to dashboard here
+                    this.closeModal();
+                 // let userDetails = data.userDetails;
+                  //  console.log(userDetails);
+                   // this.router.navigate(['/dashboard']);
+                   // this.router.navigate(['/dashboard/' + userId]);
+                    this.router.navigate(['/dashboard', userId]);                  
                 }
                 else {                                 
                     this.isLoginSuccess = false;
@@ -73,5 +83,9 @@ export class LoginComponent {
     resetForm() {
         this.loginForm.reset();
         this.hasErrorMessage = false;
+    }
+
+    closeModal() {
+        this.closeBtn.nativeElement.click();
     }
 }

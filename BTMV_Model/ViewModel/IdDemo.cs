@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BTMV.Common
+namespace BTMV_Model.ViewModel
 {
-    class BTMV
+    public class IdDemo
     {
+        public int Id { get; set; }
     }
 }

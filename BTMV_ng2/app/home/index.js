@@ -8,4 +8,7 @@ __export(require("./aboutUs.component"));
 __export(require("./register.component"));
 __export(require("./account.service"));
 __export(require("./login.component"));
+__export(require("./gallery.component"));
+__export(require("./contactUs.component"));
+__export(require("./successStories.component"));
 //# sourceMappingURL=index.js.map

@@ -43,8 +43,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="BTMV.Constants" />
-    <None Include="BTMV.Enums" />
+    <Compile Include="BTMV.Constants.cs" />
+    <Compile Include="BTMV_Enums.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ReadMe.txt" />

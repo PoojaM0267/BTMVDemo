@@ -9,13 +9,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var forms_1 = require("@angular/forms");
-var router_1 = require("@angular/router");
 var http_1 = require("@angular/http");
 var app_component_1 = require("./app.component");
 var nav_component_1 = require("./nav/nav.component");
-var routes_1 = require("./routes");
 var index_1 = require("./home/index");
 var index_2 = require("./common/index");
+/* Routing Module */
+var routes_1 = require("./routes");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -23,7 +23,7 @@ var AppModule = (function () {
         core_1.NgModule({
             imports: [
                 platform_browser_1.BrowserModule,
-                router_1.RouterModule.forRoot(routes_1.appRoutes),
+                routes_1.AppRoutesModule,
                 forms_1.FormsModule,
                 http_1.HttpModule,
                 forms_1.ReactiveFormsModule
@@ -37,6 +37,10 @@ var AppModule = (function () {
                 index_2.CommonModalTriggerDirective,
                 index_1.RegisterComponent,
                 index_1.LoginComponent,
+                index_1.GalleryComponent,
+                index_1.ContactUsComponent,
+                index_1.SuccessStoriesComponent
+                //  CustomValidation      
             ],
             providers: [
                 {

@@ -40,12 +40,12 @@ namespace BTMV_ng2.Controllers
         public void Delete(int id)
         {
         }
-                
-        protected HttpResponseMessage ToJson(dynamic obj)
-        {
-            var response = Request.CreateResponse(HttpStatusCode.OK);
-            response.Content = new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json");
-            return response;
-        }
+                        
+        //protected HttpResponseMessage ToJson(dynamic obj)
+        //{
+        //    var response = Request.CreateResponse(HttpStatusCode.OK);
+        //    response.Content = new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json");
+        //    return response;
+        //}
     }
 }

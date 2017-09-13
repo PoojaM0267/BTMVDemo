@@ -27,6 +27,7 @@ namespace BTMV_ng2
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/CustomStyles.css",
+                      "~/Content/Profile.css",
                       "~/Content/Forms.css"));
         }
     }

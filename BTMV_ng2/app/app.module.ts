@@ -1,19 +1,21 @@
 ﻿import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router'
-import { HttpModule } from '@angular/http'
+import { RouterModule } from '@angular/router';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { NavComponent } from './nav/nav.component'
-import { appRoutes } from './routes'
+import { NavComponent } from './nav/nav.component';
 import {
     HomeComponent,
     AboutUsComponent,
     RegisterComponent,
     AccountService,
-    LoginComponent
-} from './home/index'
+    LoginComponent,
+    GalleryComponent,
+    ContactUsComponent,
+    SuccessStoriesComponent
+} from './home/index';
 
 import {
     JQ_TOKEN,
@@ -21,15 +23,18 @@ import {
     CommonModalComponent,
     ListService,
     BaseConfig
-   // CustomValidation
-} from './common/index'
+    // CustomValidation
+} from './common/index';
+
+/* Routing Module */
+import { AppRoutesModule } from './routes';
 
 declare let jQuery: Object; 
 
 @NgModule({
     imports: [
         BrowserModule,
-        RouterModule.forRoot(appRoutes),
+        AppRoutesModule,
         FormsModule,
         HttpModule,
         ReactiveFormsModule
@@ -42,7 +47,10 @@ declare let jQuery: Object;
         CommonModalComponent,
         CommonModalTriggerDirective,
         RegisterComponent,
-        LoginComponent,        
+        LoginComponent,    
+        GalleryComponent,
+        ContactUsComponent,
+        SuccessStoriesComponent
       //  CustomValidation      
     ],
     providers: [

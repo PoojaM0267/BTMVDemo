@@ -185,24 +185,32 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Filters\AuthenticateUserAttribute.cs" />
+    <Compile Include="Filters\AuthorizeUserAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\dashboard\dashboard.component.html" />
     <Content Include="app\home\aboutUs.component.html" />
-    <Content Include="app\home\contactUs.html" />
+    <Content Include="app\home\contactUs.component.html" />
+    <Content Include="app\home\gallery.component.html" />
     <Content Include="app\home\home.component.html" />
     <Content Include="app\home\login.component.html" />
     <Content Include="app\home\register.component.html" />
+    <Content Include="app\home\successStories.component.html" />
     <Content Include="app\nav\nav.component.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\CustomStyles.css" />
     <Content Include="Content\Forms.css" />
+    <Content Include="Content\Profile.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -214,6 +222,7 @@
     <Content Include="Images\404_page1-e1450962000536.jpg" />
     <Content Include="Images\733248 %281%29.png" />
     <Content Include="Images\93148BA5-08AB-4150-A507-6A0E1FC721A7_w987_r1_s.jpg" />
+    <Content Include="Images\Avatar_girl.png" />
     <Content Include="Images\BackGroundThemes\Download-Solid-Color-Backgrounds-620x349.jpg" />
     <Content Include="Images\BackGroundThemes\green_matt_solid_bright_10479_300x168.jpg" />
     <Content Include="Images\BackGroundThemes\images %281%29vevvvw.jpg" />
@@ -251,6 +260,7 @@
     <Content Include="Images\images.png" />
     <Content Include="Images\imagesgtg4gg3f.png" />
     <Content Include="Images\nuf8sl8vw4p.png" />
+    <Content Include="Images\profileLogo.png" />
     <Content Include="Images\redg2.png" />
     <Content Include="Images\refresh.jpg" />
     <Content Include="Images\regd1.png" />
@@ -300,10 +310,14 @@
     <Content Include="tsconfig.json" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="app\dashboard\admin\" />
+    <Folder Include="app\dashboard\user\" />
     <Folder Include="app\errors\" />
     <Folder Include="app\user\" />
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Admin\" />
+    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -324,13 +338,20 @@
     <TypeScriptCompile Include="app\common\jQuery.service.ts" />
     <TypeScriptCompile Include="app\common\list.service.ts" />
     <TypeScriptCompile Include="app\common\matchPasswordValidation.ts" />
+    <TypeScriptCompile Include="app\dashboard\dashboard.component.ts" />
+    <TypeScriptCompile Include="app\dashboard\dashboard.module.ts" />
+    <TypeScriptCompile Include="app\dashboard\dashboard.routes.ts" />
+    <TypeScriptCompile Include="app\dashboard\dashboard.service.ts" />
     <TypeScriptCompile Include="app\home\aboutUs.component.ts" />
+    <TypeScriptCompile Include="app\home\contactUs.component.ts" />
     <TypeScriptCompile Include="app\home\contactUs.ts" />
+    <TypeScriptCompile Include="app\home\gallery.component.ts" />
     <TypeScriptCompile Include="app\home\home.component.ts" />
     <TypeScriptCompile Include="app\home\index.ts" />
     <TypeScriptCompile Include="app\home\login.component.ts" />
     <TypeScriptCompile Include="app\home\register.component.ts" />
     <TypeScriptCompile Include="app\home\account.service.ts" />
+    <TypeScriptCompile Include="app\home\successStories.component.ts" />
     <TypeScriptCompile Include="app\main.ts" />
     <TypeScriptCompile Include="app\models\city.ts" />
     <TypeScriptCompile Include="app\models\occupation.ts" />

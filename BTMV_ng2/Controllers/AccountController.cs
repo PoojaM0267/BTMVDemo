@@ -151,11 +151,17 @@ namespace BTMV_ng2.Controllers
 
                 var userCredentials = db.UserInformation
                     .Where(x => x.Email == userModel.Email)
-                    .Select(x => new { Email = x.Email, Password = x.Password })
+                    .Select(x => new
+                    {
+                        Email = x.Email,
+                        Password = x.Password,
+                        Id = x.Id,
+                        // RoleId = x.RoleId
+                    })
                     .SingleOrDefault();
 
-                if(userCredentials == null)
-                {                   
+                if (userCredentials == null)
+                {
                     // return User does not exists.
                     return Json(new { isUserValid = false, message = "User Not Found." });
                 }
@@ -163,8 +169,9 @@ namespace BTMV_ng2.Controllers
                 // TODO: update last login date time in db here
                 // TODO: update login failure count on failed login
 
-                isUserValid =  Verify(userModel.Email, userModel.Password, userCredentials.Password);               
-                return Json(new { isUserValid = isUserValid, message = (isUserValid)? "Login Successful" : "Invalid Credentials" });
+                isUserValid = Verify(userModel.Email, userModel.Password, userCredentials.Password);
+
+                return Json(new { isUserValid = isUserValid, id = userCredentials.Id, message = (isUserValid) ? "Login Successful" : "Invalid Credentials" });
             }
             catch (Exception ex)
             {
@@ -172,6 +179,65 @@ namespace BTMV_ng2.Controllers
             }
 
         }
+
+        //[System.Web.Http.HttpPost]
+        //public IHttpActionResult Login(UserLoginViewModel userModel)
+        //{
+        //    try
+        //    {
+        //        var db = new BTMVContext();
+        //        var isUserValid = false;
+
+        //        if (string.IsNullOrEmpty(userModel.Email) && string.IsNullOrEmpty(userModel.Password))
+        //        {
+        //            return Json(new { isUserValid = false, message = "Input Fields cannot be empty." });
+        //        }
+
+        //        var user = db.UserInformation
+        //               .Where(x => x.Email == userModel.Email)
+        //               .SingleOrDefault();
+
+        //        if (user == null)
+        //        {
+        //            // return User does not exists.
+        //            return Json(new { isUserValid = false, message = "User Not Found." });
+        //        }
+
+        //        // TODO: update last login date time in db here
+        //        // TODO: update login failure count on failed login
+
+        //        isUserValid = Verify(userModel.Email, userModel.Password, user.Password);
+
+        //        if(!isUserValid)
+        //        {
+        //            return Json(new { isUserValid = isUserValid, id = user.Id, message = "Invalid Credentials" });
+        //        }
+
+        //        var userDetails = new UserRegistrationViewModel
+        //        {
+        //            FirstName = user.FirstName,
+        //            LastName = user.LastName,
+        //            Email = user.Email,
+        //            Gender = user.Gender,
+        //            DOB = user.DOB,
+        //            RoleName = user.UserRoles.RoleName,
+        //            OccupationName = user.Occupation.OccupationName,
+        //            CityName = user.City.CityName,
+        //            StateName = user.City.State.StateName,
+        //            Address = user.Address,
+        //            Phone = user.Phone,
+        //            AltPhone = user.AltPhone
+        //        };
+
+
+        //        return Json(new { isUserValid = isUserValid, id = user.Id, message = "Login Successful", userDetails = userDetails});
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return null;
+        //    }
+
+        //}
 
         public static string ComputeHash(string salt,string password)
         {
@@ -183,6 +249,50 @@ namespace BTMV_ng2.Controllers
         public static bool Verify(string salt, string password, string hashedPassword)
         {
             return hashedPassword == ComputeHash(salt, password);
+        }
+        
+       // [System.Web.Http.Authorize]
+        [System.Web.Http.HttpPost]
+        public IHttpActionResult GetUserDetailsById(IdDemo param)
+        {
+            try
+            {
+                var db = new BTMVContext();
+                if(param.Id < 0)
+                {
+                    // return error
+                }
+
+                var user = db.UserInformation
+                       .Where(x => x.Id == param.Id)
+                       .SingleOrDefault();
+
+                //if(userDetails == null)
+                //{
+                //    return Json(new { userDetails = null });
+                //}
+
+                var userDetails = new UserRegistrationViewModel {
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Email = user.Email,
+                    Gender = user.Gender,
+                    DOB = user.DOB,
+                    RoleName = user.UserRoles.RoleName,
+                    OccupationName = user.Occupation.OccupationName,
+                    CityName = user.City.CityName,
+                    StateName = user.City.State.StateName,
+                    Address = user.Address,
+                    Phone = user.Phone,
+                    AltPhone = user.AltPhone
+                };
+
+                return Json(new { userDetails = userDetails });
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
     }
 }

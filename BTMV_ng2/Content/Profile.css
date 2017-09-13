@@ -1,0 +1,9 @@
+﻿.profileBody{
+    background-color: #f2f2f2;
+}
+
+.profilePic {
+    width: 150px;
+    height: 150px;
+    z-index: 2;
+}

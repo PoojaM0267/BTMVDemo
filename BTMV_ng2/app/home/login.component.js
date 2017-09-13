@@ -11,17 +11,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
+var router_1 = require("@angular/router");
 var account_service_1 = require("./account.service");
 //import { validateEmail } from '../common/emailValidator'
 var LoginComponent = (function () {
-    function LoginComponent(accountService) {
+    function LoginComponent(accountService, router) {
         this.accountService = accountService;
+        this.router = router;
         this.hasErrorMessage = false;
     }
     LoginComponent.prototype.ngOnInit = function () {
         // this.email = new FormControl('', [Validators.required, validateEmail]);
-        this.email = new forms_1.FormControl('', [forms_1.Validators.required, forms_1.Validators.email]);
-        this.password = new forms_1.FormControl('', forms_1.Validators.required);
+        this.email = new forms_1.FormControl('linda@test.in', [forms_1.Validators.required, forms_1.Validators.email]);
+        this.password = new forms_1.FormControl('Pooja123@', forms_1.Validators.required);
         this.loginForm = new forms_1.FormGroup({
             email: this.email,
             password: this.password
@@ -35,10 +37,17 @@ var LoginComponent = (function () {
             console.log(data);
             var isUserValid = data.isUserValid;
             var message = data.message;
+            var userId = data.id;
+            // let roleId = data.roleId;
             if (isUserValid) {
                 _this.isLoginSuccess = true;
                 _this.hasErrorMessage = false;
-                // redirect to dashboard here
+                _this.closeModal();
+                // let userDetails = data.userDetails;
+                //  console.log(userDetails);
+                // this.router.navigate(['/dashboard']);
+                // this.router.navigate(['/dashboard/' + userId]);
+                _this.router.navigate(['/dashboard', userId]);
             }
             else {
                 _this.isLoginSuccess = false;
@@ -54,13 +63,20 @@ var LoginComponent = (function () {
         this.loginForm.reset();
         this.hasErrorMessage = false;
     };
+    LoginComponent.prototype.closeModal = function () {
+        this.closeBtn.nativeElement.click();
+    };
+    __decorate([
+        core_1.ViewChild('closeLoginModal'),
+        __metadata("design:type", core_1.ElementRef)
+    ], LoginComponent.prototype, "closeBtn", void 0);
     LoginComponent = __decorate([
         core_1.Component({
             selector: 'login-form',
             templateUrl: 'app/home/login.component.html',
             styles: ["\n        em{ float: right; color: #E05C65; padding-left: 10px}\n       .error input, .error select, .error textarea { border-left: 5px solid #a94442; border-right : 1px solid #a94442; border-top : 1px solid #a94442; border-bottom : 1px solid #a94442; }\n       .valid input, .valid select, .valid textarea { border-left: 5px solid #42A948; border-right: 1px solid #42A948;   border-top: 1px solid #42A948; border-bottom: 1px solid #42A948; }\n       .modal-body {  min-height: 300px;}                 \n    "]
         }),
-        __metadata("design:paramtypes", [account_service_1.AccountService])
+        __metadata("design:paramtypes", [account_service_1.AccountService, router_1.Router])
     ], LoginComponent);
     return LoginComponent;
 }());

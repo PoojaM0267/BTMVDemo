@@ -10,12 +10,14 @@ import { BaseConfig } from '../common/baseConfig'
 export class AccountService {
     constructor(private http: Http, private baseConfig : BaseConfig) { }
 
+    options = this.baseConfig.getBaseHttpConfiguration();
+
     registerUser(userInfo: User): Observable<any>
     {        
 
-        var options = this.baseConfig.getBaseHttpConfiguration();
+      //  let options = this.baseConfig.getBaseHttpConfiguration();
 
-        return this.http.post('/api/Account/Register', JSON.stringify(userInfo), options)
+        return this.http.post('/api/Account/Register', JSON.stringify(userInfo), this.options)
             .map(response => response.json())
        
         .catch(error => {
@@ -25,20 +27,19 @@ export class AccountService {
 
     loginUser(userLoginInfo: UserLoginModel) : Observable<any>
     {
-        debugger;
+       // debugger;
 
-        var options = this.baseConfig.getBaseHttpConfiguration();
+       // let options = this.baseConfig.getBaseHttpConfiguration();
 
-        return this.http.post('/api/Account/Login', JSON.stringify(userLoginInfo), options)
+        return this.http.post('/api/Account/Login', JSON.stringify(userLoginInfo), this.options)
            .map(response => {
-               debugger;
+              // debugger;
                var res = response.json();
                return res;
             })
             .catch(error => {
                 return Observable.of(false);
-            })
-         
+            })         
     }
 }
 
