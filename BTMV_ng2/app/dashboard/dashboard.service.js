@@ -12,15 +12,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var http_1 = require("@angular/http");
 var core_1 = require("@angular/core");
 var baseConfig_1 = require("../common/baseConfig");
+var auth_service_1 = require("../_Services/auth.service");
 var DashboardService = (function () {
-    function DashboardService(http, baseConfig) {
+    function DashboardService(http, baseConfig, authenticationService) {
         this.http = http;
         this.baseConfig = baseConfig;
+        this.authenticationService = authenticationService;
         this.options = this.baseConfig.getBaseHttpConfiguration();
+        console.log(this.authenticationService.token);
     }
     DashboardService.prototype.getUser = function (userId) {
-        // debugger;
+        //debugger;
         var params = { Id: userId };
+        this.options.headers.append('Authorization', 'Bearer ' + this.authenticationService.token);
         return this.http.post('/api/Account/GetUserDetailsById', JSON.stringify(params), this.options)
             .map(function (response) {
             // debugger;
@@ -33,7 +37,7 @@ var DashboardService = (function () {
     };
     DashboardService = __decorate([
         core_1.Injectable(),
-        __metadata("design:paramtypes", [http_1.Http, baseConfig_1.BaseConfig])
+        __metadata("design:paramtypes", [http_1.Http, baseConfig_1.BaseConfig, auth_service_1.AuthenticationService])
     ], DashboardService);
     return DashboardService;
 }());

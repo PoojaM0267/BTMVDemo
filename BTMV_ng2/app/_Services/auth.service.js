@@ -9,24 +9,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var http_1 = require("@angular/http");
 var core_1 = require("@angular/core");
-var BaseConfig = (function () {
-    function BaseConfig() {
-        //let headers = new Headers({ 'Content-Type': 'application/json' });
-        //let options = new RequestOptions({ headers: headers });
+var http_1 = require("@angular/http");
+//import 'rxjs/add/operator/map'
+var AuthenticationService = (function () {
+    function AuthenticationService(http) {
+        this.http = http;
+        // set token if saved in local storage
+        var currentUser = localStorage.getItem('BTMV_currentUser');
+        console.log(currentUser);
+        this.token = currentUser;
     }
-    BaseConfig.prototype.getBaseHttpConfiguration = function () {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        //let headers = new Headers({ 'Content-Type': 'application/json', 'Accept': 'application/json', });
-        var options = new http_1.RequestOptions({ headers: headers });
-        return options;
+    // TODO: place login service here
+    AuthenticationService.prototype.logout = function () {
+        // clear token remove user from local storage to log user out
+        this.token = null;
+        localStorage.removeItem('BTMV_currentUser');
     };
-    BaseConfig = __decorate([
+    AuthenticationService = __decorate([
         core_1.Injectable(),
-        __metadata("design:paramtypes", [])
-    ], BaseConfig);
-    return BaseConfig;
+        __metadata("design:paramtypes", [http_1.Http])
+    ], AuthenticationService);
+    return AuthenticationService;
 }());
-exports.BaseConfig = BaseConfig;
-//# sourceMappingURL=baseConfig.js.map
+exports.AuthenticationService = AuthenticationService;
+//# sourceMappingURL=auth.service.js.map

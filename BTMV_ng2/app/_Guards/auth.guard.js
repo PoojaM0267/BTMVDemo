@@ -9,24 +9,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var http_1 = require("@angular/http");
 var core_1 = require("@angular/core");
-var BaseConfig = (function () {
-    function BaseConfig() {
-        //let headers = new Headers({ 'Content-Type': 'application/json' });
-        //let options = new RequestOptions({ headers: headers });
+var router_1 = require("@angular/router");
+var AuthGuard = (function () {
+    function AuthGuard(router) {
+        this.router = router;
     }
-    BaseConfig.prototype.getBaseHttpConfiguration = function () {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        //let headers = new Headers({ 'Content-Type': 'application/json', 'Accept': 'application/json', });
-        var options = new http_1.RequestOptions({ headers: headers });
-        return options;
+    AuthGuard.prototype.canActivate = function () {
+        if (localStorage.getItem('BTMV_currentUser')) {
+            // logged in so return true
+            return true;
+        }
+        // not logged in so redirect to login page
+        this.router.navigate(['/home']);
+        return false;
     };
-    BaseConfig = __decorate([
+    AuthGuard = __decorate([
         core_1.Injectable(),
-        __metadata("design:paramtypes", [])
-    ], BaseConfig);
-    return BaseConfig;
+        __metadata("design:paramtypes", [router_1.Router])
+    ], AuthGuard);
+    return AuthGuard;
 }());
-exports.BaseConfig = BaseConfig;
-//# sourceMappingURL=baseConfig.js.map
+exports.AuthGuard = AuthGuard;
+//# sourceMappingURL=auth.guard.js.map

@@ -10,4 +10,12 @@ namespace BTMV_Model.ViewModel
     {
         public int Id { get; set; }
     }
+
+    public class Token
+    {
+        public string token { get; set; }
+        public int Id { get; set; }
+    }
+
+
 }

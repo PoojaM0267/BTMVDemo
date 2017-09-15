@@ -1,10 +1,10 @@
-﻿import { Component, OnInit, ViewChild, ElementRef } from '@angular/core'
-import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms'
-import { Router } from '@angular/router'
+﻿import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 
-import { UserLoginModel } from '../models/userLoginModel'
-import { AccountService } from './account.service'
-//import { validateEmail } from '../common/emailValidator'
+import { UserLoginModel } from '../models/userLoginModel';
+import { AccountService } from './account.service';
+//import { validateEmail } from '../common/emailValidator';
 
 @Component({
     selector: 'login-form',
@@ -62,10 +62,6 @@ export class LoginComponent {
                     this.isLoginSuccess = true;  
                     this.hasErrorMessage = false;
                     this.closeModal();
-                 // let userDetails = data.userDetails;
-                  //  console.log(userDetails);
-                   // this.router.navigate(['/dashboard']);
-                   // this.router.navigate(['/dashboard/' + userId]);
                     this.router.navigate(['/dashboard', userId]);                  
                 }
                 else {                                 

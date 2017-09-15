@@ -13,7 +13,7 @@ var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var router_1 = require("@angular/router");
 var account_service_1 = require("./account.service");
-//import { validateEmail } from '../common/emailValidator'
+//import { validateEmail } from '../common/emailValidator';
 var LoginComponent = (function () {
     function LoginComponent(accountService, router) {
         this.accountService = accountService;
@@ -43,10 +43,6 @@ var LoginComponent = (function () {
                 _this.isLoginSuccess = true;
                 _this.hasErrorMessage = false;
                 _this.closeModal();
-                // let userDetails = data.userDetails;
-                //  console.log(userDetails);
-                // this.router.navigate(['/dashboard']);
-                // this.router.navigate(['/dashboard/' + userId]);
                 _this.router.navigate(['/dashboard', userId]);
             }
             else {

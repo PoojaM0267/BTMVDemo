@@ -14,6 +14,8 @@ var app_component_1 = require("./app.component");
 var nav_component_1 = require("./nav/nav.component");
 var index_1 = require("./home/index");
 var index_2 = require("./common/index");
+var index_3 = require("./_Services/index");
+var index_4 = require("./_Guards/index");
 /* Routing Module */
 var routes_1 = require("./routes");
 var AppModule = (function () {
@@ -48,7 +50,9 @@ var AppModule = (function () {
                 },
                 index_1.AccountService,
                 index_2.ListService,
-                index_2.BaseConfig
+                index_2.BaseConfig,
+                index_3.AuthenticationService,
+                index_4.AuthGuard
             ],
             bootstrap: [app_component_1.AppComponent]
         })

@@ -1,6 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using BTMV_Core.Interfaces;
+using BTMV_Core.Service;
+using BTMV_ng2.Resolver;
+using Microsoft.Practices.Unity;
 using System.Web.Http;
 
 namespace BTMV_ng2
@@ -9,7 +10,10 @@ namespace BTMV_ng2
     {
         public static void Register(HttpConfiguration config)
         {
-            // Web API configuration and services
+            // Web API configuration and services 
+            var container = new UnityContainer();
+            container.RegisterType<IAccountService, AccountService>(new HierarchicalLifetimeManager());
+            config.DependencyResolver = new UnityResolver(container);
 
             // Web API routes
             config.MapHttpAttributeRoutes();

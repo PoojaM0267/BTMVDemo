@@ -26,6 +26,14 @@ import {
     // CustomValidation
 } from './common/index';
 
+import {
+    AuthenticationService
+} from './_Services/index'
+
+import {
+    AuthGuard
+} from './_Guards/index'
+
 /* Routing Module */
 import { AppRoutesModule } from './routes';
 
@@ -37,7 +45,7 @@ declare let jQuery: Object;
         AppRoutesModule,
         FormsModule,
         HttpModule,
-        ReactiveFormsModule
+        ReactiveFormsModule       
     ],
     declarations: [
         AppComponent,
@@ -59,7 +67,9 @@ declare let jQuery: Object;
         },
         AccountService,
         ListService,
-        BaseConfig
+        BaseConfig,
+        AuthenticationService,
+        AuthGuard
     ],
     bootstrap: [AppComponent]
 })

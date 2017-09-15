@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var Rx_1 = require("rxjs/Rx");
 function matchPassword(formControl) {
-    debugger;
+    //debugger;
     var password = formControl.parent.controls["password"].value;
     var confirmPassword = formControl.value;
     if (password != '' && password != undefined) {

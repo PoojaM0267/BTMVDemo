@@ -10,7 +10,8 @@ export class BaseConfig {
     }        
 
     getBaseHttpConfiguration() {
-         let headers = new Headers({ 'Content-Type': 'application/json' });
+         let headers = new Headers({ 'Content-Type': 'application/json'});
+         //let headers = new Headers({ 'Content-Type': 'application/json', 'Accept': 'application/json', });
          let options = new RequestOptions({ headers: headers });
 
          return options;

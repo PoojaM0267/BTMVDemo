@@ -2,7 +2,7 @@
 import { Observable } from 'rxjs/Rx'
 
 export function matchPassword(formControl: FormControl) {
-    debugger;
+    //debugger;
 
     let password = formControl.parent.controls["password"].value;
     let confirmPassword = formControl.value; 

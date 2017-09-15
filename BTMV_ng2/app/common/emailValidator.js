@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 //    selector: '[validateEmail]' 
 //})
 function validateEmail(email) {
-    debugger;
+    //debugger;
     var EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w + ([\.-]?\w +)*(\.\w{2, 3 })+$/;
     return EMAIL_REGEX.test(email.value) ? null : {
         validateEmail: { valid: false }

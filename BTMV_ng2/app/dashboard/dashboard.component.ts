@@ -11,8 +11,6 @@ import { User } from '../models/userModel'
 
 export class DashboardComponent {
 
-    // expect an id input here to fetch all user details and display
-    //@Input() userId: number;
     userId: number;
     private sub: any;
     userDetails: User;

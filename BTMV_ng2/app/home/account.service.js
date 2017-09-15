@@ -20,7 +20,6 @@ var AccountService = (function () {
         this.options = this.baseConfig.getBaseHttpConfiguration();
     }
     AccountService.prototype.registerUser = function (userInfo) {
-        //  let options = this.baseConfig.getBaseHttpConfiguration();
         return this.http.post('/api/Account/Register', JSON.stringify(userInfo), this.options)
             .map(function (response) { return response.json(); })
             .catch(function (error) {
@@ -29,11 +28,13 @@ var AccountService = (function () {
     };
     AccountService.prototype.loginUser = function (userLoginInfo) {
         // debugger;
-        // let options = this.baseConfig.getBaseHttpConfiguration();
         return this.http.post('/api/Account/Login', JSON.stringify(userLoginInfo), this.options)
             .map(function (response) {
-            // debugger;
+            //debugger;
             var res = response.json();
+            console.log(res.jwtToken);
+            localStorage.setItem('BTMV_currentUser', res.jwtToken);
+            //Cookie.set('BTMV_currentUser', res.jwtToken, 0.0138889, "/", "http://localhost:54745", true);
             return res;
         })
             .catch(function (error) {
