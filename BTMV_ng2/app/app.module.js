@@ -14,8 +14,9 @@ var app_component_1 = require("./app.component");
 var nav_component_1 = require("./nav/nav.component");
 var index_1 = require("./home/index");
 var index_2 = require("./common/index");
-var index_3 = require("./_Services/index");
-var index_4 = require("./_Guards/index");
+var index_3 = require("./account/index");
+var index_4 = require("./_Services/index");
+var index_5 = require("./_Guards/index");
 /* Routing Module */
 var routes_1 = require("./routes");
 var AppModule = (function () {
@@ -37,8 +38,8 @@ var AppModule = (function () {
                 index_1.AboutUsComponent,
                 index_2.CommonModalComponent,
                 index_2.CommonModalTriggerDirective,
-                index_1.RegisterComponent,
-                index_1.LoginComponent,
+                index_3.RegisterComponent,
+                index_3.LoginComponent,
                 index_1.GalleryComponent,
                 index_1.ContactUsComponent,
                 index_1.SuccessStoriesComponent
@@ -48,11 +49,12 @@ var AppModule = (function () {
                 {
                     provide: index_2.JQ_TOKEN, useValue: jQuery,
                 },
-                index_1.AccountService,
-                index_2.ListService,
+                index_4.AccountService,
+                index_4.ListService,
                 index_2.BaseConfig,
-                index_3.AuthenticationService,
-                index_4.AuthGuard
+                index_4.AuthenticationService,
+                index_5.AuthGuard,
+                index_2.GlobalErrorHandler
             ],
             bootstrap: [app_component_1.AppComponent]
         })

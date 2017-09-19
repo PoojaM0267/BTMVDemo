@@ -1,19 +1,18 @@
-﻿import { Component, OnInit } from '@angular/core'
-import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms'
-import { Observable } from 'rxjs/Rx'
+﻿import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { Observable } from 'rxjs/Rx';
 
-import { User } from '../models/userModel'
-import { State } from '../models/state'
-import { City } from '../models/city'
-import { Occupation } from '../models/occupation'
-import { AccountService } from './account.service'
-import { ListService } from '../common/list.service'
-import { matchPassword } from '../common/matchPasswordValidation'
-
+//import { User } from '../models/userModel';
+import { State } from '../models/state';
+import { City } from '../models/city';
+import { Occupation } from '../models/occupation';
+import { ListService } from '../_Services/list.service';
+import { AccountService } from '../_Services/account.service';
+import { matchPassword } from '../common/matchPasswordValidation';
 
 @Component({
     selector: 'register-form',
-    templateUrl: 'app/home/register.component.html',
+    templateUrl: 'app/account/register.component.html',
     styles: [`
         em{ float: right; color: #E05C65; padding-left: 10px}
        .error input, .error select, .error textarea { border-left: 5px solid #a94442; border-right : 1px solid #a94442; border-top : 1px solid #a94442; border-bottom : 1px solid #a94442; }
@@ -26,14 +25,14 @@ export class RegisterComponent {
 
     registrationForm: FormGroup;
 
-    firstName: FormControl
-    lastName: FormControl
-    email: FormControl
-    stateId: FormControl
-    cityId: FormControl
-    occupationId: FormControl
-    password: FormControl
-   // confirmPassword: FormControl
+    firstName: FormControl;
+    lastName: FormControl;
+    email: FormControl;
+    stateId: FormControl;
+    cityId: FormControl;
+    occupationId: FormControl;
+    password: FormControl;
+   // confirmPassword: FormControl;
 
     selectedState: State = new State(0, 'Select State');
     states: State[];
@@ -89,7 +88,7 @@ export class RegisterComponent {
     isSubmitted = false;
 
     registerUser(formValues) {
-        //debugger;
+        // debugger;
         this.isSubmitted = true;
         console.log(formValues)
 
@@ -123,5 +122,6 @@ export class RegisterComponent {
 
     resetForm() {
         this.registrationForm.reset();
+        this.isRegistrationSuccess= false;
     }
 }

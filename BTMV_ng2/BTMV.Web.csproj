@@ -111,8 +111,8 @@
       <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -212,13 +212,13 @@
     <Compile Include="Resolver\UnityResolver.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\account\login.component.html" />
+    <Content Include="app\account\register.component.html" />
     <Content Include="app\dashboard\dashboard.component.html" />
     <Content Include="app\home\aboutUs.component.html" />
     <Content Include="app\home\contactUs.component.html" />
     <Content Include="app\home\gallery.component.html" />
     <Content Include="app\home\home.component.html" />
-    <Content Include="app\home\login.component.html" />
-    <Content Include="app\home\register.component.html" />
     <Content Include="app\home\successStories.component.html" />
     <Content Include="app\nav\nav.component.html" />
     <Content Include="Content\bootstrap.css" />
@@ -339,15 +339,18 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="app\account\index.ts" />
+    <TypeScriptCompile Include="app\account\login.component.ts" />
+    <TypeScriptCompile Include="app\account\register.component.ts" />
     <TypeScriptCompile Include="app\app.component.ts" />
     <TypeScriptCompile Include="app\app.module.ts" />
     <TypeScriptCompile Include="app\common\baseConfig.ts" />
     <TypeScriptCompile Include="app\common\commonModal.component.ts" />
     <TypeScriptCompile Include="app\common\commonModalTrigger.directive.ts" />
     <TypeScriptCompile Include="app\common\emailValidator.ts" />
+    <TypeScriptCompile Include="app\common\globalErrorHandler.service.ts" />
     <TypeScriptCompile Include="app\common\index.ts" />
     <TypeScriptCompile Include="app\common\jQuery.service.ts" />
-    <TypeScriptCompile Include="app\common\list.service.ts" />
     <TypeScriptCompile Include="app\common\matchPasswordValidation.ts" />
     <TypeScriptCompile Include="app\dashboard\dashboard.component.ts" />
     <TypeScriptCompile Include="app\dashboard\dashboard.module.ts" />
@@ -359,8 +362,6 @@
     <TypeScriptCompile Include="app\home\gallery.component.ts" />
     <TypeScriptCompile Include="app\home\home.component.ts" />
     <TypeScriptCompile Include="app\home\index.ts" />
-    <TypeScriptCompile Include="app\home\login.component.ts" />
-    <TypeScriptCompile Include="app\home\register.component.ts" />
     <TypeScriptCompile Include="app\home\account.service.ts" />
     <TypeScriptCompile Include="app\home\successStories.component.ts" />
     <TypeScriptCompile Include="app\main.ts" />
@@ -373,8 +374,11 @@
     <TypeScriptCompile Include="app\routes.ts" />
     <TypeScriptCompile Include="app\_Guards\auth.guard.ts" />
     <TypeScriptCompile Include="app\_Guards\index.ts" />
+    <TypeScriptCompile Include="app\_Services\account.service.ts" />
     <TypeScriptCompile Include="app\_Services\auth.service.ts" />
+    <TypeScriptCompile Include="app\_Services\dashboard.service.ts" />
     <TypeScriptCompile Include="app\_Services\index.ts" />
+    <TypeScriptCompile Include="app\_Services\list.service.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

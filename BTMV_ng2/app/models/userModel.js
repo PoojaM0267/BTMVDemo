@@ -1,8 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var User = (function () {
-    function User(id, firstName, lastName, email, dob, gender, phoneNumber, address, occupations, stateId, cityId, password, confirmPassword, altPhoneNumber, isSelected) {
-        this.id = id;
+    function User(
+        //public id: number,
+        firstName, lastName, email, dob, gender, phoneNumber, address, occupations, stateId, cityId, password, confirmPassword, altPhoneNumber, isSelected) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

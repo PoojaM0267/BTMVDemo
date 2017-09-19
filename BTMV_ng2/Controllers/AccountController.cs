@@ -16,7 +16,6 @@ namespace BTMV_ng2.Controllers
 {
     public class AccountController : CommonController
     {
-
         private readonly IAccountService _accountService;
         public AccountController(IAccountService accountService)
         {
@@ -206,7 +205,6 @@ namespace BTMV_ng2.Controllers
         
         [CustomAuthorize]
         [HttpPost]
-        //public IHttpActionResult GetUserDetailsById(IdDemo param)
         public IHttpActionResult GetUserDetailsById(IdDemo param)
         {
             try
@@ -268,7 +266,7 @@ namespace BTMV_ng2.Controllers
             var issueTime = DateTime.Now;
 
             var iat = (int)issueTime.Subtract(utc0).TotalSeconds;
-            var exp = (int)issueTime.AddMinutes(55).Subtract(utc0).TotalSeconds; // Expiration time is up to 1 hour, but lets play on safe side
+            var exp = (int)issueTime.AddMinutes(01).Subtract(utc0).TotalSeconds; // Expiration time is up to 1 hour, but lets play on safe side
 
             var payload = new
             {

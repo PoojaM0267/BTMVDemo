@@ -3,7 +3,9 @@ import { FormsModule } from '@angular/forms';
 
 import { DashboardRoutesModule } from './dashboard.routes';
 import { DashboardComponent } from './dashboard.component';
-import { DashboardService } from './dashboard.service'
+import { DashboardService } from '../_Services/dashboard.service'
+
+//import { DashboardService } from './dashboard.service'
 
 @NgModule({
     imports: [

@@ -9,9 +9,6 @@ import { NavComponent } from './nav/nav.component';
 import {
     HomeComponent,
     AboutUsComponent,
-    RegisterComponent,
-    AccountService,
-    LoginComponent,
     GalleryComponent,
     ContactUsComponent,
     SuccessStoriesComponent
@@ -21,13 +18,20 @@ import {
     JQ_TOKEN,
     CommonModalTriggerDirective,
     CommonModalComponent,
-    ListService,
-    BaseConfig
+    BaseConfig,
+    GlobalErrorHandler
     // CustomValidation
 } from './common/index';
 
 import {
-    AuthenticationService
+    RegisterComponent,
+    LoginComponent,
+} from './account/index';
+
+import {
+    AuthenticationService,
+    AccountService,
+    ListService,
 } from './_Services/index'
 
 import {
@@ -69,7 +73,8 @@ declare let jQuery: Object;
         ListService,
         BaseConfig,
         AuthenticationService,
-        AuthGuard
+        AuthGuard,
+        GlobalErrorHandler
     ],
     bootstrap: [AppComponent]
 })

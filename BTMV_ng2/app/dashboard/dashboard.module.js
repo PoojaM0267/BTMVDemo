@@ -10,7 +10,8 @@ var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var dashboard_routes_1 = require("./dashboard.routes");
 var dashboard_component_1 = require("./dashboard.component");
-var dashboard_service_1 = require("./dashboard.service");
+var dashboard_service_1 = require("../_Services/dashboard.service");
+//import { DashboardService } from './dashboard.service'
 var DashboardModule = (function () {
     function DashboardModule() {
     }

@@ -5,9 +5,6 @@ function __export(m) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(require("./home.component"));
 __export(require("./aboutUs.component"));
-__export(require("./register.component"));
-__export(require("./account.service"));
-__export(require("./login.component"));
 __export(require("./gallery.component"));
 __export(require("./contactUs.component"));
 __export(require("./successStories.component"));

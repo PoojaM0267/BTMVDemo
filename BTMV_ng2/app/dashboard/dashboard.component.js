@@ -11,30 +11,47 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
-var dashboard_service_1 = require("./dashboard.service");
+//import { DashboardService } from './dashboard.service'
+var dashboard_service_1 = require("../_Services/dashboard.service");
 var DashboardComponent = (function () {
-    function DashboardComponent(route, dashboardService) {
+    // userDetails: User = new User();  
+    function DashboardComponent(route, dashboardService, router) {
         this.route = route;
         this.dashboardService = dashboardService;
+        this.router = router;
         console.log('Dashboard');
     }
     DashboardComponent.prototype.ngOnInit = function () {
         var _this = this;
+        debugger;
         this.sub = this.route.params.subscribe(function (params) {
             _this.userId = +params['id']; // (+) converts string 'id' to a number
         });
         console.log(this.userId);
+        // console.log(this.userDetails);
         this.dashboardService.getUser(this.userId).subscribe(function (data) {
-            // debugger;
+            //debugger;
             console.log(data);
-            //let firstName = data.userDetails.FirstName;
-            //let lastName = data.userDetails.LastName;               
+            //this.userDetails = new User(
+            //    this.userDetails.firstName = data.userDetails.FirstName,
+            //    this.userDetails.lastName = data.userDetails.LastName,
+            //    this.userDetails.email = data.userDetails.Email
+            //);
+            var firstName = data.userDetails.FirstName;
+            var lastName = data.userDetails.LastName;
             // todo: map data to UI
-            //this.userDetails.firstName = firstName;
-            //this.userDetails.lastName = lastName;
+            _this.userDetails.firstName = firstName;
+            _this.userDetails.lastName = lastName;
             // this.userDetails = data.userDetails;
-        }, function (err) {
-            alert("Something went wrong. Please try again after sometime");
+        }, function (error) {
+            // debugger;
+            console.log(error.message);
+            //alert("Something went wrong. Please try again after sometime");
+            //this.router.navigate(['/home']);
+            if (error.message === "403") {
+                alert('Not authenticate User.');
+                _this.router.navigate(['/home']);
+            }
         });
     };
     DashboardComponent.prototype.ngOnDestroy = function () {
@@ -45,7 +62,7 @@ var DashboardComponent = (function () {
             selector: 'dashboard',
             templateUrl: 'app/dashboard/dashboard.component.html'
         }),
-        __metadata("design:paramtypes", [router_1.ActivatedRoute, dashboard_service_1.DashboardService])
+        __metadata("design:paramtypes", [router_1.ActivatedRoute, dashboard_service_1.DashboardService, router_1.Router])
     ], DashboardComponent);
     return DashboardComponent;
 }());

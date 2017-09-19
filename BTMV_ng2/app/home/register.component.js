@@ -12,14 +12,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var state_1 = require("../models/state");
-var account_service_1 = require("./account.service");
-var list_service_1 = require("../common/list.service");
+var list_service_1 = require("../_Services/list.service");
+var account_service_1 = require("../_Services/account.service");
+//import { AccountService } from './account.service';
+//import { ListService } from '../common/list.service';
 var RegisterComponent = (function () {
     function RegisterComponent(accountService, listService) {
         var _this = this;
         this.accountService = accountService;
         this.listService = listService;
-        // confirmPassword: FormControl
+        // confirmPassword: FormControl;
         this.selectedState = new state_1.State(0, 'Select State');
         this.isRegistrationSuccess = false;
         //isSuccess: boolean;
@@ -54,7 +56,7 @@ var RegisterComponent = (function () {
     };
     RegisterComponent.prototype.registerUser = function (formValues) {
         var _this = this;
-        //debugger;
+        // debugger;
         this.isSubmitted = true;
         console.log(formValues);
         var result = this.accountService.registerUser(formValues).subscribe(function (data) {

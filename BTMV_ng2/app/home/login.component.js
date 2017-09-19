@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var router_1 = require("@angular/router");
-var account_service_1 = require("./account.service");
+var account_service_1 = require("../_Services/account.service");
 //import { validateEmail } from '../common/emailValidator';
 var LoginComponent = (function () {
     function LoginComponent(accountService, router) {

@@ -9,10 +9,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var dashboard_component_1 = require("./dashboard.component");
+var auth_guard_1 = require("../_Guards/auth.guard");
 var routes = [
     // { path: '', component: DashboardComponent },
     // { path: '/:id', component: DashboardComponent } ,
-    { path: 'dashboard/:id', component: dashboard_component_1.DashboardComponent }
+    { path: 'dashboard/:id', component: dashboard_component_1.DashboardComponent, canActivate: [auth_guard_1.AuthGuard] }
 ];
 var DashboardRoutesModule = (function () {
     function DashboardRoutesModule() {

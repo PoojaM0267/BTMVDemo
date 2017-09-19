@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -12,29 +13,55 @@ namespace BTMV_ng2.Filters
     {       
         public override void OnAuthorization(HttpActionContext actionContext)
         {
+
+            if (actionContext.Request.Headers.Authorization == null)
+            {                
+                HandleUnauthorizedRequest(actionContext);
+                return;
+            }
             // get value from header
-            string authenticationToken = Convert.ToString(
+            var authenticationToken = Convert.ToString(
               actionContext.Request.Headers.GetValues("Authorization").FirstOrDefault());
 
-            if(string.IsNullOrEmpty(authenticationToken))
+            var jwtEncodedString = authenticationToken.Substring(7);
+            var hasExpired = HasExpired(jwtEncodedString);
+            if(hasExpired)
             {
-                HttpContext.Current.Response.AddHeader("Authorization", authenticationToken);
-                HttpContext.Current.Response.AddHeader("AuthenticationStatus", "NotAuthorized");
-                actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Forbidden);
-                return;                
+                HandleUnauthorizedRequest(actionContext);
+                return;
             }
 
             HttpContext.Current.Response.AddHeader("authenticationToken", authenticationToken);
             HttpContext.Current.Response.AddHeader("AuthenticationStatus", "Authorized");
+            return;            
+        }
+
+        protected override void HandleUnauthorizedRequest(HttpActionContext actionContext)
+        {
+            HttpContext.Current.Response.AddHeader("AuthenticationStatus", "NotAuthorized");
+            actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Forbidden);
             return;
         }
 
-        //protected override void HandleUnauthorizedRequest(HttpActionContext actionContext)
+        //private static bool DecodeToken(string authToken)
         //{
-        //    HttpContext.Current.Response.AddHeader("AuthenticationStatus", "NotAuthorized");
-        //    actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Forbidden);
-        //    return;
+
+        //    var jwtEncodedString = authToken.Substring(7);
+        //    var token = new JwtSecurityToken(jwtEncodedString: jwtEncodedString);
+        //    var userName = token.Claims.First(c => c.Type == "user").Value;
+
+        //    return false;
         //}
+
+        private static bool HasExpired(string authToken)
+        {
+            var token = new JwtSecurityToken(jwtEncodedString: authToken);
+
+            if (token.ValidTo > DateTime.Now)
+                return false;
+            else
+                return true;
+        }
 
 
     }

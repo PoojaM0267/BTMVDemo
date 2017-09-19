@@ -1,14 +1,15 @@
-﻿import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+﻿import { Component, OnInit, ViewChild, ElementRef, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { UserLoginModel } from '../models/userLoginModel';
-import { AccountService } from './account.service';
+//import { UserLoginModel } from '../models/userLoginModel';
+import { AccountService } from '../_Services/account.service';
+//import { User } from '../models/userModel';
 //import { validateEmail } from '../common/emailValidator';
 
 @Component({
     selector: 'login-form',
-    templateUrl: 'app/home/login.component.html',
+    templateUrl: 'app/account/login.component.html',
     styles: [`
         em{ float: right; color: #E05C65; padding-left: 10px}
        .error input, .error select, .error textarea { border-left: 5px solid #a94442; border-right : 1px solid #a94442; border-top : 1px solid #a94442; border-bottom : 1px solid #a94442; }
@@ -19,7 +20,7 @@ import { AccountService } from './account.service';
 
 export class LoginComponent {
 
-    public userLogin : UserLoginModel;
+   // public userLogin : UserLoginModel;
     loginForm: FormGroup;
 
     email: FormControl;
@@ -29,8 +30,10 @@ export class LoginComponent {
     hasErrorMessage: boolean = false;
     errorMessage: string;
 
-    @ViewChild('closeLoginModal') closeBtn: ElementRef;
+    //userInfo: User
 
+    @ViewChild('closeLoginModal') closeBtn: ElementRef;
+    //@Output() userDetails = new EventEmitter();
     constructor(private accountService: AccountService, private router: Router){}
 
     ngOnInit() {
@@ -62,7 +65,7 @@ export class LoginComponent {
                     this.isLoginSuccess = true;  
                     this.hasErrorMessage = false;
                     this.closeModal();
-                    this.router.navigate(['/dashboard', userId]);                  
+                    this.router.navigate(['/dashboard', userId]);
                 }
                 else {                                 
                     this.isLoginSuccess = false;
@@ -76,12 +79,14 @@ export class LoginComponent {
             });       
     }
 
-    resetForm() {
+    resetForm() {        
         this.loginForm.reset();
         this.hasErrorMessage = false;
+        this.isLoginSuccess = false;
     }
 
     closeModal() {
         this.closeBtn.nativeElement.click();
     }
+    
 }
