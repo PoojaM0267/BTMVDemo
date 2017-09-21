@@ -22,17 +22,19 @@ var DashboardService = (function () {
         this.authenticationService = authenticationService;
         this.globalErrorHandler = globalErrorHandler;
         this.options = this.baseConfig.getBaseHttpConfiguration();
-        console.log(this.authenticationService.token);
+        console.log(this.authenticationService.currentUser);
     }
     DashboardService.prototype.getUser = function (userId) {
         //debugger;
         var params = { Id: userId };
-        if (this.authenticationService.token) {
-            this.options.headers.append('Authorization', 'Bearer ' + this.authenticationService.token);
+        var user = localStorage.getItem('BTMV_currentUser');
+        if (user) {
+            var currentUser = JSON.parse(user);
+            this.options.headers.append('Authorization', 'Bearer ' + currentUser.token);
         }
         return this.http.post('/api/Account/GetUserDetailsById', JSON.stringify(params), this.options)
             .map(function (response) {
-            //debugger;
+            // debugger;
             var res = response.json();
             console.log(res);
             return res;
@@ -46,10 +48,8 @@ var DashboardService = (function () {
     };
     DashboardService = __decorate([
         core_1.Injectable(),
-        __metadata("design:paramtypes", [http_1.Http,
-            baseConfig_1.BaseConfig,
-            auth_service_1.AuthenticationService,
-            globalErrorHandler_service_1.GlobalErrorHandler])
+        __metadata("design:paramtypes", [http_1.Http, baseConfig_1.BaseConfig,
+            auth_service_1.AuthenticationService, globalErrorHandler_service_1.GlobalErrorHandler])
     ], DashboardService);
     return DashboardService;
 }());

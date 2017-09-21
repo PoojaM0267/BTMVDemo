@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 //import { Cookie } from 'ng2-cookies';
 
-import { User } from '../models/userModel';
+import { UserRegisterModel } from '../models/userRegisterModel';
 import { UserLoginModel } from '../models/userLoginModel';
 import { BaseConfig } from '../common/baseConfig';
 
@@ -13,7 +13,7 @@ export class AccountService {
 
     options = this.baseConfig.getBaseHttpConfiguration();
 
-    registerUser(userInfo: User): Observable<any> {
+    registerUser(userInfo: UserRegisterModel): Observable<any> {
         return this.http.post('/api/Account/Register', JSON.stringify(userInfo), this.options)
             .map(response => response.json())
 
@@ -23,14 +23,14 @@ export class AccountService {
     }
 
     loginUser(userLoginInfo: UserLoginModel): Observable<any> {
-        // debugger;
+        //debugger;
         return this.http.post('/api/Account/Login', JSON.stringify(userLoginInfo), this.options)
             .map(response => {
                 //debugger;
                 var res = response.json();
-                console.log(res.jwtToken);
-                localStorage.setItem('BTMV_currentUser', res.jwtToken);
-                //Cookie.set('BTMV_currentUser', res.jwtToken, 0.0138889, "/", "http://localhost:54745", true);
+                console.log(res.jwtToken);  
+                //localStorage.setItem('BTMV_currentUser', res.jwtToken);
+                localStorage.setItem('BTMV_currentUser', JSON.stringify({ username: userLoginInfo.email, token: res.jwtToken }));
                 return res;
             })
             .catch(error => {
@@ -38,5 +38,8 @@ export class AccountService {
             })
     }
 }
+
+
+ 
 
 

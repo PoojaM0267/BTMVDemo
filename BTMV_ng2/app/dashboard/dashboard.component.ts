@@ -1,9 +1,10 @@
 ﻿import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute, Router} from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router';
 
-//import { DashboardService } from './dashboard.service'
-import { DashboardService } from '../_Services/dashboard.service'
-import { User } from '../models/userModel'
+import { DashboardService } from '../_Services/dashboard.service';
+import { UserRegisterModel } from '../models/userRegisterModel';
+import { IUserProfile } from '../models/userProfile';
+import { AuthenticationService } from '../_Services/auth.service';
 
 @Component({
     selector: 'dashboard',
@@ -14,44 +15,39 @@ export class DashboardComponent {
 
     userId: number;
     private sub: any;
-    userDetails: User;
+    userDetails: UserRegisterModel;
    // userDetails: User = new User();  
+    userProfile: IUserProfile;
 
-    constructor(private route: ActivatedRoute, private dashboardService: DashboardService, private router: Router) {    
+    constructor(private route: ActivatedRoute, private dashboardService: DashboardService, private router: Router, private auth: AuthenticationService) {  
+        //debugger;          
         console.log('Dashboard');        
     }
 
     ngOnInit() {
-        debugger;
+        //debugger;
         this.sub = this.route.params.subscribe(params => {
             this.userId = +params['id']; // (+) converts string 'id' to a number
         });
 
         console.log(this.userId);
-       // console.log(this.userDetails);
 
         this.dashboardService.getUser(this.userId).subscribe(
             data => {
                 //debugger;
                 console.log(data);
-                //this.userDetails = new User(
-                //    this.userDetails.firstName = data.userDetails.FirstName,
-                //    this.userDetails.lastName = data.userDetails.LastName,
-                //    this.userDetails.email = data.userDetails.Email
-                //);
-                
-                 
-                let firstName = data.userDetails.FirstName;
-                let lastName = data.userDetails.LastName;               
-                
+                //this.auth.checkAuthenticationStatus();
+                this.userDetails = data['userDetails'];
+               // this.userProfile = data.userDetails;              
+
                 // todo: map data to UI
 
-                this.userDetails.firstName = firstName;
-                this.userDetails.lastName = lastName;
-               // this.userDetails = data.userDetails;
+                this.userDetails.firstName = data.userDetails.FirstName;
+                this.userDetails.lastName = data.userDetails.LastName;
+                this.userDetails.roleName = data.userDetails.RoleName;
             },
             error => {
-               // debugger;
+                //debugger;
                 console.log(error.message);
                 //alert("Something went wrong. Please try again after sometime");
                 //this.router.navigate(['/home']);

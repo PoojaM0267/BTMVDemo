@@ -9,25 +9,28 @@ import { GlobalErrorHandler } from '../common/globalErrorHandler.service'
 
 @Injectable()
 export class DashboardService {
-    constructor(private http: Http,
-        private baseConfig: BaseConfig,
-        private authenticationService: AuthenticationService,
-        private globalErrorHandler: GlobalErrorHandler) {
-        console.log(this.authenticationService.token);
+    constructor(private http: Http, private baseConfig: BaseConfig,
+        private authenticationService: AuthenticationService, private globalErrorHandler: GlobalErrorHandler) {
+
+        console.log(this.authenticationService.currentUser);
+
     }
     options = this.baseConfig.getBaseHttpConfiguration();
 
     getUser(userId: number): Observable<any> {
         //debugger;
         let params = { Id: userId };
-        if (this.authenticationService.token)
+
+        let user = localStorage.getItem('BTMV_currentUser')
+        if (user)
         {
-            this.options.headers.append('Authorization', 'Bearer ' + this.authenticationService.token);
+            let currentUser = JSON.parse(user)
+            this.options.headers.append('Authorization', 'Bearer ' + currentUser.token);
         }       
 
         return this.http.post('/api/Account/GetUserDetailsById', JSON.stringify(params), this.options)
             .map(response => {
-                //debugger;
+               // debugger;
                 var res = response.json();
                 console.log(res);
                 return res;

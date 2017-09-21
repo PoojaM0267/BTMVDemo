@@ -6,4 +6,4 @@ var UserRegisterModel = (function () {
     return UserRegisterModel;
 }());
 exports.UserRegisterModel = UserRegisterModel;
-//# sourceMappingURL=userModel.js.map
+//# sourceMappingURL=userRegisterModel.js.map

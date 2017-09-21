@@ -11,24 +11,38 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
-//import 'rxjs/add/operator/map'
+var router_1 = require("@angular/router");
 var AuthenticationService = (function () {
-    function AuthenticationService(http) {
+    //public token: string;
+    //public currentUsername: string; 
+    function AuthenticationService(http, router) {
         this.http = http;
-        // set token if saved in local storage
-        var currentUser = localStorage.getItem('BTMV_currentUser');
-        console.log(currentUser);
-        this.token = currentUser;
+        this.router = router;
+        // debugger;       
+        var user = localStorage.getItem('BTMV_currentUser');
+        this.currentUser = JSON.parse(user);
+        console.log(this.currentUser);
+        //this.token = this.currentUser.token;
+        //this.currentUsername = this.currentUser.username;
     }
-    // TODO: place login service here
+    AuthenticationService.prototype.checkAuthenticationStatus = function () {
+        var user = localStorage.getItem('BTMV_currentUser');
+        this.currentUser = JSON.parse(user);
+        console.log(this.currentUser);
+    };
+    AuthenticationService.prototype.isAuthenticated = function () {
+        var user = localStorage.getItem('BTMV_currentUser');
+        this.currentUser = JSON.parse(user);
+        return !!this.currentUser;
+    };
     AuthenticationService.prototype.logout = function () {
-        // clear token remove user from local storage to log user out
-        this.token = null;
+        this.currentUser = null;
         localStorage.removeItem('BTMV_currentUser');
+        this.router.navigate(['/home']);
     };
     AuthenticationService = __decorate([
         core_1.Injectable(),
-        __metadata("design:paramtypes", [http_1.Http])
+        __metadata("design:paramtypes", [http_1.Http, router_1.Router])
     ], AuthenticationService);
     return AuthenticationService;
 }());

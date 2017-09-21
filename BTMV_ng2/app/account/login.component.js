@@ -12,20 +12,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var router_1 = require("@angular/router");
-//import { UserLoginModel } from '../models/userLoginModel';
 var account_service_1 = require("../_Services/account.service");
-//import { User } from '../models/userModel';
+var auth_service_1 = require("../_Services/auth.service");
 //import { validateEmail } from '../common/emailValidator';
 var LoginComponent = (function () {
-    //@Output() userDetails = new EventEmitter();
-    function LoginComponent(accountService, router) {
+    function LoginComponent(accountService, router, authService) {
         this.accountService = accountService;
         this.router = router;
+        this.authService = authService;
         this.hasErrorMessage = false;
     }
     LoginComponent.prototype.ngOnInit = function () {
         // this.email = new FormControl('', [Validators.required, validateEmail]);
-        this.email = new forms_1.FormControl('linda@test.in', [forms_1.Validators.required, forms_1.Validators.email]);
+        this.email = new forms_1.FormControl('pooja@test.in', [forms_1.Validators.required, forms_1.Validators.email]);
         this.password = new forms_1.FormControl('Pooja123@', forms_1.Validators.required);
         this.loginForm = new forms_1.FormGroup({
             email: this.email,
@@ -37,11 +36,11 @@ var LoginComponent = (function () {
         //debugger;
         console.log(formValues);
         this.accountService.loginUser(formValues).subscribe(function (data) {
+            //debugger;
             console.log(data);
             var isUserValid = data.isUserValid;
             var message = data.message;
             var userId = data.id;
-            // let roleId = data.roleId;
             if (isUserValid) {
                 _this.isLoginSuccess = true;
                 _this.hasErrorMessage = false;
@@ -76,7 +75,7 @@ var LoginComponent = (function () {
             templateUrl: 'app/account/login.component.html',
             styles: ["\n        em{ float: right; color: #E05C65; padding-left: 10px}\n       .error input, .error select, .error textarea { border-left: 5px solid #a94442; border-right : 1px solid #a94442; border-top : 1px solid #a94442; border-bottom : 1px solid #a94442; }\n       .valid input, .valid select, .valid textarea { border-left: 5px solid #42A948; border-right: 1px solid #42A948;   border-top: 1px solid #42A948; border-bottom: 1px solid #42A948; }\n       .modal-body {  min-height: 300px;}                 \n    "]
         }),
-        __metadata("design:paramtypes", [account_service_1.AccountService, router_1.Router])
+        __metadata("design:paramtypes", [account_service_1.AccountService, router_1.Router, auth_service_1.AuthenticationService])
     ], LoginComponent);
     return LoginComponent;
 }());

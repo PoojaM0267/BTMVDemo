@@ -224,9 +224,12 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\CustomStyles.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\Forms.css" />
     <Content Include="Content\Profile.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -290,6 +293,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="package.json" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -369,7 +377,8 @@
     <TypeScriptCompile Include="app\models\occupation.ts" />
     <TypeScriptCompile Include="app\models\state.ts" />
     <TypeScriptCompile Include="app\models\userLoginModel.ts" />
-    <TypeScriptCompile Include="app\models\userModel.ts" />
+    <TypeScriptCompile Include="app\models\userProfile.ts" />
+    <TypeScriptCompile Include="app\models\userRegisterModel.ts" />
     <TypeScriptCompile Include="app\nav\nav.component.ts" />
     <TypeScriptCompile Include="app\routes.ts" />
     <TypeScriptCompile Include="app\_Guards\auth.guard.ts" />

@@ -2,9 +2,8 @@
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 
-//import { UserLoginModel } from '../models/userLoginModel';
 import { AccountService } from '../_Services/account.service';
-//import { User } from '../models/userModel';
+import { AuthenticationService } from '../_Services/auth.service';
 //import { validateEmail } from '../common/emailValidator';
 
 @Component({
@@ -19,8 +18,7 @@ import { AccountService } from '../_Services/account.service';
 })
 
 export class LoginComponent {
-
-   // public userLogin : UserLoginModel;
+    
     loginForm: FormGroup;
 
     email: FormControl;
@@ -29,16 +27,14 @@ export class LoginComponent {
     isLoginSuccess: boolean;
     hasErrorMessage: boolean = false;
     errorMessage: string;
-
-    //userInfo: User
+    
 
     @ViewChild('closeLoginModal') closeBtn: ElementRef;
-    //@Output() userDetails = new EventEmitter();
-    constructor(private accountService: AccountService, private router: Router){}
+    constructor(private accountService: AccountService, private router: Router, private authService: AuthenticationService){}
 
     ngOnInit() {
        // this.email = new FormControl('', [Validators.required, validateEmail]);
-        this.email = new FormControl('linda@test.in', [Validators.required, Validators.email]);
+        this.email = new FormControl('pooja@test.in', [Validators.required, Validators.email]);
         this.password = new FormControl('Pooja123@', Validators.required);
 
         this.loginForm = new FormGroup({
@@ -51,20 +47,20 @@ export class LoginComponent {
     loginUser(formValues) {
         //debugger;
         console.log(formValues);
-       
 
-        this.accountService.loginUser(formValues).subscribe(
+        this.accountService.loginUser(formValues).subscribe(      
             data => {
+                //debugger;
                 console.log(data);
                 let isUserValid = data.isUserValid;
                 let message = data.message;
                 let userId = data.id;
-               // let roleId = data.roleId;
+
 
                 if (isUserValid) {
                     this.isLoginSuccess = true;  
                     this.hasErrorMessage = false;
-                    this.closeModal();
+                    this.closeModal();                    
                     this.router.navigate(['/dashboard', userId]);
                 }
                 else {                                 

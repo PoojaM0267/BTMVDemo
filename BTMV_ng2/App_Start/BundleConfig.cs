@@ -25,7 +25,8 @@ namespace BTMV_ng2
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css",
+                      "~/Content/font-awesome.min.css",
+                      "~/Content/site.css",                       
                       "~/Content/CustomStyles.css",
                       "~/Content/Profile.css",
                       "~/Content/Forms.css"));

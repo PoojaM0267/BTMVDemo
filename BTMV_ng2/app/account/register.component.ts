@@ -73,7 +73,6 @@ export class RegisterComponent {
             occupationId: this.occupationId,
             password: this.password,
            // confirmPassword: this.confirmPassword
-
         },
              //matchPassword('confirmPassword','password')
            

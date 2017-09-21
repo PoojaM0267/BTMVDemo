@@ -24,19 +24,22 @@
             </ul>
 
             <div class="navbar-header navbar-right">
+                <!--<ul class="nav navbar-nav" *ngIf="!auth.isAuthenticated()">-->
                 <ul class="nav navbar-nav">
                     <li>
-                        <a class="textWhite" commonModal-trigger>Register</a>                       
-                       
+                        <a class="textWhite" commonModal-trigger>Register</a>
+
                     </li>
                     <li>
                         <a class="textWhite" data-toggle="modal" data-target="#loginModal">Login</a>
-                    </li>                   
+                    </li>
                 </ul>
-                <!--<ul>
+                <!--<ul class="nav navbar-nav" *ngIf="auth.isAuthenticated()">
                     <li>
-                        <a *ngIf="" [routerLink]="['user/profile']">Welcome</a>
-                        <a>Welcome Pooja</a>
+                        <a class="textWhite" [routerLink]="">Welcome {{auth?.currentUser?.username}}</a>                        
+                    </li>
+                    <li>
+                        <a  class="textWhite" [routerLink]="auth.logout()">Logout</a>
                     </li>
                 </ul>-->
             </div>

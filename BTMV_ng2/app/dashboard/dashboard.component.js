@@ -11,40 +11,36 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
-//import { DashboardService } from './dashboard.service'
 var dashboard_service_1 = require("../_Services/dashboard.service");
+var auth_service_1 = require("../_Services/auth.service");
 var DashboardComponent = (function () {
-    // userDetails: User = new User();  
-    function DashboardComponent(route, dashboardService, router) {
+    function DashboardComponent(route, dashboardService, router, auth) {
         this.route = route;
         this.dashboardService = dashboardService;
         this.router = router;
+        this.auth = auth;
+        //debugger;          
         console.log('Dashboard');
     }
     DashboardComponent.prototype.ngOnInit = function () {
         var _this = this;
-        debugger;
+        //debugger;
         this.sub = this.route.params.subscribe(function (params) {
             _this.userId = +params['id']; // (+) converts string 'id' to a number
         });
         console.log(this.userId);
-        // console.log(this.userDetails);
         this.dashboardService.getUser(this.userId).subscribe(function (data) {
             //debugger;
             console.log(data);
-            //this.userDetails = new User(
-            //    this.userDetails.firstName = data.userDetails.FirstName,
-            //    this.userDetails.lastName = data.userDetails.LastName,
-            //    this.userDetails.email = data.userDetails.Email
-            //);
-            var firstName = data.userDetails.FirstName;
-            var lastName = data.userDetails.LastName;
+            //this.auth.checkAuthenticationStatus();
+            _this.userDetails = data['userDetails'];
+            // this.userProfile = data.userDetails;              
             // todo: map data to UI
-            _this.userDetails.firstName = firstName;
-            _this.userDetails.lastName = lastName;
-            // this.userDetails = data.userDetails;
+            _this.userDetails.firstName = data.userDetails.FirstName;
+            _this.userDetails.lastName = data.userDetails.LastName;
+            _this.userDetails.roleName = data.userDetails.RoleName;
         }, function (error) {
-            // debugger;
+            //debugger;
             console.log(error.message);
             //alert("Something went wrong. Please try again after sometime");
             //this.router.navigate(['/home']);
@@ -62,7 +58,7 @@ var DashboardComponent = (function () {
             selector: 'dashboard',
             templateUrl: 'app/dashboard/dashboard.component.html'
         }),
-        __metadata("design:paramtypes", [router_1.ActivatedRoute, dashboard_service_1.DashboardService, router_1.Router])
+        __metadata("design:paramtypes", [router_1.ActivatedRoute, dashboard_service_1.DashboardService, router_1.Router, auth_service_1.AuthenticationService])
     ], DashboardComponent);
     return DashboardComponent;
 }());

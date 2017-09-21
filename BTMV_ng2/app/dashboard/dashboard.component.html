@@ -1,18 +1,54 @@
-﻿<div class="bodyContent profileBody">
-    <div class="container">
-       <div class="row">
-           <div class="col-md-3 col-xs-12">
-               <div>
-                  <h4> User Profile Photo</h4>
+﻿<div class="dashboardBody">
+    
+       <div class="row ">
+           <!-- Side Navigation -->
+           <div class="col-md-2 col-xs-12" style="background: #125698; height: -webkit-fill-available;">
+               <div class="profilePicMainDiv">
+                   <div class="profilePic">
+                       <img src="../../Images/profileLogo.png" alt="Profile Picture" class="img-circle profileImage">
+                   </div>
+                   <div class="profileInfo">
+                       <!--<span>Welcome,</span>-->
+                       <h2>{{userDetails?.roleName}}</h2>
+                   </div>
                </div>
-               <div>
-                   <h4>Side Navigation</h4>
-                
+
+               <br />
+
+               <!-- Side Navigation Menu-->
+               <div class="menuSection">
+                   <ul class="sideNav">
+                       <li><a class="textWhite" [routerLink]="" [routerLinkActive]="['active']"><i class="fa fa-dashboard"></i> DashBoard</a></li>
+                       <li><a class="textWhite" [routerLink]="" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><i class="fa fa-user" aria-hidden="true"></i> Profile</a></li>
+                       <li><a class="textWhite" [routerLink]="" [routerLinkActive]="['active']"><i class="fa fa-plus" aria-hidden="true"></i> Add Work</a></li>
+                       <li><a class="textWhite" [routerLink]="" [routerLinkActive]="['active']"><i class="fa fa-list" aria-hidden="true"></i> View Works</a></li>
+                       <li><a class="textWhite" [routerLink]="" [routerLinkActive]="['active']"><i class="fa fa-edit" aria-hidden="true"></i> Report An Issue</a></li>
+                       <li><a class="textWhite" [routerLink]="" [routerLinkActive]="['active']"><i class="fa fa-edit" aria-hidden="true"></i> Edit Profile</a></li>
+                       <li><a class="textWhite" [routerLink]="" [routerLinkActive]="['active']"><i class="fa fa-plus" aria-hidden="true"></i> Change Password</a></li>
+                       <li><a class="textWhite" [routerLink]="" [routerLinkActive]="['active']"><i class="fa fa-trash" aria-hidden="true"></i> Delete Account</a></li>
+                   </ul>       
+               </div>
+               <!-- Side Navigation Ends-->
+
+           </div>
+           <!-- Side Navigation Ends -->
+
+           <!-- Dashboard Body -->
+           <div class="col-md-10 col-xs-12" style="background-color: #F7F7F7;">
+               <div class="titleLeft">
+                   <h3>User Profile</h3>
+               </div>
+
+               <!--<div class="titleRight">
+                   <h3>Anything</h3>
+               </div>-->
+             
+               <div class="profileBodyMainDiv">
+                   Body content goes here
                </div>
            </div>
-           <div class="col-md-9 col-xs-12">
-               <h1>Hello ! {{userDetails?.firstName}}</h1>
-           </div>
+
+           <!-- Dashboard Body Ends -->
        </div>
-    </div>
+    
 </div>
