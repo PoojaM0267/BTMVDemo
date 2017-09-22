@@ -45,6 +45,13 @@ export class DashboardComponent {
                 this.userDetails.firstName = data.userDetails.FirstName;
                 this.userDetails.lastName = data.userDetails.LastName;
                 this.userDetails.roleName = data.userDetails.RoleName;
+                this.userDetails.email = data.userDetails.Email;
+
+                this.userDetails.cityName = data.userDetails.CityName;
+                this.userDetails.stateName = data.userDetails.StateName;
+                this.userDetails.occupationName = data.userDetails.OccupationName;
+                this.userDetails.address = data.userDetails.Address;
+                this.userDetails.phoneNumber = data.userDetails.PhoneNumber;
             },
             error => {
                 //debugger;

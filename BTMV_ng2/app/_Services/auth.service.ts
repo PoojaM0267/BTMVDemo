@@ -3,7 +3,7 @@ import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
-import { IUserProfile } from '../models/userProfile'
+import { IUserProfile } from '../models/userProfile';
 
 
 @Injectable()

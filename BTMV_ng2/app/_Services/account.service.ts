@@ -16,7 +16,6 @@ export class AccountService {
     registerUser(userInfo: UserRegisterModel): Observable<any> {
         return this.http.post('/api/Account/Register', JSON.stringify(userInfo), this.options)
             .map(response => response.json())
-
             .catch(error => {
                 return Observable.of(false);
             })

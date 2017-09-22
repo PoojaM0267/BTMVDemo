@@ -1,0 +1,26 @@
+﻿<div class="profilePicMainDiv">
+    <div class="profilePic">
+        <img src="../../Images/profileLogo.png" alt="Profile Picture" class="img-circle profileImage">
+    </div>
+    <div class="profileInfo">
+        <!--<span>Welcome,</span>-->
+        <h2><strong>{{userDetails?.firstName}} {{userDetails?.lastName}}</strong></h2>
+        <h2>{{userDetails?.roleName}}</h2>
+    </div>
+</div>
+
+<!--<br />-->
+<!-- Side Navigation Menu-->
+<div class="menuSection">
+    <ul class="sideNav">
+        <li><a class="textWhite" [routerLink]="" [routerLinkActive]="['active']"><i class="fa fa-dashboard"></i> DashBoard</a></li>
+        <li><a class="textWhite" [routerLink]="" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><i class="fa fa-user"></i> Profile</a></li>
+        <li><a class="textWhite" [routerLink]="['addWork']" [routerLinkActive]="['active']"><i class="fa fa-plus"></i> Add Work</a></li>
+        <li><a class="textWhite" [routerLink]="" [routerLinkActive]="['active']"><i class="fa fa-list"></i> View Works</a></li>
+        <li><a class="textWhite" [routerLink]="" [routerLinkActive]="['active']"><i class="fa fa-edit"></i> Report An Issue</a></li>
+        <li><a class="textWhite" [routerLink]="" [routerLinkActive]="['active']"><i class="fa fa-edit"></i> Edit Profile</a></li>
+        <li><a class="textWhite" [routerLink]="" [routerLinkActive]="['active']"><i class="fa fa-plus"></i> Change Password</a></li>
+        <li><a class="textWhite" [routerLink]="" [routerLinkActive]="['active']"><i class="fa fa-trash"></i> Delete Account</a></li>
+    </ul>
+</div>
+<!-- Side Navigation Ends-->

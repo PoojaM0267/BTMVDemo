@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Rx';
 //import { User } from '../models/userModel';
 import { BaseConfig } from '../common/baseConfig';
 import { AuthenticationService } from './auth.service';
-import { GlobalErrorHandler } from '../common/globalErrorHandler.service'
+import { GlobalErrorHandler } from '../common/globalErrorHandler.service';
 
 @Injectable()
 export class DashboardService {
@@ -15,16 +15,17 @@ export class DashboardService {
         console.log(this.authenticationService.currentUser);
 
     }
+
     options = this.baseConfig.getBaseHttpConfiguration();
 
     getUser(userId: number): Observable<any> {
         //debugger;
         let params = { Id: userId };
 
-        let user = localStorage.getItem('BTMV_currentUser')
+        let user = localStorage.getItem('BTMV_currentUser');
         if (user)
         {
-            let currentUser = JSON.parse(user)
+            let currentUser = JSON.parse(user);
             this.options.headers.append('Authorization', 'Bearer ' + currentUser.token);
         }       
 
@@ -35,17 +36,8 @@ export class DashboardService {
                 console.log(res);
                 return res;
             })
-            .catch(this.globalErrorHandler.handleError);
-           // .catch(this.handleError);
-            //.catch(error => {
-            //    debugger;
-            //    return Observable.throw(new Error(error.status));
-           // })
-    }
-
-    //private handleError(error: Response) {
-    //    return Observable.throw(error.statusText);
-    //}
+            .catch(this.globalErrorHandler.handleError);          
+    }   
 }
 
 

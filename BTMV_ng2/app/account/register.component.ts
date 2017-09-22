@@ -55,13 +55,13 @@ export class RegisterComponent {
     }
 
     ngOnInit() {
-        this.firstName = new FormControl('', Validators.required)
-        this.lastName = new FormControl('', Validators.required)
-        this.email = new FormControl('', [Validators.required, Validators.email])
-        this.stateId = new FormControl('', Validators.required)
-        this.cityId = new FormControl('', Validators.required)
-        this.occupationId = new FormControl('', Validators.required)
-        this.password = new FormControl('', Validators.required)
+        this.firstName = new FormControl('', Validators.required);
+        this.lastName = new FormControl('', Validators.required);
+        this.email = new FormControl('', [Validators.required, Validators.email]);
+        this.stateId = new FormControl('', Validators.required);
+        this.cityId = new FormControl('', Validators.required);
+        this.occupationId = new FormControl('', Validators.required);
+        this.password = new FormControl('', Validators.required);
        // this.confirmPassword = new FormControl('', Validators.required, matchPassword)        
 
         this.registrationForm = new FormGroup({

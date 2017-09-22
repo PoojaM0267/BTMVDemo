@@ -55,6 +55,7 @@
     font-weight: 300;
     /*padding-top: 10px;*/
     text-align: center;
+    margin-bottom: 5px;
 }
 
 .menuSection {
@@ -90,6 +91,39 @@
 .titleRight{
     width: 55%;
     display: block;
+}
+
+.panelDiv {
+    margin-top: 10px;
+    /*margin-right: 30px;*/
+}
+
+.tags {
+    list-style-type: none;
+    color: #598090;
+    font-family: Verdana, Arial;
+    font-size: 12px;
+    font-weight: bold;
+    width: 30%;
+    display: inline-block;
+    margin-top: 5px;
+}
+
+ul.tags li {
+    margin-top: 25px;
+}
+
+.inputs {
+    list-style-type: none;
+    width: 60%;
+    border-color: #00a8e6;
+    border-width: thick;
+    display: inline-block;
+    margin-top: 5px;
+}
+
+ul.inputs li {
+    margin-top: 18px;
 }
 
 

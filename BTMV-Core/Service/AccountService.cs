@@ -14,7 +14,7 @@ namespace BTMV_Core.Service
         private BTMVContext db = new BTMVContext();
         public string ComputeHash(string salt, string password)
         {
-            byte[] saltBytes = System.Text.Encoding.UTF32.GetBytes(salt);
+            byte[] saltBytes = Encoding.UTF32.GetBytes(salt);
             using (var rfc2898DeriveBytes = new Rfc2898DeriveBytes(password, saltBytes, 1000))
             return Convert.ToBase64String(rfc2898DeriveBytes.GetBytes(256));
         }       

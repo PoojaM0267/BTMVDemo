@@ -1,10 +1,10 @@
 ﻿import { Http, Headers, Response, RequestOptions } from '@angular/http'
 import { Injectable, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Rx'
+import { Observable } from 'rxjs/Rx';
 
-import { State } from '../models/state'
-import { City } from '../models/city'
-import { Occupation } from '../models/occupation'
+import { State } from '../models/state';
+import { City } from '../models/city';
+import { Occupation } from '../models/occupation';
 import { BaseConfig } from '../common/baseConfig';
 
 @Injectable()
@@ -22,7 +22,7 @@ export class ListService {
 
     getCities(stateId: number) {
         try {
-            let body = { stateId: stateId }
+            let body = { stateId: stateId };
 
             // return this.http.get('/api/Account/GetAllCities').map(response => response.json());
             return this.http.post('/api/Account/GetCitiesByState', JSON.stringify(body), this.options).map(response => response.json());

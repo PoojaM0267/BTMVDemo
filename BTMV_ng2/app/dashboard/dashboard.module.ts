@@ -3,8 +3,8 @@ import { FormsModule } from '@angular/forms';
 
 import { DashboardRoutesModule } from './dashboard.routes';
 import { DashboardComponent } from './dashboard.component';
-import { DashboardService } from '../_Services/dashboard.service'
-
+import { DashboardService } from '../_Services/dashboard.service';
+import { AddWorkComponent } from './common/addWork.component';
 //import { DashboardService } from './dashboard.service'
 
 @NgModule({
@@ -13,7 +13,8 @@ import { DashboardService } from '../_Services/dashboard.service'
         DashboardRoutesModule
     ],
     declarations: [
-        DashboardComponent
+        DashboardComponent,
+        AddWorkComponent
     ],   
     providers: [
         DashboardService

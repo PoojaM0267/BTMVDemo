@@ -1,5 +1,5 @@
-﻿import { Directive, OnInit, Inject, ElementRef, Input } from '@angular/core'
-import { JQ_TOKEN } from './jQuery.service'
+﻿import { Directive, OnInit, Inject, ElementRef, Input } from '@angular/core';
+import { JQ_TOKEN } from './jQuery.service';
 
 @Directive({
     selector: '[commonModal-trigger]'  // this is an attribute and not an element
@@ -15,6 +15,6 @@ export class CommonModalTriggerDirective {
     ngOnInit() {
         this.el.addEventListener('click', e => {
             this.$('#common-modal').modal({})
-        })
+        });
     }
 }

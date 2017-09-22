@@ -17,4 +17,7 @@
     public altPhoneNumber?: number;
     public isSelected?: boolean;
     public roleName?: string;
+    public cityName?: string;
+    public stateName?: string;
+    public occupationName?: string;
 }

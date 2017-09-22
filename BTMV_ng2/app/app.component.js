@@ -13,7 +13,6 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            //template: 'My First Angular App - Demo'
             template: "\n        <nav-bar></nav-bar>\n        <router-outlet></router-outlet>\n    "
         })
     ], AppComponent);

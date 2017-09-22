@@ -13,6 +13,10 @@ namespace BTMV_ng2
             // Web API configuration and services 
             var container = new UnityContainer();
             container.RegisterType<IAccountService, AccountService>(new HierarchicalLifetimeManager());
+            container.RegisterType<ITokenService, TokenService>(new HierarchicalLifetimeManager());
+
+            //RegisterTypes(container);
+
             config.DependencyResolver = new UnityResolver(container);
 
             // Web API routes
@@ -24,5 +28,11 @@ namespace BTMV_ng2
                 defaults: new { id = RouteParameter.Optional }
             );
         }
+
+        //private static void RegisterTypes(UnityContainer container)
+        //{
+        //    container.RegisterType<IAccountService, AccountService>(new HierarchicalLifetimeManager());
+        //    container.RegisterType<ITokenService, TokenService>(new HierarchicalLifetimeManager());
+        //}
     }
 }

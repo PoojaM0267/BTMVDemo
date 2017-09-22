@@ -11,6 +11,7 @@ var forms_1 = require("@angular/forms");
 var dashboard_routes_1 = require("./dashboard.routes");
 var dashboard_component_1 = require("./dashboard.component");
 var dashboard_service_1 = require("../_Services/dashboard.service");
+var addWork_component_1 = require("./common/addWork.component");
 //import { DashboardService } from './dashboard.service'
 var DashboardModule = (function () {
     function DashboardModule() {
@@ -22,7 +23,8 @@ var DashboardModule = (function () {
                 dashboard_routes_1.DashboardRoutesModule
             ],
             declarations: [
-                dashboard_component_1.DashboardComponent
+                dashboard_component_1.DashboardComponent,
+                addWork_component_1.AddWorkComponent
             ],
             providers: [
                 dashboard_service_1.DashboardService

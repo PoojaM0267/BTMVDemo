@@ -1,5 +1,5 @@
-﻿import { FormControl, AbstractControl, FormGroup } from '@angular/forms'
-import { Observable } from 'rxjs/Rx'
+﻿import { FormControl, AbstractControl, FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs/Rx';
 
 export function matchPassword(formControl: FormControl) {
     //debugger;

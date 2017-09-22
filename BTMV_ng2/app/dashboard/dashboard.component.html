@@ -3,29 +3,30 @@
        <div class="row ">
            <!-- Side Navigation -->
            <div class="col-md-2 col-xs-12" style="background: #125698; height: -webkit-fill-available;">
+
+               <!--<sideNavigation></sideNavigation>-->
+
                <div class="profilePicMainDiv">
                    <div class="profilePic">
                        <img src="../../Images/profileLogo.png" alt="Profile Picture" class="img-circle profileImage">
                    </div>
-                   <div class="profileInfo">
-                       <!--<span>Welcome,</span>-->
+                   <div class="profileInfo">                      
+                       <h2><strong>{{userDetails?.firstName}} {{userDetails?.lastName}}</strong></h2>                      
                        <h2>{{userDetails?.roleName}}</h2>
                    </div>
-               </div>
-
-               <br />
+               </div>         
 
                <!-- Side Navigation Menu-->
                <div class="menuSection">
                    <ul class="sideNav">
                        <li><a class="textWhite" [routerLink]="" [routerLinkActive]="['active']"><i class="fa fa-dashboard"></i> DashBoard</a></li>
-                       <li><a class="textWhite" [routerLink]="" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><i class="fa fa-user" aria-hidden="true"></i> Profile</a></li>
-                       <li><a class="textWhite" [routerLink]="" [routerLinkActive]="['active']"><i class="fa fa-plus" aria-hidden="true"></i> Add Work</a></li>
-                       <li><a class="textWhite" [routerLink]="" [routerLinkActive]="['active']"><i class="fa fa-list" aria-hidden="true"></i> View Works</a></li>
-                       <li><a class="textWhite" [routerLink]="" [routerLinkActive]="['active']"><i class="fa fa-edit" aria-hidden="true"></i> Report An Issue</a></li>
-                       <li><a class="textWhite" [routerLink]="" [routerLinkActive]="['active']"><i class="fa fa-edit" aria-hidden="true"></i> Edit Profile</a></li>
-                       <li><a class="textWhite" [routerLink]="" [routerLinkActive]="['active']"><i class="fa fa-plus" aria-hidden="true"></i> Change Password</a></li>
-                       <li><a class="textWhite" [routerLink]="" [routerLinkActive]="['active']"><i class="fa fa-trash" aria-hidden="true"></i> Delete Account</a></li>
+                       <li><a class="textWhite" [routerLink]="" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><i class="fa fa-user"></i> Profile</a></li>
+                       <li><a class="textWhite" [routerLink]="['addWork']" [routerLinkActive]="['active']"><i class="fa fa-plus"></i> Add Work</a></li>
+                       <li><a class="textWhite" [routerLink]="" [routerLinkActive]="['active']"><i class="fa fa-list"></i> View Works</a></li>
+                       <li><a class="textWhite" [routerLink]="" [routerLinkActive]="['active']"><i class="fa fa-edit"></i> Report An Issue</a></li>
+                       <li><a class="textWhite" [routerLink]="" [routerLinkActive]="['active']"><i class="fa fa-edit"></i> Edit Profile</a></li>
+                       <li><a class="textWhite" [routerLink]="" [routerLinkActive]="['active']"><i class="fa fa-plus"></i> Change Password</a></li>
+                       <li><a class="textWhite" [routerLink]="" [routerLinkActive]="['active']"><i class="fa fa-trash"></i> Delete Account</a></li>
                    </ul>       
                </div>
                <!-- Side Navigation Ends-->
@@ -44,11 +45,52 @@
                </div>-->
              
                <div class="profileBodyMainDiv">
-                   Body content goes here
-               </div>
-           </div>
+                   <!--Body content goes here-->
+                   <div class="panel-group">
+                       <div class="panel panel-default panelDiv">
+                           <div class="panel-heading panelhead">Basic Info</div>
+                           <div class="panel-body">
+                               <div class="col-md-12 col-xs-12 col-sm-12">
+                                   <ul class="tags list-group list-unstyled">
+                                       <li>Name</li>
+                                       <li>Email Id</li>
+                                       <li>Occupation</li>
+                                   </ul>
 
-           <!-- Dashboard Body Ends -->
-       </div>
-    
+                                   <ul class="inputs list-group list-unstyled">
+                                       <li>{{userDetails?.firstName}} {{userDetails?.lastName}}</li>
+                                       <li>{{userDetails?.email}}</li>
+                                       <li>{{userDetails?.occupationName}}</li>
+                                   </ul>
+                               </div>
+                           </div>
+                       </div>
+
+                       <div class="panel panel-default panelDiv">
+                           <div class="panel-heading panelhead">Contact Info</div>
+                           <div class="panel-body">
+                               <div class="col-md-12 col-xs-12 col-sm-12">
+                                   <ul class="tags list-group list-unstyled">
+                                       <li>Phone No.</li>
+                                       <li>Address</li>
+                                       <li>City</li>
+                                       <li>State</li>
+                                   </ul>
+
+                                   <ul class="inputs list-group list-unstyled">
+                                       <li>{{userDetails?.phoneNumber}}</li>
+                                       <li>{{userDetails?.address}}</li>
+                                       <li>{{userDetails?.cityName}}</li>
+                                       <li>{{userDetails?.stateName}}</li>
+                                   </ul>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   </div>
+
+               <!--<router-outlet></router-outlet>-->
+           </div>
+        </div>
 </div>
+

@@ -39,6 +39,12 @@ var DashboardComponent = (function () {
             _this.userDetails.firstName = data.userDetails.FirstName;
             _this.userDetails.lastName = data.userDetails.LastName;
             _this.userDetails.roleName = data.userDetails.RoleName;
+            _this.userDetails.email = data.userDetails.Email;
+            _this.userDetails.cityName = data.userDetails.CityName;
+            _this.userDetails.stateName = data.userDetails.StateName;
+            _this.userDetails.occupationName = data.userDetails.OccupationName;
+            _this.userDetails.address = data.userDetails.Address;
+            _this.userDetails.phoneNumber = data.userDetails.PhoneNumber;
         }, function (error) {
             //debugger;
             console.log(error.message);

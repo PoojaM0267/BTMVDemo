@@ -40,11 +40,6 @@ var DashboardService = (function () {
             return res;
         })
             .catch(this.globalErrorHandler.handleError);
-        // .catch(this.handleError);
-        //.catch(error => {
-        //    debugger;
-        //    return Observable.throw(new Error(error.status));
-        // })
     };
     DashboardService = __decorate([
         core_1.Injectable(),

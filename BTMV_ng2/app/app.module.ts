@@ -32,11 +32,11 @@ import {
     AuthenticationService,
     AccountService,
     ListService,
-} from './_Services/index'
+} from './_Services/index';
 
 import {
     AuthGuard
-} from './_Guards/index'
+} from './_Guards/index';
 
 /* Routing Module */
 import { AppRoutesModule } from './routes';
