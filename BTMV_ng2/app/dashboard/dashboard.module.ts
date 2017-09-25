@@ -5,6 +5,9 @@ import { DashboardRoutesModule } from './dashboard.routes';
 import { DashboardComponent } from './dashboard.component';
 import { DashboardService } from '../_Services/dashboard.service';
 import { AddWorkComponent } from './common/addWork.component';
+import { SideNavComponent } from './sideNav.component';
+import { ProfileComponent } from './profile.component';
+import { UserLayoutComponent } from './userLayout.component';
 //import { DashboardService } from './dashboard.service'
 
 @NgModule({
@@ -14,7 +17,10 @@ import { AddWorkComponent } from './common/addWork.component';
     ],
     declarations: [
         DashboardComponent,
-        AddWorkComponent
+        AddWorkComponent,
+        SideNavComponent,
+        ProfileComponent,
+        UserLayoutComponent
     ],   
     providers: [
         DashboardService

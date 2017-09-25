@@ -216,7 +216,9 @@
     <Content Include="app\account\register.component.html" />
     <Content Include="app\dashboard\common\addWork.component.html" />
     <Content Include="app\dashboard\dashboard.component.html" />
+    <Content Include="app\dashboard\profile.component.html" />
     <Content Include="app\dashboard\sideNav.component.html" />
+    <Content Include="app\dashboard\userLayout.component.html" />
     <Content Include="app\home\aboutUs.component.html" />
     <Content Include="app\home\contactUs.component.html" />
     <Content Include="app\home\gallery.component.html" />
@@ -367,7 +369,9 @@
     <TypeScriptCompile Include="app\dashboard\dashboard.module.ts" />
     <TypeScriptCompile Include="app\dashboard\dashboard.routes.ts" />
     <TypeScriptCompile Include="app\dashboard\dashboard.service.ts" />
+    <TypeScriptCompile Include="app\dashboard\profile.component.ts" />
     <TypeScriptCompile Include="app\dashboard\sideNav.component.ts" />
+    <TypeScriptCompile Include="app\dashboard\userLayout.component.ts" />
     <TypeScriptCompile Include="app\dashboard\user\index.ts" />
     <TypeScriptCompile Include="app\dashboard\volunteer\index.ts" />
     <TypeScriptCompile Include="app\home\aboutUs.component.ts" />

@@ -12,6 +12,9 @@ var dashboard_routes_1 = require("./dashboard.routes");
 var dashboard_component_1 = require("./dashboard.component");
 var dashboard_service_1 = require("../_Services/dashboard.service");
 var addWork_component_1 = require("./common/addWork.component");
+var sideNav_component_1 = require("./sideNav.component");
+var profile_component_1 = require("./profile.component");
+var userLayout_component_1 = require("./userLayout.component");
 //import { DashboardService } from './dashboard.service'
 var DashboardModule = (function () {
     function DashboardModule() {
@@ -24,7 +27,10 @@ var DashboardModule = (function () {
             ],
             declarations: [
                 dashboard_component_1.DashboardComponent,
-                addWork_component_1.AddWorkComponent
+                addWork_component_1.AddWorkComponent,
+                sideNav_component_1.SideNavComponent,
+                profile_component_1.ProfileComponent,
+                userLayout_component_1.UserLayoutComponent
             ],
             providers: [
                 dashboard_service_1.DashboardService

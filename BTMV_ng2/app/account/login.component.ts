@@ -62,6 +62,7 @@ export class LoginComponent {
                     this.hasErrorMessage = false;
                     this.closeModal();                    
                     this.router.navigate(['/dashboard', userId]);
+                    //this.router.navigate(['/dashboard', userId]);
                 }
                 else {                                 
                     this.isLoginSuccess = false;

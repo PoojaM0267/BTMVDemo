@@ -15,7 +15,8 @@
     <ul class="sideNav">
         <li><a class="textWhite" [routerLink]="" [routerLinkActive]="['active']"><i class="fa fa-dashboard"></i> DashBoard</a></li>
         <li><a class="textWhite" [routerLink]="" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><i class="fa fa-user"></i> Profile</a></li>
-        <li><a class="textWhite" [routerLink]="['addWork']" [routerLinkActive]="['active']"><i class="fa fa-plus"></i> Add Work</a></li>
+        <!--<li><a class="textWhite" [routerLink]="['addWork']" [routerLinkActive]="['active']"><i class="fa fa-plus"></i> Add Work</a></li>-->
+        <li><a class="textWhite" [routerLink]="[{ outlets: { 'pooja' : ['addWork'] } }]" [routerLinkActive]="['active']"><i class="fa fa-plus"></i> Add Work</a></li>
         <li><a class="textWhite" [routerLink]="" [routerLinkActive]="['active']"><i class="fa fa-list"></i> View Works</a></li>
         <li><a class="textWhite" [routerLink]="" [routerLinkActive]="['active']"><i class="fa fa-edit"></i> Report An Issue</a></li>
         <li><a class="textWhite" [routerLink]="" [routerLinkActive]="['active']"><i class="fa fa-edit"></i> Edit Profile</a></li>

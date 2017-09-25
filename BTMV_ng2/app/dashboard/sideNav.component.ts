@@ -5,6 +5,6 @@
     templateUrl: 'app/dashboard/sideNav.component.html'
 })
 
-export class NavComponent {
+export class SideNavComponent {
   
 }

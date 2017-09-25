@@ -7,5 +7,7 @@
 })
 
 export class AddWorkComponent {
-
+    constructor() {
+        console.log('Add Work');
+    }
 }

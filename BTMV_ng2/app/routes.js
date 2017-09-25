@@ -10,13 +10,35 @@ var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var index_1 = require("./home/index");
 exports.appRoutes = [
-    { path: 'home', component: index_1.HomeComponent },
-    { path: 'aboutUs', component: index_1.AboutUsComponent },
-    { path: 'successStories', component: index_1.SuccessStoriesComponent },
-    { path: 'gallery', component: index_1.GalleryComponent },
-    { path: 'contactUs', component: index_1.ContactUsComponent },
-    { path: '', redirectTo: '/home', pathMatch: 'full' },
-    { path: '', loadChildren: 'app/dashboard/dashboard.module#DashboardModule' }
+    {
+        path: 'home',
+        component: index_1.HomeComponent
+    },
+    {
+        path: 'aboutUs',
+        component: index_1.AboutUsComponent
+    },
+    {
+        path: 'successStories',
+        component: index_1.SuccessStoriesComponent
+    },
+    {
+        path: 'gallery',
+        component: index_1.GalleryComponent
+    },
+    {
+        path: 'contactUs',
+        component: index_1.ContactUsComponent
+    },
+    {
+        path: '',
+        loadChildren: 'app/dashboard/dashboard.module#DashboardModule'
+    },
+    {
+        path: '',
+        redirectTo: '/home',
+        pathMatch: 'full'
+    },
 ];
 var AppRoutesModule = (function () {
     function AppRoutesModule() {
