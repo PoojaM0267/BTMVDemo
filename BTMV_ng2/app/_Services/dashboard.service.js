@@ -25,7 +25,7 @@ var DashboardService = (function () {
         console.log(this.authenticationService.currentUser);
     }
     DashboardService.prototype.getUser = function (userId) {
-        //debugger;
+        debugger;
         var params = { Id: userId };
         var user = localStorage.getItem('BTMV_currentUser');
         if (user) {
@@ -34,7 +34,7 @@ var DashboardService = (function () {
         }
         return this.http.post('/api/Account/GetUserDetailsById', JSON.stringify(params), this.options)
             .map(function (response) {
-            // debugger;
+            debugger;
             var res = response.json();
             console.log(res);
             return res;

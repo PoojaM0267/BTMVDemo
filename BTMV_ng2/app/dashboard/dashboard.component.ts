@@ -14,60 +14,65 @@ import { AuthenticationService } from '../_Services/auth.service';
 export class DashboardComponent {
 
     userId: number;
-    private sub: any;
+  //  private sub: any;
     userDetails: UserRegisterModel;
    // userDetails: User = new User();  
     userProfile: IUserProfile;
 
-    constructor(private route: ActivatedRoute, private dashboardService: DashboardService, private router: Router, private auth: AuthenticationService) {  
-        //debugger;          
+    constructor(private route: ActivatedRoute, private dashboardService: DashboardService, private router: Router, private auth: AuthenticationService) {
         console.log('Dashboard');        
     }
 
     ngOnInit() {
-        //debugger;
+        debugger;
         //this.sub = this.route.params.subscribe(params => {
         //    this.userId = +params['id']; // (+) converts string 'id' to a number
         //});
 
-        //console.log(this.userId);
+        let user = localStorage.getItem('BTMV_currentUser');
+        if (user) {
+            let currentUser = JSON.parse(user);
+            this.userId = currentUser.userId;
+        }  
+           
+        console.log(this.userId);
 
-        //this.dashboardService.getUser(this.userId).subscribe(
-        //    data => {
-        //        //debugger;
-        //        console.log(data);
-        //        //this.auth.checkAuthenticationStatus();
-        //        this.userDetails = data['userDetails'];
-        //       // this.userProfile = data.userDetails;              
+        this.dashboardService.getUser(this.userId).subscribe(
+            data => {
+                debugger;
+                console.log(data);
+                //this.auth.checkAuthenticationStatus();
+                this.userDetails = data['userDetails'];
+               // this.userProfile = data.userDetails;              
 
-        //        // todo: map data to UI
+                // todo: map data to UI
 
-        //        this.userDetails.firstName = data.userDetails.FirstName;
-        //        this.userDetails.lastName = data.userDetails.LastName;
-        //        this.userDetails.roleName = data.userDetails.RoleName;
-        //        this.userDetails.email = data.userDetails.Email;
+                this.userDetails.firstName = data.userDetails.FirstName;
+                this.userDetails.lastName = data.userDetails.LastName;
+                this.userDetails.roleName = data.userDetails.RoleName;
+                this.userDetails.email = data.userDetails.Email;
 
-        //        this.userDetails.cityName = data.userDetails.CityName;
-        //        this.userDetails.stateName = data.userDetails.StateName;
-        //        this.userDetails.occupationName = data.userDetails.OccupationName;
-        //        this.userDetails.address = data.userDetails.Address;
-        //        this.userDetails.phoneNumber = data.userDetails.PhoneNumber;
-        //    },
-        //    error => {
-        //        //debugger;
-        //        console.log(error.message);
-        //        //alert("Something went wrong. Please try again after sometime");
-        //        //this.router.navigate(['/home']);
+                this.userDetails.cityName = data.userDetails.CityName;
+                this.userDetails.stateName = data.userDetails.StateName;
+                this.userDetails.occupationName = data.userDetails.OccupationName;
+                this.userDetails.address = data.userDetails.Address;
+                this.userDetails.phoneNumber = data.userDetails.PhoneNumber;
+            },
+            error => {
+                debugger;
+                console.log(error.message);
+                //alert("Something went wrong. Please try again after sometime");
+                //this.router.navigate(['/home']);
 
-        //        if (error.message === "403") {
-        //            alert('Not authenticate User.');
-        //            this.router.navigate(['/home']);
-        //        }
-        //    });
+                if (error.message === "403") {
+                    alert('Not authenticate User.');
+                    this.router.navigate(['/home']);
+                }
+            });
     }
 
-    ngOnDestroy() {
-        this.sub.unsubscribe();
-    }
+    //ngOnDestroy() {
+    //    this.sub.unsubscribe();
+    //}
 
 }

@@ -9,7 +9,7 @@ using BTMV_ng2.Filters;
 
 namespace BTMV_ng2.Controllers
 {
-    public class AccountController : CommonController
+    public class AccountController : ApiController
     {
         private readonly IAccountService _accountService;
         private readonly ITokenService _tokenService;
@@ -49,16 +49,17 @@ namespace BTMV_ng2.Controllers
                 var hashedPassword = _accountService.ComputeHash(userModel.Email, userModel.Password);
 
                 var user = new UserInformation
-                    {
-                        FirstName = userModel.FirstName,
-                        LastName = userModel.LastName,
-                        Email = userModel.Email,
-                        DOB = Convert.ToDateTime("04/19/2016"),
-                        CityId = userModel.CityId,
-                        OccupationId = userModel.OccupationId,
-                        RoleId = 2,
-                        isSelected = false,
-                        Password = hashedPassword
+                {
+                    FirstName = userModel.FirstName,
+                    LastName = userModel.LastName,
+                    Email = userModel.Email,
+                    DOB = Convert.ToDateTime("04/19/2016"),
+                    CityId = userModel.CityId,
+                    OccupationId = userModel.OccupationId,
+                    RoleId = 2,
+                   // isSelected = false,
+                    Password = hashedPassword,
+                    CreatedOn = DateTime.Now
                     };
 
                     db.UserInformation.Add(user);
@@ -70,71 +71,6 @@ namespace BTMV_ng2.Controllers
             {
                 return Json(new { isSuccess = false, message = "Something went wrong. Please try again." });
             }
-        }
-        
-        [HttpGet]
-        public IHttpActionResult GetAllStates()
-        {
-            try
-            {
-                var db = new BTMVContext();
-                var states = db.States.ToList();
-                return Json(states);
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-            
-        }
-
-        [HttpGet]
-        public IHttpActionResult GetAllCities()
-        {
-            try
-            {
-                var db = new BTMVContext();
-                var cities = db.Cities.ToList();
-                return Json(cities);
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-
-        }
-        
-        [AcceptVerbs("Post", "Head", "Options")]
-        public IHttpActionResult GetCitiesByState(State state)
-        {
-            try
-            {
-                var db = new BTMVContext();
-                var cities = db.Cities.Where(x => x.StateId == state.StateId).ToList();
-                return Json(cities);
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-
-        }
-
-        [HttpGet]
-        public IHttpActionResult GetAllOccupations()
-        {
-            try
-            {
-                var db = new BTMVContext();
-                var occupations = db.Occupations.ToList();
-                return Json(occupations);
-            }
-            catch (Exception ex)
-            {
-                //return new HttpResponseMessage(HttpStatusCode.InternalServerError);
-                return null;
-            }
-
         }
 
         [ HttpPost]

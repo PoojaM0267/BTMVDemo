@@ -215,6 +215,7 @@
     <Content Include="app\account\login.component.html" />
     <Content Include="app\account\register.component.html" />
     <Content Include="app\dashboard\common\addWork.component.html" />
+    <Content Include="app\dashboard\common\editProfile.component.html" />
     <Content Include="app\dashboard\dashboard.component.html" />
     <Content Include="app\dashboard\profile.component.html" />
     <Content Include="app\dashboard\sideNav.component.html" />
@@ -364,6 +365,7 @@
     <TypeScriptCompile Include="app\common\matchPasswordValidation.ts" />
     <TypeScriptCompile Include="app\dashboard\admin\index.ts" />
     <TypeScriptCompile Include="app\dashboard\common\addWork.component.ts" />
+    <TypeScriptCompile Include="app\dashboard\common\editProfile.component.ts" />
     <TypeScriptCompile Include="app\dashboard\common\index.ts" />
     <TypeScriptCompile Include="app\dashboard\dashboard.component.ts" />
     <TypeScriptCompile Include="app\dashboard\dashboard.module.ts" />
@@ -384,11 +386,13 @@
     <TypeScriptCompile Include="app\home\successStories.component.ts" />
     <TypeScriptCompile Include="app\main.ts" />
     <TypeScriptCompile Include="app\models\city.ts" />
+    <TypeScriptCompile Include="app\models\department.ts" />
     <TypeScriptCompile Include="app\models\occupation.ts" />
     <TypeScriptCompile Include="app\models\state.ts" />
     <TypeScriptCompile Include="app\models\userLoginModel.ts" />
     <TypeScriptCompile Include="app\models\userProfile.ts" />
     <TypeScriptCompile Include="app\models\userRegisterModel.ts" />
+    <TypeScriptCompile Include="app\models\workModel.ts" />
     <TypeScriptCompile Include="app\nav\nav.component.ts" />
     <TypeScriptCompile Include="app\routes.ts" />
     <TypeScriptCompile Include="app\_Guards\auth.guard.ts" />
@@ -398,6 +402,7 @@
     <TypeScriptCompile Include="app\_Services\dashboard.service.ts" />
     <TypeScriptCompile Include="app\_Services\index.ts" />
     <TypeScriptCompile Include="app\_Services\list.service.ts" />
+    <TypeScriptCompile Include="app\_Services\work.service.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

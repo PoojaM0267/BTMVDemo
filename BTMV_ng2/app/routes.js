@@ -32,12 +32,12 @@ exports.appRoutes = [
     },
     {
         path: '',
-        loadChildren: 'app/dashboard/dashboard.module#DashboardModule'
+        redirectTo: '/home',
+        pathMatch: 'full'
     },
     {
         path: '',
-        redirectTo: '/home',
-        pathMatch: 'full'
+        loadChildren: 'app/dashboard/dashboard.module#DashboardModule'
     },
 ];
 var AppRoutesModule = (function () {

@@ -27,14 +27,14 @@ var AccountService = (function () {
         });
     };
     AccountService.prototype.loginUser = function (userLoginInfo) {
-        //debugger;
+        debugger;
         return this.http.post('/api/Account/Login', JSON.stringify(userLoginInfo), this.options)
             .map(function (response) {
             //debugger;
             var res = response.json();
             console.log(res.jwtToken);
             //localStorage.setItem('BTMV_currentUser', res.jwtToken);
-            localStorage.setItem('BTMV_currentUser', JSON.stringify({ username: userLoginInfo.email, token: res.jwtToken }));
+            localStorage.setItem('BTMV_currentUser', JSON.stringify({ username: userLoginInfo.email, token: res.jwtToken, userId: res.id }));
             return res;
         })
             .catch(function (error) {

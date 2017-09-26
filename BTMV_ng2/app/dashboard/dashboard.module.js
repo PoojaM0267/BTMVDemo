@@ -7,15 +7,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var common_1 = require("@angular/common");
 var forms_1 = require("@angular/forms");
+var http_1 = require("@angular/http");
 var dashboard_routes_1 = require("./dashboard.routes");
 var dashboard_component_1 = require("./dashboard.component");
-var dashboard_service_1 = require("../_Services/dashboard.service");
 var addWork_component_1 = require("./common/addWork.component");
 var sideNav_component_1 = require("./sideNav.component");
 var profile_component_1 = require("./profile.component");
 var userLayout_component_1 = require("./userLayout.component");
-//import { DashboardService } from './dashboard.service'
+var editProfile_component_1 = require("./common/editProfile.component");
+var dashboard_service_1 = require("../_Services/dashboard.service");
+var list_service_1 = require("../_Services/list.service");
 var DashboardModule = (function () {
     function DashboardModule() {
     }
@@ -23,17 +26,22 @@ var DashboardModule = (function () {
         core_1.NgModule({
             imports: [
                 forms_1.FormsModule,
-                dashboard_routes_1.DashboardRoutesModule
+                common_1.CommonModule,
+                dashboard_routes_1.DashboardRoutesModule,
+                http_1.HttpModule,
+                forms_1.ReactiveFormsModule
             ],
             declarations: [
                 dashboard_component_1.DashboardComponent,
                 addWork_component_1.AddWorkComponent,
                 sideNav_component_1.SideNavComponent,
                 profile_component_1.ProfileComponent,
-                userLayout_component_1.UserLayoutComponent
+                userLayout_component_1.UserLayoutComponent,
+                editProfile_component_1.EditProfileComponent
             ],
             providers: [
-                dashboard_service_1.DashboardService
+                dashboard_service_1.DashboardService,
+                list_service_1.ListService
             ]
         })
     ], DashboardModule);

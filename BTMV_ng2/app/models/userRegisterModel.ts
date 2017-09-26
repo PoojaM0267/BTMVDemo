@@ -10,8 +10,8 @@
     public phoneNumber?: number;        
     public address?: string;
     public occupations?: string;
-    public stateId?: string;
-    public cityId?: string;
+    public stateId?: number;
+    public cityId?: number;
     public password?: string;
     public confirmPassword?: string;
     public altPhoneNumber?: number;

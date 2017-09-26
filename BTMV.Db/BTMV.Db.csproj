@@ -56,6 +56,7 @@
     <Compile Include="FluentMapping\StateMapping.cs" />
     <Compile Include="FluentMapping\UserInformationMapping.cs" />
     <Compile Include="FluentMapping\UserRolesMapping.cs" />
+    <Compile Include="FluentMapping\WorkMapping.cs" />
     <Compile Include="Migrations\201708310917005_initialDb.cs" />
     <Compile Include="Migrations\201708310917005_initialDb.Designer.cs">
       <DependentUpon>201708310917005_initialDb.cs</DependentUpon>
@@ -71,6 +72,10 @@
     <Compile Include="Migrations\201709050603539_DatatypesModifiedforUserInformation.cs" />
     <Compile Include="Migrations\201709050603539_DatatypesModifiedforUserInformation.Designer.cs">
       <DependentUpon>201709050603539_DatatypesModifiedforUserInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709251336532_InitialiseWorkTable.cs" />
+    <Compile Include="Migrations\201709251336532_InitialiseWorkTable.Designer.cs">
+      <DependentUpon>201709251336532_InitialiseWorkTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -100,6 +105,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709050603539_DatatypesModifiedforUserInformation.resx">
       <DependentUpon>201709050603539_DatatypesModifiedforUserInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709251336532_InitialiseWorkTable.resx">
+      <DependentUpon>201709251336532_InitialiseWorkTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

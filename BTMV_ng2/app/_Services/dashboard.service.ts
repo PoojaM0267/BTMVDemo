@@ -19,7 +19,7 @@ export class DashboardService {
     options = this.baseConfig.getBaseHttpConfiguration();
 
     getUser(userId: number): Observable<any> {
-        //debugger;
+        debugger;
         let params = { Id: userId };
 
         let user = localStorage.getItem('BTMV_currentUser');
@@ -31,7 +31,7 @@ export class DashboardService {
 
         return this.http.post('/api/Account/GetUserDetailsById', JSON.stringify(params), this.options)
             .map(response => {
-               // debugger;
+                debugger;
                 var res = response.json();
                 console.log(res);
                 return res;

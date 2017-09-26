@@ -1,4 +1,75 @@
-﻿<div class="bodyContent">
+﻿<!--<div class="bodyContent">
     <h1> Add your work here</h1>
-</div>
+</div>-->
 
+<div class="dashboardBody">
+
+    <div class="row ">
+        <!-- Side Navigation -->
+        <div class="col-md-2 col-xs-12" style="background: #125698; height: -webkit-fill-available;">
+            <sideNavigation></sideNavigation>
+        </div>
+        <!-- Dashboard Body -->
+        <div class="col-md-10 col-xs-12" style="background-color: #F7F7F7;">
+            <div class="titleLeft">
+                <h3>Add Work</h3>
+            </div>
+
+            <div class="profileBodyMainDiv">
+                <!--<div class="alert alert-danger" *ngIf="hasErrorMessage">
+                    <strong>Error ! </strong>{{ errorMessage }}
+                </div>-->
+                <!--<div class="alert alert-success" *ngIf="isWorkAdded">
+                    <strong>Error ! </strong>{{ successMessage }}
+                </div>-->
+                <div class="addWorkDiv">
+                    <form [formGroup]="addWorkForm" (ngSubmit)="addWork(addWorkForm.value)" autocomplete="off">
+                        <div class="form-group" [ngClass]="{'error': workTitle.invalid && workTitle.dirty}">
+                            <label for="workTitle">Title:</label>
+                            <em *ngIf="addWorkForm.controls.workTitle?.invalid && (addWorkForm.controls.workTitle?.dirty)">Required</em>
+                            <input (ngModel)="workTitle" name="workTitle" required id="workTitle" type="text" class="form-control" maxlength="100" placeholder="Title" formControlName="workTitle" />
+                        </div>
+
+                        <div class="form-group" [ngClass]="{'error': aim.invalid && aim.dirty}">
+                        <label for="aim">Aim:</label>
+                        <em *ngIf="addWorkForm.controls.aim?.invalid && (addWorkForm.controls.aim?.dirty)">Required</em>
+                        <input (ngModel)="aim" name="aim" required id="aim" type="text" class="form-control" maxlength="100" placeholder="Aim" formControlName="aim" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="department">Department:</label>
+                        <select class="form-control" formControlName="departmentId" name="departmentId" required>
+                            <option *ngFor="let department of departments" value={{department.DepartmentId}}> {{department.DepartmentName}} </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="state">State:</label>
+                        <select class="form-control" [(ngModel)]="selectedState.StateId" formControlName="stateId" name="stateId" required (change)="onSelect($event.target.value)">
+                            <option *ngFor="let state of states" value={{state.StateId}}> {{state.StateName}} </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="city">City:</label>
+                        <select class="form-control" name="cityId" formControlName="cityId" required>
+                            <option *ngFor="let city of cities" value={{city.CityId}}> {{city.CityName}} </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" [ngClass]="{'error': fundRequired.invalid && fundRequired.dirty}">
+                        <label for="fundRequired">Required Fund:</label>
+                        <em *ngIf="addWorkForm.controls.fundRequired?.invalid && (addWorkForm.controls.fundRequired?.dirty)">Required</em>
+                        <input (ngModel)="fundRequired" name="fundRequired" required id="fundRequired" type="text" class="form-control" placeholder="Required Fund" formControlName="fundRequired" />
+                    </div>
+
+                        <button type="submit" [disabled]="!addWorkForm.valid" class="btn btn-primary">Submit</button>
+                        <button type="button" class="btn btn-default" (click)="resetForm()">Cancel</button>
+                    </form>
+                </div>
+            </div>
+
+          
+        </div>
+    </div>
+</div>

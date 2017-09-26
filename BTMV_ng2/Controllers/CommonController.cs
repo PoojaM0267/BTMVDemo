@@ -1,43 +1,104 @@
-﻿using System.Web.Http;
+﻿using BTMV.Db;
+using BTMV_Model.DataModel;
+using System;
+using System.Linq;
+using System.Web.Http;
 
 namespace BTMV_ng2.Controllers
 {
     public class CommonController : ApiController
-    {
-       // protected readonly BTMVContext UserDB = new BTMVContext();
+    { 
+        [HttpGet]
+        public IHttpActionResult GetAllStates()
+        {
+            try
+            {
+                var db = new BTMVContext();
+                var states = db.States.ToList();
+                return Json(states);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
 
-        //// GET api/<controller>
-        //public IEnumerable<string> Get()
-        //{
-        //    return new string[] { "value1", "value2" };
-        //}
+        }
 
-        //// GET api/<controller>/5
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
+        [HttpGet]
+        public IHttpActionResult GetAllDepartments()
+        {
+            try
+            {
+                var db = new BTMVContext();
+                var departments = db.Departments.ToList();
+                return Json(departments);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
 
-        //// POST api/<controller>
-        //public void Post([FromBody]string value)
-        //{
-        //}
+        }
 
-        //// PUT api/<controller>/5
-        //public void Put(int id, [FromBody]string value)
-        //{
-        //}
+        [HttpGet]
+        public IHttpActionResult GetAllCities()
+        {
+            try
+            {
+                var db = new BTMVContext();
+                var cities = db.Cities.ToList();
+                return Json(cities);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
 
-        //// DELETE api/<controller>/5
-        //public void Delete(int id)
-        //{
-        //}
-                        
+        }
+
+        [AcceptVerbs("Post", "Head", "Options")]
+        public IHttpActionResult GetCitiesByState(State state)
+        {
+            try
+            {
+                var db = new BTMVContext();
+                var cities = db.Cities.Where(x => x.StateId == state.StateId).ToList();
+                return Json(cities);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetAllOccupations()
+        {
+            try
+            {
+                var db = new BTMVContext();
+                var occupations = db.Occupations.ToList();
+                return Json(occupations);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+        }
+
+
+
         //protected HttpResponseMessage ToJson(dynamic obj)
         //{
         //    var response = Request.CreateResponse(HttpStatusCode.OK);
         //    response.Content = new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json");
         //    return response;
         //}
+
+
+
+
     }
 }

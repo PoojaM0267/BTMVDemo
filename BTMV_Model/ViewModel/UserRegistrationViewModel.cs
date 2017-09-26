@@ -27,8 +27,5 @@ namespace BTMV_Model.ViewModel
         public string CityName { get; set; }
         public string  StateName { get; set; }
         public string OccupationName { get; set; }
-
-
-
 }
 }

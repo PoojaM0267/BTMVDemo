@@ -45,8 +45,8 @@ var LoginComponent = (function () {
                 _this.isLoginSuccess = true;
                 _this.hasErrorMessage = false;
                 _this.closeModal();
-                _this.router.navigate(['/dashboard', userId]);
-                //this.router.navigate(['/dashboard', userId]);
+                // this.router.navigate(['/dashboard', userId]);
+                _this.router.navigate(['/dashboard']);
             }
             else {
                 _this.isLoginSuccess = false;

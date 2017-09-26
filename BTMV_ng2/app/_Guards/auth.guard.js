@@ -16,7 +16,7 @@ var AuthGuard = (function () {
         this.router = router;
     }
     AuthGuard.prototype.canActivate = function () {
-        //debugger;
+        debugger;
         if (localStorage.getItem('BTMV_currentUser')) {
             // logged in so return true
             return true;

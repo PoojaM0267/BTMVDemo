@@ -22,14 +22,14 @@ export class AccountService {
     }
 
     loginUser(userLoginInfo: UserLoginModel): Observable<any> {
-        //debugger;
+        debugger;
         return this.http.post('/api/Account/Login', JSON.stringify(userLoginInfo), this.options)
             .map(response => {
                 //debugger;
                 var res = response.json();
                 console.log(res.jwtToken);  
                 //localStorage.setItem('BTMV_currentUser', res.jwtToken);
-                localStorage.setItem('BTMV_currentUser', JSON.stringify({ username: userLoginInfo.email, token: res.jwtToken }));
+                localStorage.setItem('BTMV_currentUser', JSON.stringify({ username: userLoginInfo.email, token: res.jwtToken, userId : res.id }));
                 return res;
             })
             .catch(error => {

@@ -12,32 +12,22 @@ namespace BTMV.Db.FluentMapping
     {
         public UserInformationMapping()
         {
-            this.ToTable("UserInformation");
-            this.HasKey<int>(model => model.Id);
-
-            this.Property(model => model.FirstName).HasColumnType("nvarchar").HasMaxLength(100);
-
-            this.Property(model => model.LastName).HasColumnType("nvarchar").HasMaxLength(100);
-
-            this.Property(model => model.Email).HasColumnType("varchar").HasMaxLength(320);
-
-            this.Property(model => model.DOB);
-
-            this.Property(model => model.Phone).HasColumnType("varchar").HasMaxLength(10);
-
-            this.Property(model => model.AltPhone).HasColumnType("varchar").HasMaxLength(10);
-
-            this.Property(model => model.Address);
-
-            this.Property(model => model.Gender).HasColumnType("varchar").HasMaxLength(10);
-
-            this.Property(model => model.CityId);
-
-           // this.Property(model => model.StateId);
-            this.Property(model => model.OccupationId);
-            this.Property(model => model.Password);
-            this.Property(model => model.RoleId);
-            this.Property(model => model.isSelected);
+            ToTable("UserInformation");
+            HasKey<int>(model => model.Id);
+            Property(model => model.FirstName).HasColumnType("nvarchar").HasMaxLength(100);
+            Property(model => model.LastName).HasColumnType("nvarchar").HasMaxLength(100);
+            Property(model => model.Email).HasColumnType("varchar").HasMaxLength(320);
+            Property(model => model.DOB);
+            Property(model => model.Phone).HasColumnType("varchar").HasMaxLength(10);
+            Property(model => model.AltPhone).HasColumnType("varchar").HasMaxLength(10);
+            Property(model => model.Address);
+            Property(model => model.Gender).HasColumnType("varchar").HasMaxLength(10);
+            Property(model => model.CityId);
+            Property(model => model.OccupationId);
+            Property(model => model.Password);
+            Property(model => model.RoleId);
+            Property(model => model.isSelected);
+            Property(model => model.CreatedOn);
         }
     }
 }

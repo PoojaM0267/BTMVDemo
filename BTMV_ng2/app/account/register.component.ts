@@ -33,7 +33,6 @@ export class RegisterComponent {
     occupationId: FormControl;
     password: FormControl;
    // confirmPassword: FormControl;
-
     selectedState: State = new State(0, 'Select State');
     states: State[];
     cities: City[];
@@ -42,9 +41,9 @@ export class RegisterComponent {
     //isSuccess: boolean;
     hasErrorMessage: boolean = false;
     errorMessage: string;
-
+    isSubmitted = false;
     constructor(private accountService: AccountService, private listService: ListService) {
-
+        
         this.listService.getStates().subscribe(
             states => this.states = states            
         );
@@ -55,6 +54,7 @@ export class RegisterComponent {
     }
 
     ngOnInit() {
+       
         this.firstName = new FormControl('', Validators.required);
         this.lastName = new FormControl('', Validators.required);
         this.email = new FormControl('', [Validators.required, Validators.email]);
@@ -82,14 +82,12 @@ export class RegisterComponent {
     onSelect(stateId) {
         //debugger;
         this.listService.getCities(stateId).subscribe(cities => this.cities = cities);           
-    }
-
-    isSubmitted = false;
+    }    
 
     registerUser(formValues) {
         // debugger;
         this.isSubmitted = true;
-        console.log(formValues)
+        console.log(formValues);
 
         let result = this.accountService.registerUser(formValues).subscribe(
             data =>

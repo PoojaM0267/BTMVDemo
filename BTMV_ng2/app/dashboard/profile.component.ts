@@ -1,4 +1,4 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 
 @Component({
     selector: 'profile',
@@ -11,4 +11,8 @@ export class ProfileComponent {
         alert('ok');
     }
 
+    ngOnInit() {
+        debugger;
+        console.log('profile 1');
+    }
 }

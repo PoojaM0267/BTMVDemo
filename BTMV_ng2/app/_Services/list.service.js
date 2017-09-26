@@ -19,20 +19,24 @@ var ListService = (function () {
         this.options = this.baseConfig.getBaseHttpConfiguration();
     }
     ListService.prototype.getStates = function () {
-        return this.http.get('/api/Account/GetAllStates').map(function (response) { return response.json(); });
+        debugger;
+        return this.http.get('/api/Common/GetAllStates').map(function (response) { return response.json(); });
     };
     ListService.prototype.getCities = function (stateId) {
         try {
             var body = { stateId: stateId };
-            // return this.http.get('/api/Account/GetAllCities').map(response => response.json());
-            return this.http.post('/api/Account/GetCitiesByState', JSON.stringify(body), this.options).map(function (response) { return response.json(); });
+            return this.http.post('/api/Common/GetCitiesByState', JSON.stringify(body), this.options).map(function (response) { return response.json(); });
         }
         catch (Ex) {
             console.log(JSON.stringify(Ex));
         }
     };
     ListService.prototype.getOccupations = function () {
-        return this.http.get('/api/Account/GetAllOccupations').map(function (response) { return response.json(); });
+        return this.http.get('/api/Common/GetAllOccupations').map(function (response) { return response.json(); });
+    };
+    ListService.prototype.getDepartments = function () {
+        debugger;
+        return this.http.get('/api/Common/GetAllDepartments').map(function (response) { return response.json(); });
     };
     ListService = __decorate([
         core_1.Injectable(),

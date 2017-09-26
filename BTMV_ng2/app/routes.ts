@@ -26,13 +26,14 @@ export const appRoutes: Routes = [
     },  
     {
         path: '',
-        loadChildren: 'app/dashboard/dashboard.module#DashboardModule'
-    }, 
-    {
-        path: '',
         redirectTo: '/home',
         pathMatch: 'full'
     },   // default route
+    {
+        path: '',
+        loadChildren: 'app/dashboard/dashboard.module#DashboardModule'
+    }, 
+    
     
 ]
 

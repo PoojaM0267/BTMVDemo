@@ -55,11 +55,13 @@
     <Compile Include="DataModel\State.cs" />
     <Compile Include="DataModel\UserInformation.cs" />
     <Compile Include="DataModel\UserRoles.cs" />
+    <Compile Include="DataModel\Work.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\IdDemo.cs" />
     <Compile Include="ViewModel\UserLoginViewModel.cs" />
     <Compile Include="ViewModel\UserProfile.cs" />
     <Compile Include="ViewModel\UserRegistrationViewModel.cs" />
+    <Compile Include="ViewModel\WorkViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

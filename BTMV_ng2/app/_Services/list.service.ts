@@ -16,16 +16,15 @@ export class ListService {
     options = this.baseConfig.getBaseHttpConfiguration();
 
     getStates() {
-
-        return this.http.get('/api/Account/GetAllStates').map(response => response.json());
+        debugger;
+        return this.http.get('/api/Common/GetAllStates').map(response => response.json());
     }
 
     getCities(stateId: number) {
         try {
             let body = { stateId: stateId };
-
-            // return this.http.get('/api/Account/GetAllCities').map(response => response.json());
-            return this.http.post('/api/Account/GetCitiesByState', JSON.stringify(body), this.options).map(response => response.json());
+            
+            return this.http.post('/api/Common/GetCitiesByState', JSON.stringify(body), this.options).map(response => response.json());
         }
 
         catch (Ex) {
@@ -35,6 +34,11 @@ export class ListService {
     }
 
     getOccupations() {
-        return this.http.get('/api/Account/GetAllOccupations').map(response => response.json());
+        return this.http.get('/api/Common/GetAllOccupations').map(response => response.json());
+    }
+
+    getDepartments() {
+        debugger;
+        return this.http.get('/api/Common/GetAllDepartments').map(response => response.json());
     }
 }

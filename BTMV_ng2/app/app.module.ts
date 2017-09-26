@@ -46,7 +46,7 @@ declare let jQuery: Object;
 @NgModule({
     imports: [
         BrowserModule,
-        AppRoutesModule,
+        AppRoutesModule,        
         FormsModule,
         HttpModule,
         ReactiveFormsModule       

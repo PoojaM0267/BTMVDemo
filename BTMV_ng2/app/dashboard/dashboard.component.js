@@ -19,46 +19,46 @@ var DashboardComponent = (function () {
         this.dashboardService = dashboardService;
         this.router = router;
         this.auth = auth;
-        //debugger;          
         console.log('Dashboard');
     }
     DashboardComponent.prototype.ngOnInit = function () {
-        //debugger;
+        var _this = this;
+        debugger;
         //this.sub = this.route.params.subscribe(params => {
         //    this.userId = +params['id']; // (+) converts string 'id' to a number
         //});
-        //console.log(this.userId);
-        //this.dashboardService.getUser(this.userId).subscribe(
-        //    data => {
-        //        //debugger;
-        //        console.log(data);
-        //        //this.auth.checkAuthenticationStatus();
-        //        this.userDetails = data['userDetails'];
-        //       // this.userProfile = data.userDetails;              
-        //        // todo: map data to UI
-        //        this.userDetails.firstName = data.userDetails.FirstName;
-        //        this.userDetails.lastName = data.userDetails.LastName;
-        //        this.userDetails.roleName = data.userDetails.RoleName;
-        //        this.userDetails.email = data.userDetails.Email;
-        //        this.userDetails.cityName = data.userDetails.CityName;
-        //        this.userDetails.stateName = data.userDetails.StateName;
-        //        this.userDetails.occupationName = data.userDetails.OccupationName;
-        //        this.userDetails.address = data.userDetails.Address;
-        //        this.userDetails.phoneNumber = data.userDetails.PhoneNumber;
-        //    },
-        //    error => {
-        //        //debugger;
-        //        console.log(error.message);
-        //        //alert("Something went wrong. Please try again after sometime");
-        //        //this.router.navigate(['/home']);
-        //        if (error.message === "403") {
-        //            alert('Not authenticate User.');
-        //            this.router.navigate(['/home']);
-        //        }
-        //    });
-    };
-    DashboardComponent.prototype.ngOnDestroy = function () {
-        this.sub.unsubscribe();
+        var user = localStorage.getItem('BTMV_currentUser');
+        if (user) {
+            var currentUser = JSON.parse(user);
+            this.userId = currentUser.userId;
+        }
+        console.log(this.userId);
+        this.dashboardService.getUser(this.userId).subscribe(function (data) {
+            debugger;
+            console.log(data);
+            //this.auth.checkAuthenticationStatus();
+            _this.userDetails = data['userDetails'];
+            // this.userProfile = data.userDetails;              
+            // todo: map data to UI
+            _this.userDetails.firstName = data.userDetails.FirstName;
+            _this.userDetails.lastName = data.userDetails.LastName;
+            _this.userDetails.roleName = data.userDetails.RoleName;
+            _this.userDetails.email = data.userDetails.Email;
+            _this.userDetails.cityName = data.userDetails.CityName;
+            _this.userDetails.stateName = data.userDetails.StateName;
+            _this.userDetails.occupationName = data.userDetails.OccupationName;
+            _this.userDetails.address = data.userDetails.Address;
+            _this.userDetails.phoneNumber = data.userDetails.PhoneNumber;
+        }, function (error) {
+            debugger;
+            console.log(error.message);
+            //alert("Something went wrong. Please try again after sometime");
+            //this.router.navigate(['/home']);
+            if (error.message === "403") {
+                alert('Not authenticate User.');
+                _this.router.navigate(['/home']);
+            }
+        });
     };
     DashboardComponent = __decorate([
         core_1.Component({

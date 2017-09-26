@@ -15,6 +15,10 @@ var ProfileComponent = (function () {
         console.log('profile');
         alert('ok');
     }
+    ProfileComponent.prototype.ngOnInit = function () {
+        debugger;
+        console.log('profile 1');
+    };
     ProfileComponent = __decorate([
         core_1.Component({
             selector: 'profile',

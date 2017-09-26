@@ -7,7 +7,7 @@ export class AuthGuard implements CanActivate {
     constructor(private router: Router) { }
 
     canActivate() {
-        //debugger;
+        debugger;
         if (localStorage.getItem('BTMV_currentUser')) {
             // logged in so return true
             return true;

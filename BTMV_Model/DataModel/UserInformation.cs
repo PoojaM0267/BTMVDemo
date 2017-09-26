@@ -9,30 +9,22 @@ namespace BTMV_Model.DataModel
 {
     public class UserInformation
     {
-        public int Id { get; set; }
-        
-        public string FirstName { get; set; }
-        
-        public string LastName { get; set; }
-        
-        public string Email { get; set; }
-        
-        public DateTime DOB { get; set; }
-        
-        public string Phone { get; set; }
-        
-        public string AltPhone { get; set; }
-        
-        public string Address { get; set; }
-        
-        public string Gender { get; set; }
-        
+        public int Id { get; set; }        
+        public string FirstName { get; set; }        
+        public string LastName { get; set; }        
+        public string Email { get; set; }        
+        public DateTime DOB { get; set; }        
+        public string Phone { get; set; }        
+        public string AltPhone { get; set; }        
+        public string Address { get; set; }        
+        public string Gender { get; set; }        
         public int CityId { get; set; }
       //  public int StateId { get; set; }
         public int OccupationId { get; set; }        
         public bool isSelected { get; set; }
         public int RoleId { get; set; }        
-        public string Password { get; set; }        
+        public string Password { get; set; }          
+        public DateTime CreatedOn { get; set; }   
 
         [ForeignKey("CityId")]
         public virtual City City { get; set; }
@@ -42,5 +34,6 @@ namespace BTMV_Model.DataModel
 
         [ForeignKey("RoleId")]
         public virtual UserRoles UserRoles { get; set; }
+
     }
 }
