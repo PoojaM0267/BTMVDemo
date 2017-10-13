@@ -16,6 +16,7 @@ namespace BTMV.Db.FluentMapping
             Property(model => model.DepartmentId);
             Property(model => model.UserId);
             Property(model => model.AddedOn);
+            Property(model => model.WorkStatusId);
         }
     }
 }

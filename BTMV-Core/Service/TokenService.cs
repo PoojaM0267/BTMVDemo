@@ -11,6 +11,12 @@ namespace BTMV_Core.Service
 {
     public class TokenService : ITokenService
     {
+        /// <summary>
+        /// Generates the token.
+        /// </summary>
+        /// <param name="username">The username.</param>
+        /// <param name="roleId">The role identifier.</param>
+        /// <returns></returns>
         public string GenerateToken(string username, int roleId)
         {
             var segments = new List<string>();
@@ -61,6 +67,11 @@ namespace BTMV_Core.Service
             return string.Join(".", segments.ToArray());
         }
 
+        /// <summary>
+        /// Base64s the URL encode.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <returns></returns>
         public string Base64UrlEncode(byte[] input)
         {
             var output = Convert.ToBase64String(input);
@@ -70,6 +81,12 @@ namespace BTMV_Core.Service
             return output;
         }
 
+        /// <summary>
+        /// Base64s the URL decode.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">Illegal base64url string!</exception>
         public byte[] Base64UrlDecode(string input)
         {
             var output = input;
@@ -86,6 +103,11 @@ namespace BTMV_Core.Service
             return converted;
         }
 
+        /// <summary>
+        /// Decodes the token.
+        /// </summary>
+        /// <param name="authToken">The authentication token.</param>
+        /// <returns></returns>
         public bool DecodeToken(string authToken)
         {
 

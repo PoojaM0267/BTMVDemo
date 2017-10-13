@@ -10,17 +10,12 @@ import { IUserProfile } from '../models/userProfile';
 export class AuthenticationService {
 
     public currentUser: any;
-    //public token: string;
-    //public currentUsername: string; 
 
     constructor(private http: Http, private router: Router) { 
        // debugger;       
         let user = localStorage.getItem('BTMV_currentUser');
         this.currentUser = JSON.parse(user);
         console.log(this.currentUser);
-
-        //this.token = this.currentUser.token;
-        //this.currentUsername = this.currentUser.username;
     }
 
     checkAuthenticationStatus() {

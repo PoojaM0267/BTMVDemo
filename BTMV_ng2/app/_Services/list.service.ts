@@ -15,11 +15,13 @@ export class ListService {
 
     options = this.baseConfig.getBaseHttpConfiguration();
 
+    // Get all states
     getStates() {
         debugger;
         return this.http.get('/api/Common/GetAllStates').map(response => response.json());
     }
 
+    // Get all cities based on state
     getCities(stateId: number) {
         try {
             let body = { stateId: stateId };
@@ -33,12 +35,14 @@ export class ListService {
 
     }
 
+    // Get all occupations
     getOccupations() {
         return this.http.get('/api/Common/GetAllOccupations').map(response => response.json());
     }
 
+    // Get all departments
     getDepartments() {
-        debugger;
+        //debugger;
         return this.http.get('/api/Common/GetAllDepartments').map(response => response.json());
     }
 }

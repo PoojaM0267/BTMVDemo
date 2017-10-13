@@ -8,15 +8,20 @@ namespace BTMV_Model.ViewModel
 {
     public class WorkViewModel
     {
-        public int Id { get; set; }
-        public string WorkTitle { get; set; }
-        public string Aim { get; set; }
-        public string CityName { get; set; }
-        public string StateName { get; set; }
-        public string DepartmentName { get; set; }
-        public int FundRequired { get; set; }
-        public int UserId { get; set; }
-        public string UserName { get; set; }
-        public DateTime AdddedOn { get; set; }
+        public int id { get; set; }
+        public string workTitle { get; set; }
+        public string aim { get; set; }
+        public string cityName { get; set; }
+        public string stateName { get; set; }
+        public string departmentName { get; set; }
+        public int departmentId { get; set; }
+        public int cityId { get; set; }
+        public int fundRequired { get; set; }
+        public int fundUsed { get; set; }
+        public int fundGranted { get; set; }
+        public int userId { get; set; }
+        //public string UserName { get; set; }
+        public DateTime addedOn { get; set; }
+        public string workStatus { get; set; }
     }
 }

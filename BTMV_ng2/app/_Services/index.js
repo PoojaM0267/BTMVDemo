@@ -7,4 +7,5 @@ __export(require("./auth.service"));
 __export(require("./account.service"));
 __export(require("./dashboard.service"));
 __export(require("./list.service"));
+__export(require("./work.service"));
 //# sourceMappingURL=index.js.map

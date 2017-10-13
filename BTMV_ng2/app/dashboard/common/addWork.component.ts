@@ -4,8 +4,10 @@ import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms'
 import { State } from '../../models/state';
 import { City } from '../../models/city';
 import { Department } from '../../models/department';
-import { ListService } from '../../_Services/list.service';
 import { IWorkModel } from '../../models/workModel';
+import { ListService } from '../../_Services/list.service';
+import { WorkService } from '../../_Services/work.service';
+//import { WorkService } from '../../_Services/index';
 
 @Component({
     selector: 'addWork',
@@ -26,13 +28,13 @@ export class AddWorkComponent {
     aim: FormControl;
     stateId: FormControl;
     cityId: FormControl;
-    departmentId: FormControl;
+   // departmentId: FormControl;
     fundRequired: FormControl;
     selectedState: State = new State(0, 'Select State');
-    selectedDepartment: Department = new Department(0, 'Select Department');
+   // selectedDepartment: Department = new Department(0, 'Select Department');
     states: State[];
     cities: City[];
-    departments: Department[];
+   // departments: Department[];
 
     isWorkAdded: boolean = false;
     hasErrorMessage: boolean = false;
@@ -40,7 +42,7 @@ export class AddWorkComponent {
     successMessage: string;
     isSubmitted = false;
 
-    constructor(private listService: ListService) {
+    constructor(private listService: ListService, private workService: WorkService ) {
         debugger;
         console.log('Add Work');
 
@@ -48,11 +50,9 @@ export class AddWorkComponent {
             states => this.states = states
         );
 
-        this.listService.getDepartments().subscribe(
-            departments => this.departments = departments
-        );
-
-        console.log(this.departments); 
+        //this.listService.getDepartments().subscribe(
+        //    departments => this.departments = departments
+        //); 
     }
 
 
@@ -62,7 +62,7 @@ export class AddWorkComponent {
         this.aim = new FormControl('', Validators.required);
         this.stateId = new FormControl('', Validators.required);
         this.cityId = new FormControl('', Validators.required);
-        this.departmentId = new FormControl('', Validators.required);
+       // this.departmentId = new FormControl('', Validators.required);
         this.fundRequired = new FormControl('');        
 
         this.addWorkForm = new FormGroup({
@@ -70,7 +70,7 @@ export class AddWorkComponent {
             aim: this.aim,
             stateId: this.stateId,
             cityId: this.cityId,
-            departmentId: this.departmentId,
+           // departmentId: this.departmentId,
             fundRequired: this.fundRequired
         });
     }
@@ -83,11 +83,39 @@ export class AddWorkComponent {
     {
         debugger;
         this.isSubmitted = true;
-        console.log(formValues)
+        console.log(formValues);
+
+        let result = this.workService.addWork(formValues).subscribe(
+            data => {
+                 debugger;
+                console.log(data);
+                let isSuccess = data.isSuccess;
+                let message = data.message;
+
+                if (isSuccess) {
+                     debugger;
+                     this.isWorkAdded = true;
+                     this.successMessage = message;
+                     this.hasErrorMessage = false; 
+                     this.resetForm();                   
+                }
+                else {
+                     debugger;                    
+                    this.isWorkAdded = false;
+                    this.hasErrorMessage = true;
+                    this.errorMessage = message;
+                }
+
+            },
+            err => {
+                // show error msg
+            }); 
     }
 
     resetForm() {
+        debugger;
         this.addWorkForm.reset();
         this.isWorkAdded = false;
+        this.hasErrorMessage = false;
     }
 }

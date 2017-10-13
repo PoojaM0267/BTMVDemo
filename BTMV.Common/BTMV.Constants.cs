@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace BTMV.Common
 {
-    class BTMV
+    public class BTMV
     {
+
     }
 }

@@ -15,7 +15,7 @@ var core_1 = require("@angular/core");
 var baseConfig_1 = require("../common/baseConfig");
 var auth_service_1 = require("./auth.service");
 var globalErrorHandler_service_1 = require("../common/globalErrorHandler.service");
-var DashboardService = (function () {
+var DashboardService = /** @class */ (function () {
     function DashboardService(http, baseConfig, authenticationService, globalErrorHandler) {
         this.http = http;
         this.baseConfig = baseConfig;
@@ -24,6 +24,7 @@ var DashboardService = (function () {
         this.options = this.baseConfig.getBaseHttpConfiguration();
         console.log(this.authenticationService.currentUser);
     }
+    // Get user profile details
     DashboardService.prototype.getUser = function (userId) {
         debugger;
         var params = { Id: userId };

@@ -17,9 +17,10 @@ var sideNav_component_1 = require("./sideNav.component");
 var profile_component_1 = require("./profile.component");
 var userLayout_component_1 = require("./userLayout.component");
 var editProfile_component_1 = require("./common/editProfile.component");
-var dashboard_service_1 = require("../_Services/dashboard.service");
-var list_service_1 = require("../_Services/list.service");
-var DashboardModule = (function () {
+var viewWorks_component_1 = require("./user/viewWorks.component");
+var index_1 = require("../_Services/index");
+var primeng_1 = require("primeng/primeng");
+var DashboardModule = /** @class */ (function () {
     function DashboardModule() {
     }
     DashboardModule = __decorate([
@@ -29,7 +30,10 @@ var DashboardModule = (function () {
                 common_1.CommonModule,
                 dashboard_routes_1.DashboardRoutesModule,
                 http_1.HttpModule,
-                forms_1.ReactiveFormsModule
+                forms_1.ReactiveFormsModule,
+                primeng_1.DataTableModule,
+                primeng_1.SharedModule,
+                primeng_1.PaginatorModule
             ],
             declarations: [
                 dashboard_component_1.DashboardComponent,
@@ -37,11 +41,13 @@ var DashboardModule = (function () {
                 sideNav_component_1.SideNavComponent,
                 profile_component_1.ProfileComponent,
                 userLayout_component_1.UserLayoutComponent,
-                editProfile_component_1.EditProfileComponent
+                editProfile_component_1.EditProfileComponent,
+                viewWorks_component_1.ViewWorkComponent
             ],
             providers: [
-                dashboard_service_1.DashboardService,
-                list_service_1.ListService
+                index_1.DashboardService,
+                index_1.ListService,
+                index_1.WorkService
             ]
         })
     ], DashboardModule);

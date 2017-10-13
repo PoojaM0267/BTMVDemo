@@ -19,6 +19,11 @@ namespace BTMV_ng2.Controllers
             _tokenService = tokenService;
         }
 
+        /// <summary>
+        /// Registers the specified user model.
+        /// </summary>
+        /// <param name="userModel">The user model.</param>
+        /// <returns></returns>
         [HttpPost]
         public IHttpActionResult Register(UserRegistrationViewModel userModel)
         {
@@ -73,7 +78,12 @@ namespace BTMV_ng2.Controllers
             }
         }
 
-        [ HttpPost]
+        /// <summary>
+        /// Logins the specified user model.
+        /// </summary>
+        /// <param name="userModel">The user model.</param>
+        /// <returns></returns>
+        [HttpPost]
         public IHttpActionResult Login(UserLoginViewModel userModel)
         {
             try
@@ -99,22 +109,19 @@ namespace BTMV_ng2.Controllers
 
                 if (userCredentials == null)
                 {
-                    // return User does not exists.
                     return Json(new { isUserValid = false, message = "User Not Found." });
                 }
 
                 // TODO: update last login date time in db here
                 // TODO: update login failure count on failed login
-
-                // isUserValid = Verify(userModel.Email, userModel.Password, userCredentials.Password);
+                
                 isUserValid = (userCredentials.Password == _accountService.ComputeHash(userModel.Email, userModel.Password));
 
                 if (!isUserValid)
                 {
                     return Json(new { isUserValid = isUserValid, id = userCredentials.Id, message = "Invalid Credentials" });
                 }
-
-                //var token = GenerateToken(userCredentials.Email, userCredentials.RoleId );
+                
                 var token = _tokenService.GenerateToken(userCredentials.Email, userCredentials.RoleId);                
 
                 return Json(new { isUserValid = isUserValid, id = userCredentials.Id, message = "Login Successful", jwtToken = token });
@@ -123,8 +130,13 @@ namespace BTMV_ng2.Controllers
             {
                 return null;
             }
-        }               
-        
+        }
+
+        /// <summary>
+        /// Gets the user details by identifier.
+        /// </summary>
+        /// <param name="param">The parameter.</param>
+        /// <returns></returns>
         [CustomAuthorize]
         [HttpPost]
         public IHttpActionResult GetUserDetailsById(IdDemo param)

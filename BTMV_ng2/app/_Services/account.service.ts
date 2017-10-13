@@ -1,7 +1,6 @@
 ﻿import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
-//import { Cookie } from 'ng2-cookies';
 
 import { UserRegisterModel } from '../models/userRegisterModel';
 import { UserLoginModel } from '../models/userLoginModel';
@@ -28,7 +27,6 @@ export class AccountService {
                 //debugger;
                 var res = response.json();
                 console.log(res.jwtToken);  
-                //localStorage.setItem('BTMV_currentUser', res.jwtToken);
                 localStorage.setItem('BTMV_currentUser', JSON.stringify({ username: userLoginInfo.email, token: res.jwtToken, userId : res.id }));
                 return res;
             })

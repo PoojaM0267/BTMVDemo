@@ -7,7 +7,11 @@ using System.Web.Http;
 namespace BTMV_ng2.Controllers
 {
     public class CommonController : ApiController
-    { 
+    {
+        /// <summary>
+        /// Gets all states.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IHttpActionResult GetAllStates()
         {
@@ -24,6 +28,10 @@ namespace BTMV_ng2.Controllers
 
         }
 
+        /// <summary>
+        /// Gets all departments.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IHttpActionResult GetAllDepartments()
         {
@@ -37,9 +45,12 @@ namespace BTMV_ng2.Controllers
             {
                 return null;
             }
-
         }
 
+        /// <summary>
+        /// Gets all cities.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IHttpActionResult GetAllCities()
         {
@@ -56,6 +67,11 @@ namespace BTMV_ng2.Controllers
 
         }
 
+        /// <summary>
+        /// Gets the state of the cities by.
+        /// </summary>
+        /// <param name="state">The state.</param>
+        /// <returns></returns>
         [AcceptVerbs("Post", "Head", "Options")]
         public IHttpActionResult GetCitiesByState(State state)
         {
@@ -69,9 +85,12 @@ namespace BTMV_ng2.Controllers
             {
                 return null;
             }
-
         }
 
+        /// <summary>
+        /// Gets all occupations.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IHttpActionResult GetAllOccupations()
         {
@@ -85,20 +104,6 @@ namespace BTMV_ng2.Controllers
             {
                 return null;
             }
-
-        }
-
-
-
-        //protected HttpResponseMessage ToJson(dynamic obj)
-        //{
-        //    var response = Request.CreateResponse(HttpStatusCode.OK);
-        //    response.Content = new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json");
-        //    return response;
-        //}
-
-
-
-
+        }        
     }
 }

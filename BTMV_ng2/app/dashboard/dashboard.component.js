@@ -13,7 +13,7 @@ var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var dashboard_service_1 = require("../_Services/dashboard.service");
 var auth_service_1 = require("../_Services/auth.service");
-var DashboardComponent = (function () {
+var DashboardComponent = /** @class */ (function () {
     function DashboardComponent(route, dashboardService, router, auth) {
         this.route = route;
         this.dashboardService = dashboardService;

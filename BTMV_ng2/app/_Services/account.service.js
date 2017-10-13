@@ -13,7 +13,7 @@ var http_1 = require("@angular/http");
 var core_1 = require("@angular/core");
 var Rx_1 = require("rxjs/Rx");
 var baseConfig_1 = require("../common/baseConfig");
-var AccountService = (function () {
+var AccountService = /** @class */ (function () {
     function AccountService(http, baseConfig) {
         this.http = http;
         this.baseConfig = baseConfig;
@@ -33,7 +33,6 @@ var AccountService = (function () {
             //debugger;
             var res = response.json();
             console.log(res.jwtToken);
-            //localStorage.setItem('BTMV_currentUser', res.jwtToken);
             localStorage.setItem('BTMV_currentUser', JSON.stringify({ username: userLoginInfo.email, token: res.jwtToken, userId: res.id }));
             return res;
         })

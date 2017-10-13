@@ -14,7 +14,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var jQuery_service_1 = require("./jQuery.service");
-var CommonModalTriggerDirective = (function () {
+var CommonModalTriggerDirective = /** @class */ (function () {
     function CommonModalTriggerDirective(ref, $) {
         this.$ = $;
         this.el = ref.nativeElement;

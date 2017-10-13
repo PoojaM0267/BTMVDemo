@@ -29,7 +29,8 @@ namespace BTMV_ng2
                       "~/Content/site.css",                       
                       "~/Content/CustomStyles.css",
                       "~/Content/Profile.css",
-                      "~/Content/Forms.css"));
+                      "~/Content/Forms.css",
+                      "~/Content/primeng.min.css"));
         }
     }
 }

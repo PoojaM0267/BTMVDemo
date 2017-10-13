@@ -40,7 +40,7 @@ exports.appRoutes = [
         loadChildren: 'app/dashboard/dashboard.module#DashboardModule'
     },
 ];
-var AppRoutesModule = (function () {
+var AppRoutesModule = /** @class */ (function () {
     function AppRoutesModule() {
     }
     AppRoutesModule = __decorate([

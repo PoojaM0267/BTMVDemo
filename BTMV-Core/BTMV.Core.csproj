@@ -30,6 +30,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.IdentityModel.Logging, Version=1.1.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.IdentityModel.Logging.1.1.4\lib\net451\Microsoft.IdentityModel.Logging.dll</HintPath>
       <Private>True</Private>
@@ -43,6 +51,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.IdentityModel.Tokens.Jwt, Version=5.1.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.5.1.4\lib\net451\System.IdentityModel.Tokens.Jwt.dll</HintPath>
@@ -58,20 +67,27 @@
   <ItemGroup>
     <Compile Include="Interfaces\IAccountService.cs" />
     <Compile Include="Interfaces\ITokenService.cs" />
+    <Compile Include="Interfaces\IWorkService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\AccountService.cs" />
     <Compile Include="Service\TokenService.cs" />
+    <Compile Include="Service\WorkService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BTMV.Db\BTMV.Db.csproj">
       <Project>{271DC27F-7763-42C0-A50B-D1919EB2584B}</Project>
       <Name>BTMV.Db</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BTMV_Model\BTMV.Model.csproj">
+      <Project>{18A46DEE-F809-47F1-B56B-AE42878996EA}</Project>
+      <Name>BTMV.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

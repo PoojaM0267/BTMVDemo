@@ -1,11 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var City = (function () {
-    function City(
-        //public id: number,
-        //public name: string,
-        // public stateId : number
-        CityId, CityName, StateId) {
+var City = /** @class */ (function () {
+    function City(CityId, CityName, StateId) {
         this.CityId = CityId;
         this.CityName = CityName;
         this.StateId = StateId;

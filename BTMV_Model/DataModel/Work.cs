@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BTMV_Model.DataModel
 {
@@ -12,5 +13,15 @@ namespace BTMV_Model.DataModel
         public int FundRequired { get; set; }
         public int UserId { get; set; }
         public DateTime AddedOn { get; set; }
+        public int WorkStatusId { get; set; }
+
+        [ForeignKey("CityId")]
+        public virtual City City { get; set; }
+
+        [ForeignKey("DepartmentId")]
+        public virtual Department Department { get; set; }
+
+        [ForeignKey("WorkStatusId")]
+        public virtual WorkStatus WorkStatus { get; set; }
     }
 }

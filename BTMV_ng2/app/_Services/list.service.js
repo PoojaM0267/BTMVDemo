@@ -12,16 +12,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var http_1 = require("@angular/http");
 var core_1 = require("@angular/core");
 var baseConfig_1 = require("../common/baseConfig");
-var ListService = (function () {
+var ListService = /** @class */ (function () {
     function ListService(http, baseConfig) {
         this.http = http;
         this.baseConfig = baseConfig;
         this.options = this.baseConfig.getBaseHttpConfiguration();
     }
+    // Get all states
     ListService.prototype.getStates = function () {
         debugger;
         return this.http.get('/api/Common/GetAllStates').map(function (response) { return response.json(); });
     };
+    // Get all cities based on state
     ListService.prototype.getCities = function (stateId) {
         try {
             var body = { stateId: stateId };
@@ -31,11 +33,13 @@ var ListService = (function () {
             console.log(JSON.stringify(Ex));
         }
     };
+    // Get all occupations
     ListService.prototype.getOccupations = function () {
         return this.http.get('/api/Common/GetAllOccupations').map(function (response) { return response.json(); });
     };
+    // Get all departments
     ListService.prototype.getDepartments = function () {
-        debugger;
+        //debugger;
         return this.http.get('/api/Common/GetAllDepartments').map(function (response) { return response.json(); });
     };
     ListService = __decorate([

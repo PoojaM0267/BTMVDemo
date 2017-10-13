@@ -57,6 +57,7 @@
     <Compile Include="FluentMapping\UserInformationMapping.cs" />
     <Compile Include="FluentMapping\UserRolesMapping.cs" />
     <Compile Include="FluentMapping\WorkMapping.cs" />
+    <Compile Include="FluentMapping\WorkStatusMapping.cs" />
     <Compile Include="Migrations\201708310917005_initialDb.cs" />
     <Compile Include="Migrations\201708310917005_initialDb.Designer.cs">
       <DependentUpon>201708310917005_initialDb.cs</DependentUpon>
@@ -76,6 +77,22 @@
     <Compile Include="Migrations\201709251336532_InitialiseWorkTable.cs" />
     <Compile Include="Migrations\201709251336532_InitialiseWorkTable.Designer.cs">
       <DependentUpon>201709251336532_InitialiseWorkTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710130606366_WorkModifications.cs" />
+    <Compile Include="Migrations\201710130606366_WorkModifications.Designer.cs">
+      <DependentUpon>201710130606366_WorkModifications.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710131203011_WorkStatusTableAdded.cs" />
+    <Compile Include="Migrations\201710131203011_WorkStatusTableAdded.Designer.cs">
+      <DependentUpon>201710131203011_WorkStatusTableAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710131227239_WorkModification2.cs" />
+    <Compile Include="Migrations\201710131227239_WorkModification2.Designer.cs">
+      <DependentUpon>201710131227239_WorkModification2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710131251285_WorkStatusRelationshipAddedtoWork.cs" />
+    <Compile Include="Migrations\201710131251285_WorkStatusRelationshipAddedtoWork.Designer.cs">
+      <DependentUpon>201710131251285_WorkStatusRelationshipAddedtoWork.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -108,6 +125,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709251336532_InitialiseWorkTable.resx">
       <DependentUpon>201709251336532_InitialiseWorkTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710130606366_WorkModifications.resx">
+      <DependentUpon>201710130606366_WorkModifications.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710131203011_WorkStatusTableAdded.resx">
+      <DependentUpon>201710131203011_WorkStatusTableAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710131227239_WorkModification2.resx">
+      <DependentUpon>201710131227239_WorkModification2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710131251285_WorkStatusRelationshipAddedtoWork.resx">
+      <DependentUpon>201710131251285_WorkStatusRelationshipAddedtoWork.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

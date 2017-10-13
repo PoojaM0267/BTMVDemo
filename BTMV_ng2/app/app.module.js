@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
+var animations_1 = require("@angular/platform-browser/animations");
 var forms_1 = require("@angular/forms");
 var http_1 = require("@angular/http");
 var app_component_1 = require("./app.component");
@@ -19,7 +20,7 @@ var index_4 = require("./_Services/index");
 var index_5 = require("./_Guards/index");
 /* Routing Module */
 var routes_1 = require("./routes");
-var AppModule = (function () {
+var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
@@ -27,6 +28,7 @@ var AppModule = (function () {
             imports: [
                 platform_browser_1.BrowserModule,
                 routes_1.AppRoutesModule,
+                animations_1.BrowserAnimationsModule,
                 forms_1.FormsModule,
                 http_1.HttpModule,
                 forms_1.ReactiveFormsModule

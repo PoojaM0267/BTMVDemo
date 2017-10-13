@@ -1,0 +1,23 @@
+﻿<div class="dashboardBody">
+
+    <div class="row ">
+        <!-- Side Navigation -->
+       <div class="col-md-2 col-xs-12" style="background: #125698; height: -webkit-fill-available;">
+            <sideNavigation></sideNavigation>
+       </div>
+
+        <!-- Dashboard Body -->
+        <div class="col-md-10 col-xs-12" style="background-color: #F7F7F7;">
+            <div class="titleLeft">
+                <h3>My Works</h3>
+            </div>
+
+            <div class="profileBodyMainDiv">
+                <p-dataTable [value]="works" [rows]="5" [paginator]="true" [responsive]="true" [loading]="loading" loadingIcon="fa-spinner" sortMode="multiple" (onRowSelect)="onRowSelect($event)">
+                    <p-column *ngFor="let col of cols" [field]="col.field" [header]="col.header" [sortable]="true"></p-column> 
+                </p-dataTable>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -14,7 +14,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var jQuery_service_1 = require("./jQuery.service");
-var CommonModalComponent = (function () {
+var CommonModalComponent = /** @class */ (function () {
     function CommonModalComponent($) {
         this.$ = $;
     }

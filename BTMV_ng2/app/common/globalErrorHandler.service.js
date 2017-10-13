@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var Rx_1 = require("rxjs/Rx");
 var router_1 = require("@angular/router");
-var GlobalErrorHandler = (function () {
+var GlobalErrorHandler = /** @class */ (function () {
     function GlobalErrorHandler(router) {
         this.router = router;
     }

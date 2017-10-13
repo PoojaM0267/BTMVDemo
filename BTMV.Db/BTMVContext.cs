@@ -7,9 +7,8 @@ namespace BTMV.Db
     public class BTMVContext : DbContext
     {
          public BTMVContext() : base("BTMV")
-        {
+        {}
 
-        }
         public DbSet<UserInformation> UserInformation { get; set; }
         public DbSet<State> States { get; set; }
         public DbSet<City> Cities { get; set; }
@@ -17,6 +16,7 @@ namespace BTMV.Db
         public DbSet<UserRoles> UserRoles { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Work> Works { get; set; }
+        public DbSet<WorkStatus> WorkStatus { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -30,6 +30,7 @@ namespace BTMV.Db
             modelBuilder.Configurations.Add(new DepartmentMapping());
             modelBuilder.Configurations.Add(new UserRolesMapping());
             modelBuilder.Configurations.Add(new WorkMapping());
+            modelBuilder.Configurations.Add(new WorkStatusMapping());
         }
     }
 }

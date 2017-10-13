@@ -11,10 +11,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var http_1 = require("@angular/http");
 var core_1 = require("@angular/core");
+var Rx_1 = require("rxjs/Rx");
 var baseConfig_1 = require("../common/baseConfig");
 var auth_service_1 = require("./auth.service");
 var globalErrorHandler_service_1 = require("../common/globalErrorHandler.service");
-var WorkService = (function () {
+var WorkService = /** @class */ (function () {
     function WorkService(http, baseConfig, authenticationService, globalErrorHandler) {
         this.http = http;
         this.baseConfig = baseConfig;
@@ -22,6 +23,46 @@ var WorkService = (function () {
         this.globalErrorHandler = globalErrorHandler;
         this.options = this.baseConfig.getBaseHttpConfiguration();
     }
+    // Add new work
+    WorkService.prototype.addWork = function (workDetails) {
+        debugger;
+        var user = localStorage.getItem('BTMV_currentUser');
+        if (user) {
+            var currentUser = JSON.parse(user);
+            this.options.headers.append('Authorization', 'Bearer ' + currentUser.token);
+            workDetails.userId = currentUser.userId;
+        }
+        return this.http.post('/api/User/AddWork', JSON.stringify(workDetails), this.options)
+            .map(function (response) {
+            debugger;
+            var res = response.json();
+            return res;
+        })
+            .catch(function (error) {
+            return Rx_1.Observable.of(false);
+        });
+    };
+    // Get individual works
+    WorkService.prototype.getUserWorks = function () {
+        //debugger;
+        var user = localStorage.getItem('BTMV_currentUser');
+        var param;
+        if (user) {
+            var currentUser = JSON.parse(user);
+            this.options.headers.append('Authorization', 'Bearer ' + currentUser.token);
+            param = { Id: currentUser.userId };
+        }
+        return this.http.post('/api/User/GetUserWorks', JSON.stringify(param), this.options)
+            .map(function (response) {
+            //debugger;
+            var res = response.json();
+            console.log(res);
+            return res;
+        })
+            .catch(function (error) {
+            return Rx_1.Observable.of(false);
+        });
+    };
     WorkService = __decorate([
         core_1.Injectable(),
         __metadata("design:paramtypes", [http_1.Http, baseConfig_1.BaseConfig, auth_service_1.AuthenticationService, globalErrorHandler_service_1.GlobalErrorHandler])

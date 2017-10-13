@@ -2,9 +2,9 @@
     background-color: #f2f2f2;
 }
 
-.profilePicMainDiv{
+/*.profilePicMainDiv{
 
-}
+}*/
 
 .profileBodyMainDiv{
     min-height: 580px;
@@ -129,5 +129,31 @@ ul.inputs li {
 .addWorkDiv{
     margin-left: 10%;
     padding-top: 30px;
+}
+
+/*.dataTableHeader{
+     background-color: #9ccdf0;
+}*/
+
+/*.dataTableBody{
+    text-align: center;
+    background-color: #f0f0f0;
+}*/
+
+thead > tr{
+   background-color: #9ccdf0;
+}
+
+tbody{
+    text-align: center;
+    background-color: #f0f0f0;
+}
+
+/*p-datatable > th{
+    font-weight: bold;
+}*/
+
+th {
+   font-weight: bold !important;
 }
   

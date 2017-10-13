@@ -9,6 +9,7 @@ import { Occupation } from '../models/occupation';
 import { ListService } from '../_Services/list.service';
 import { AccountService } from '../_Services/account.service';
 import { matchPassword } from '../common/matchPasswordValidation';
+import { Department } from '../models/department';
 
 @Component({
     selector: 'register-form',
@@ -30,6 +31,7 @@ export class RegisterComponent {
     email: FormControl;
     stateId: FormControl;
     cityId: FormControl;
+    departmentId: FormControl;
     occupationId: FormControl;
     password: FormControl;
    // confirmPassword: FormControl;
@@ -37,24 +39,29 @@ export class RegisterComponent {
     states: State[];
     cities: City[];
     occupations: Occupation[];
+    departments: Department[];
+
     isRegistrationSuccess: boolean = false;
     //isSuccess: boolean;
     hasErrorMessage: boolean = false;
     errorMessage: string;
     isSubmitted = false;
     constructor(private accountService: AccountService, private listService: ListService) {
-        
+        debugger;
         this.listService.getStates().subscribe(
             states => this.states = states            
         );
 
         this.listService.getOccupations().subscribe(
             occupations => this.occupations = occupations
-        );         
+        );    
+
+        this.listService.getDepartments().subscribe(
+            departments => this.departments = departments
+        );
     }
 
-    ngOnInit() {
-       
+    ngOnInit() {       
         this.firstName = new FormControl('', Validators.required);
         this.lastName = new FormControl('', Validators.required);
         this.email = new FormControl('', [Validators.required, Validators.email]);
@@ -62,7 +69,8 @@ export class RegisterComponent {
         this.cityId = new FormControl('', Validators.required);
         this.occupationId = new FormControl('', Validators.required);
         this.password = new FormControl('', Validators.required);
-       // this.confirmPassword = new FormControl('', Validators.required, matchPassword)        
+       // this.confirmPassword = new FormControl('', Validators.required, matchPassword)     
+        this.departmentId = new FormControl('', Validators.required);   
 
         this.registrationForm = new FormGroup({
             firstName: this.firstName,
@@ -73,9 +81,9 @@ export class RegisterComponent {
             occupationId: this.occupationId,
             password: this.password,
            // confirmPassword: this.confirmPassword
+            departmentId: this.departmentId,
         },
-             //matchPassword('confirmPassword','password')
-           
+             //matchPassword('confirmPassword','password')           
         );
     }
 

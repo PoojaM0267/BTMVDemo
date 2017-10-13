@@ -15,7 +15,7 @@ var forms_1 = require("@angular/forms");
 var state_1 = require("../models/state");
 var list_service_1 = require("../_Services/list.service");
 var account_service_1 = require("../_Services/account.service");
-var RegisterComponent = (function () {
+var RegisterComponent = /** @class */ (function () {
     function RegisterComponent(accountService, listService) {
         var _this = this;
         this.accountService = accountService;
@@ -26,8 +26,10 @@ var RegisterComponent = (function () {
         //isSuccess: boolean;
         this.hasErrorMessage = false;
         this.isSubmitted = false;
+        debugger;
         this.listService.getStates().subscribe(function (states) { return _this.states = states; });
         this.listService.getOccupations().subscribe(function (occupations) { return _this.occupations = occupations; });
+        this.listService.getDepartments().subscribe(function (departments) { return _this.departments = departments; });
     }
     RegisterComponent.prototype.ngOnInit = function () {
         this.firstName = new forms_1.FormControl('', forms_1.Validators.required);
@@ -37,7 +39,8 @@ var RegisterComponent = (function () {
         this.cityId = new forms_1.FormControl('', forms_1.Validators.required);
         this.occupationId = new forms_1.FormControl('', forms_1.Validators.required);
         this.password = new forms_1.FormControl('', forms_1.Validators.required);
-        // this.confirmPassword = new FormControl('', Validators.required, matchPassword)        
+        // this.confirmPassword = new FormControl('', Validators.required, matchPassword)     
+        this.departmentId = new forms_1.FormControl('', forms_1.Validators.required);
         this.registrationForm = new forms_1.FormGroup({
             firstName: this.firstName,
             lastName: this.lastName,
@@ -46,6 +49,8 @@ var RegisterComponent = (function () {
             cityId: this.cityId,
             occupationId: this.occupationId,
             password: this.password,
+            // confirmPassword: this.confirmPassword
+            departmentId: this.departmentId,
         });
     };
     RegisterComponent.prototype.onSelect = function (stateId) {

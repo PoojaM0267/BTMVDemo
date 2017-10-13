@@ -16,12 +16,14 @@
             </div>
 
             <div class="profileBodyMainDiv">
-                <!--<div class="alert alert-danger" *ngIf="hasErrorMessage">
+                <div class="alert alert-danger" *ngIf="hasErrorMessage">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
                     <strong>Error ! </strong>{{ errorMessage }}
-                </div>-->
-                <!--<div class="alert alert-success" *ngIf="isWorkAdded">
-                    <strong>Error ! </strong>{{ successMessage }}
-                </div>-->
+                </div>
+                <div class="alert alert-success" *ngIf="isWorkAdded">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close" (click)="resetForm()">×</a>
+                    <strong>Success ! </strong>{{ successMessage }}
+                </div>
                 <div class="addWorkDiv">
                     <form [formGroup]="addWorkForm" (ngSubmit)="addWork(addWorkForm.value)" autocomplete="off">
                         <div class="form-group" [ngClass]="{'error': workTitle.invalid && workTitle.dirty}">
@@ -36,12 +38,12 @@
                         <input (ngModel)="aim" name="aim" required id="aim" type="text" class="form-control" maxlength="100" placeholder="Aim" formControlName="aim" />
                     </div>
 
-                    <div class="form-group">
+                    <!--<div class="form-group">
                         <label for="department">Department:</label>
                         <select class="form-control" formControlName="departmentId" name="departmentId" required>
                             <option *ngFor="let department of departments" value={{department.DepartmentId}}> {{department.DepartmentName}} </option>
                         </select>
-                    </div>
+                    </div>-->
 
                     <div class="form-group">
                         <label for="state">State:</label>

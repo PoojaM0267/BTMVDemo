@@ -18,6 +18,7 @@ export class DashboardService {
 
     options = this.baseConfig.getBaseHttpConfiguration();
 
+    // Get user profile details
     getUser(userId: number): Observable<any> {
         debugger;
         let params = { Id: userId };

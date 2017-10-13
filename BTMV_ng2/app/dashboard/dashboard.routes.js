@@ -11,8 +11,8 @@ var router_1 = require("@angular/router");
 var dashboard_component_1 = require("./dashboard.component");
 var auth_guard_1 = require("../_Guards/auth.guard");
 var addWork_component_1 = require("../dashboard/common/addWork.component");
-var profile_component_1 = require("../dashboard/profile.component");
 var editProfile_component_1 = require("../dashboard/common/editProfile.component");
+var viewWorks_component_1 = require("../dashboard/user/viewWorks.component");
 // working
 //const routes: Routes = [
 //    {
@@ -35,15 +35,18 @@ var routes = [
         children: [
             //{ path: 'dashboard/:id', component: DashboardComponent, canActivate: [AuthGuard]},
             { path: 'dashboard', component: dashboard_component_1.DashboardComponent, canActivate: [auth_guard_1.AuthGuard] },
-            { path: 'profile', component: profile_component_1.ProfileComponent },
             { path: 'addWork', component: addWork_component_1.AddWorkComponent },
-            //{ path: 'works', component: WorkComponent },        
-            //{ path: 'reportIssue', component: ReportIssueComponent },
             { path: 'editProfile', component: editProfile_component_1.EditProfileComponent },
+            { path: 'works', component: viewWorks_component_1.ViewWorkComponent }
+            //{ path: 'profile', component: ProfileComponent},        
+            //{ path: 'works', component: WorkComponent },        
+            //{ path: 'reportIssue', component: ReportIssueComponent },       
+            //{ path: 'changePassword', component: ChangePasswordComponent },
+            //{ path: 'deleteAccount', component: DeleteAccountComponent },
         ]
     }
 ];
-var DashboardRoutesModule = (function () {
+var DashboardRoutesModule = /** @class */ (function () {
     function DashboardRoutesModule() {
     }
     DashboardRoutesModule = __decorate([

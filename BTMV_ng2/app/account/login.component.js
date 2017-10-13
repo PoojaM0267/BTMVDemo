@@ -15,7 +15,7 @@ var router_1 = require("@angular/router");
 var account_service_1 = require("../_Services/account.service");
 var auth_service_1 = require("../_Services/auth.service");
 //import { validateEmail } from '../common/emailValidator';
-var LoginComponent = (function () {
+var LoginComponent = /** @class */ (function () {
     function LoginComponent(accountService, router, authService) {
         this.accountService = accountService;
         this.router = router;

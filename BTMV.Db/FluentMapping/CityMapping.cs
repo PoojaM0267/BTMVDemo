@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BTMV_Model.DataModel;
+﻿using BTMV_Model.DataModel;
 using System.Data.Entity.ModelConfiguration;
 
 namespace BTMV.Db.FluentMapping
@@ -12,9 +7,9 @@ namespace BTMV.Db.FluentMapping
     {
         public CityMapping()
         {
-            this.HasKey<int>(model => model.CityId);
-            this.Property(model => model.CityName);
-            this.Property(model => model.StateId);
+            HasKey(model => model.CityId);
+            Property(model => model.CityName);
+            Property(model => model.StateId);
         }
     }
 }

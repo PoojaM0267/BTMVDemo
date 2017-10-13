@@ -14,6 +14,7 @@ namespace BTMV_ng2
             var container = new UnityContainer();
             container.RegisterType<IAccountService, AccountService>(new HierarchicalLifetimeManager());
             container.RegisterType<ITokenService, TokenService>(new HierarchicalLifetimeManager());
+            container.RegisterType<IWorkService, WorkService>(new HierarchicalLifetimeManager());
 
             //RegisterTypes(container);
 

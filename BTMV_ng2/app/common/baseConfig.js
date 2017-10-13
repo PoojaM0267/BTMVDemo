@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var http_1 = require("@angular/http");
 var core_1 = require("@angular/core");
-var BaseConfig = (function () {
+var BaseConfig = /** @class */ (function () {
     function BaseConfig() {
         //let headers = new Headers({ 'Content-Type': 'application/json' });
         //let options = new RequestOptions({ headers: headers });

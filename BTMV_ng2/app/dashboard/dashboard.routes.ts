@@ -10,6 +10,7 @@ import { AddWorkComponent } from '../dashboard/common/addWork.component';
 import { UserLayoutComponent } from '../dashboard/userLayout.component';
 import { ProfileComponent } from '../dashboard/profile.component';
 import { EditProfileComponent } from '../dashboard/common/editProfile.component';
+import { ViewWorkComponent } from '../dashboard/user/viewWorks.component';
 
 // working
 //const routes: Routes = [
@@ -34,13 +35,15 @@ const routes: Routes = [
     children: [
         //{ path: 'dashboard/:id', component: DashboardComponent, canActivate: [AuthGuard]},
         { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
-        { path: 'profile', component: ProfileComponent},
-        { path: 'addWork', component: AddWorkComponent },        
-        //{ path: 'works', component: WorkComponent },        
-        //{ path: 'reportIssue', component: ReportIssueComponent },
+        { path: 'addWork', component: AddWorkComponent },
         { path: 'editProfile', component: EditProfileComponent },
+        { path: 'works', component: ViewWorkComponent } 
+        //{ path: 'profile', component: ProfileComponent},        
+        //{ path: 'works', component: WorkComponent },        
+        //{ path: 'reportIssue', component: ReportIssueComponent },       
         //{ path: 'changePassword', component: ChangePasswordComponent },
-        //{ path: 'deleteAccount', component: DeleteAccountComponent }
+        //{ path: 'deleteAccount', component: DeleteAccountComponent },
+        
     ]
     }     
  ]

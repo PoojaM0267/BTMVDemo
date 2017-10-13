@@ -8,18 +8,27 @@ import { DashboardComponent } from './dashboard.component';
 import { AddWorkComponent } from './common/addWork.component';
 import { SideNavComponent } from './sideNav.component';
 import { ProfileComponent } from './profile.component';
-import { UserLayoutComponent } from './userLayout.component';
+import { UserLayoutComponent } from './userLayout.component'; 
 import { EditProfileComponent } from './common/editProfile.component';
-import { DashboardService } from '../_Services/dashboard.service';
-import { ListService } from '../_Services/list.service';
+import { ViewWorkComponent } from './user/viewWorks.component';
+import {
+    DashboardService,
+    ListService,
+    WorkService
+} from '../_Services/index';
+
+import { DataTableModule, SharedModule, PaginatorModule } from 'primeng/primeng';
 
 @NgModule({
     imports: [
-        FormsModule,
+        FormsModule, 
         CommonModule,
         DashboardRoutesModule,
         HttpModule,
-        ReactiveFormsModule 
+        ReactiveFormsModule,
+        DataTableModule,
+        SharedModule,
+        PaginatorModule           
     ],
     declarations: [
         DashboardComponent,
@@ -27,11 +36,13 @@ import { ListService } from '../_Services/list.service';
         SideNavComponent,
         ProfileComponent,
         UserLayoutComponent,
-        EditProfileComponent
+        EditProfileComponent,
+        ViewWorkComponent
     ],   
     providers: [
         DashboardService,
-        ListService
+        ListService,
+        WorkService
     ]
 })
 export class DashboardModule { }

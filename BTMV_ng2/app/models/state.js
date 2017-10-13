@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var State = (function () {
+var State = /** @class */ (function () {
     function State(
         //public id: number,
         //public name: string,

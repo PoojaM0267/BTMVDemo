@@ -12,9 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var router_1 = require("@angular/router");
-var AuthenticationService = (function () {
-    //public token: string;
-    //public currentUsername: string; 
+var AuthenticationService = /** @class */ (function () {
     function AuthenticationService(http, router) {
         this.http = http;
         this.router = router;
@@ -22,8 +20,6 @@ var AuthenticationService = (function () {
         var user = localStorage.getItem('BTMV_currentUser');
         this.currentUser = JSON.parse(user);
         console.log(this.currentUser);
-        //this.token = this.currentUser.token;
-        //this.currentUsername = this.currentUser.username;
     }
     AuthenticationService.prototype.checkAuthenticationStatus = function () {
         var user = localStorage.getItem('BTMV_currentUser');
