@@ -1,0 +1,62 @@
+﻿<div id="editBasicInfo" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                <h4 class="modal-title"> Edit Basic Info </h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="alert alert-danger" *ngIf="hasErrorMessage">
+                    <strong>Error ! </strong>{{ errorMessage }}
+                </div>
+                <div class="alert alert-success" *ngIf="isBasicInfoEditSuccess">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close" (click)="resetForm()">×</a>
+                    <strong>Success ! </strong>{{ successMessage }}
+                </div>
+
+                <div class="col-md-6 col-xs-12">
+                    <form [formGroup]="basicInfoEditForm" (ngSubmit)="editBasicInfo(basicInfoEditForm.value)" autocomplete="off">
+
+                        <div class="form-group" [ngClass]="{'error': firstName.invalid && firstName.dirty}">
+                            <label for="firstName">First Name:</label>
+                            <em *ngIf="basicInfoEditForm.controls.firstName?.invalid && (basicInfoEditForm.controls.firstName?.dirty)">Required</em>
+                            <input (ngModel)="firstName" name="firstName" required id="firstName" type="text" class="form-control" maxlength="100" placeholder="First Name" formControlName="firstName" />
+                        </div>
+
+                        <div class="form-group" [ngClass]="{'error': lastName.invalid && lastName.dirty}">
+                            <label for="lastName">Last Name:</label>
+                            <em *ngIf="basicInfoEditForm.controls.lastName?.invalid && (basicInfoEditForm.controls.lastName?.dirty)">Required</em>
+                            <input (ngModel)="lastName" name="lastName" required id="lastName" type="text" class="form-control" maxlength="100" placeholder="Last Name" formControlName="lastName" />
+                        </div> 
+
+                        <div class="form-group">
+                            <label for="occupation">Occupation:</label>
+                            <select class="form-control" formControlName="occupationId" name="occupationId" required>
+                                <option *ngFor="let occupation of occupations" value={{occupation.OccupationId}}> {{occupation.OccupationName}} </option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" [ngClass]="{'error': dob.invalid && dob.dirty}">
+                            <label for="dob">Date of Birth:</label>
+                            <input (ngModel)="dob" name="dob" required id="dob" type="date" class="form-control" formControlName="dob" />
+                        </div>
+
+                        <div class="form-group" [ngClass]="{'error': gender.invalid && gender.dirty}">
+                            <label for="gender">Gender:</label>
+                            <div class="radio" *ngFor="let gender of genders">
+                                <label>
+                                    <input type="radio" name="gender" (ngModel)="gender" [value]="gender.value" class="radioBtn" formControlName="gender">
+                                    {{gender.display}}
+                                </label>
+                            </div>
+                        </div>
+
+                        <button type="submit" [disabled]="!basicInfoEditForm.valid" class="btn btn-primary">Save</button>
+                        <button type="button" class="btn btn-default" (click)="resetForm()" data-dismiss="modal">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,5 @@
 ﻿using BTMV.Db;
+using BTMV.Common;
 using BTMV_Model.DataModel;
 using BTMV_Model.ViewModel;
 using System;
@@ -33,12 +34,12 @@ namespace BTMV_ng2.Controllers
 
                 if (!ModelState.IsValid)
                 {
-                    return Json(new { isSuccess = false, message = "Please provide appropriate data." });
+                    return Json(new { isSuccess = false, message = BTMV.Common.BTMV.DataErrorMsg });
                 }
 
                 if(string.IsNullOrEmpty(userModel.Email) && string.IsNullOrEmpty(userModel.Password))
                 {
-                    return Json(new { isSuccess = false, message = "Input Fields cannot be empty." });
+                    return Json(new { isSuccess = false, message = BTMV.Common.BTMV.EmptyInputMsg });
                 }
                 
                 var userExists = db.UserInformation
@@ -47,10 +48,9 @@ namespace BTMV_ng2.Controllers
 
                 if (userExists != null)
                 {
-                    return Json(new { isSuccess = false, message = "User with this Email Already Exists." });                    
+                    return Json(new { isSuccess = false, message = BTMV.Common.BTMV.UserExistsMsg  });                    
                 }
-
-                //var hashedPassword = ComputeHash(userModel.Email, userModel.Password);
+                
                 var hashedPassword = _accountService.ComputeHash(userModel.Email, userModel.Password);
 
                 var user = new UserInformation
@@ -58,7 +58,7 @@ namespace BTMV_ng2.Controllers
                     FirstName = userModel.FirstName,
                     LastName = userModel.LastName,
                     Email = userModel.Email,
-                    DOB = Convert.ToDateTime("04/19/2016"),
+                    //DOB = Convert.ToDateTime("04/19/2016"),
                     CityId = userModel.CityId,
                     OccupationId = userModel.OccupationId,
                     RoleId = 2,
@@ -70,11 +70,12 @@ namespace BTMV_ng2.Controllers
                     db.UserInformation.Add(user);
                     db.SaveChanges();
 
-                return Json(new { isSuccess = true, message = "Registration Successful." });
+                return Json(new { isSuccess = true, message = BTMV.Common.BTMV.RegistrationSuccessMsg });
             }
             catch (Exception ex)
             {
-                return Json(new { isSuccess = false, message = "Something went wrong. Please try again." });
+                Elmah.ErrorSignal.FromCurrentContext().Raise(ex);
+                return Json(new { isSuccess = false, message = BTMV.Common.BTMV.CommonErrorMsg });
             }
         }
 
@@ -93,7 +94,7 @@ namespace BTMV_ng2.Controllers
 
                 if (string.IsNullOrEmpty(userModel.Email) && string.IsNullOrEmpty(userModel.Password))
                 {
-                    return Json(new { isUserValid = false, message = "Input Fields cannot be empty." });
+                    return Json(new { isUserValid = false, message = BTMV.Common.BTMV.EmptyInputMsg });
                 }
 
                 var userCredentials = db.UserInformation
@@ -109,7 +110,7 @@ namespace BTMV_ng2.Controllers
 
                 if (userCredentials == null)
                 {
-                    return Json(new { isUserValid = false, message = "User Not Found." });
+                    return Json(new { isUserValid = false, message = BTMV.Common.BTMV.UserNotFoundMsg });
                 }
 
                 // TODO: update last login date time in db here
@@ -119,16 +120,17 @@ namespace BTMV_ng2.Controllers
 
                 if (!isUserValid)
                 {
-                    return Json(new { isUserValid = isUserValid, id = userCredentials.Id, message = "Invalid Credentials" });
+                    return Json(new { isUserValid = isUserValid, id = userCredentials.Id, message = BTMV.Common.BTMV.InvalidCredentialsMsg });
                 }
                 
-                var token = _tokenService.GenerateToken(userCredentials.Email, userCredentials.RoleId);                
+                var token = _tokenService.GenerateToken(userCredentials.Email, userCredentials.RoleId); 
 
-                return Json(new { isUserValid = isUserValid, id = userCredentials.Id, message = "Login Successful", jwtToken = token });
+                return Json(new { isUserValid = isUserValid, id = userCredentials.Id, message = BTMV.Common.BTMV.LoginSuccessMsg, jwtToken = token });
             }
             catch (Exception ex)
             {
-                return null;
+                Elmah.ErrorSignal.FromCurrentContext().Raise(ex);
+                return Json(new { isUserValid = false, message = BTMV.Common.BTMV.CommonErrorMsg });
             }
         }
 
@@ -153,11 +155,6 @@ namespace BTMV_ng2.Controllers
                        .Where(x => x.Id == param.Id)
                        .SingleOrDefault();
 
-                //if(userDetails == null)
-                //{
-                //    return Json(new { userDetails = null });
-                //}
-
                 var userDetails = new UserRegistrationViewModel {
                     FirstName = user.FirstName,
                     LastName = user.LastName,
@@ -177,8 +174,132 @@ namespace BTMV_ng2.Controllers
             }
             catch (Exception ex)
             {
+                Elmah.ErrorSignal.FromCurrentContext().Raise(ex);
                 return null;
             }
-        }        
+        }
+
+        [CustomAuthorize]
+        [HttpPost]
+        public IHttpActionResult EditProfile(UserRegistrationViewModel userModel)
+        {
+            try
+            {
+                var db = new BTMVContext();
+
+                if (!ModelState.IsValid)
+                {
+                    return Json(new { isSuccess = false, message = BTMV.Common.BTMV.DataErrorMsg });
+                }
+
+                if (string.IsNullOrEmpty(userModel.Email) && string.IsNullOrEmpty(userModel.Password))
+                {
+                    return Json(new { isSuccess = false, message = BTMV.Common.BTMV.EmptyInputMsg });
+                }
+
+                //var userExists = db.UserInformation
+                //   .Where(x => x.Email == userModel.Email)
+                //   .SingleOrDefault();
+
+                //// disable email edit or if not check for duplicate email
+                //if (userExists != null)
+                //{
+                //    return Json(new { isSuccess = false, message = "User with this Email Already Exists." });
+                //}
+                 
+                //// todo : change hashed password internally
+                //var hashedPassword = _accountService.ComputeHash(userModel.Email, userModel.Password);
+
+                //var user = new UserInformation
+                //{
+                //    FirstName = userModel.FirstName,
+                //    LastName = userModel.LastName,
+                //    Email = userModel.Email,
+                //    DOB = Convert.ToDateTime("04/19/2016"),
+                //    CityId = userModel.CityId,
+                //    OccupationId = userModel.OccupationId,
+                //    RoleId = 2,
+                //    // isSelected = false,
+                //    Password = hashedPassword,
+                //    CreatedOn = DateTime.Now
+                //};
+
+                //db.UserInformation.Add(user);
+                //db.SaveChanges();
+
+                return Json(new { isSuccess = true, message = BTMV.Common.BTMV.ProfileUpdateSuccessMsg });
+            }
+            catch (Exception ex)
+            {
+                Elmah.ErrorSignal.FromCurrentContext().Raise(ex);
+                return Json(new { isSuccess = false, message = BTMV.Common.BTMV.CommonErrorMsg });
+            }
+        }
+
+        [CustomAuthorize]
+        [HttpPost]
+        public IHttpActionResult EditBasicInfo(UserRegistrationViewModel userModel)
+        {
+            try
+            {
+                var db = new BTMVContext();
+                if(userModel == null)
+                {
+                    return Json(new { isSuccess = false, message = BTMV.Common.BTMV.CommonErrorMsg });
+                }
+
+                //var userDetails = _accountService.GetUserById(userModel.UserId);
+
+                //if(userDetails != null)
+                //{
+                //    userDetails.FirstName = userModel.FirstName;
+                //    userDetails.LastName = userModel.LastName;
+                //    userDetails.OccupationId = userModel.OccupationId;
+                //    userDetails.DOB = userModel.DOB;
+                //    userDetails.Gender = userModel.Gender;
+
+                //    _accountService.UpdateBasicInfo(userDetails);
+
+                //}
+
+                _accountService.UpdateBasicInfo(userModel);
+
+                return Json(new { isSuccess = true, message = BTMV.Common.BTMV.ProfileUpdateSuccessMsg });
+            }
+            catch (Exception ex)
+            {
+                Elmah.ErrorSignal.FromCurrentContext().Raise(ex);
+                return Json(new { isSuccess = false, message = BTMV.Common.BTMV.CommonErrorMsg });
+            }
+        }
+
+        /// <summary>
+        /// Edits the contact information.
+        /// </summary>
+        /// <param name="userModel">The user model.</param>
+        /// <returns></returns>
+        [CustomAuthorize]
+        [HttpPost]
+        public IHttpActionResult EditContactInfo(UserRegistrationViewModel userModel)
+        {
+            try
+            {
+                var db = new BTMVContext();
+                if (userModel == null)
+                {
+                    return Json(new { isSuccess = false, message = BTMV.Common.BTMV.CommonErrorMsg });
+                }
+                
+                _accountService.UpdateContactInfo(userModel);
+
+                return Json(new { isSuccess = true, message = BTMV.Common.BTMV.ProfileUpdateSuccessMsg });
+            }
+            catch (Exception ex)
+            {
+                Elmah.ErrorSignal.FromCurrentContext().Raise(ex);
+                return Json(new { isSuccess = false, message = BTMV.Common.BTMV.CommonErrorMsg });
+            }
+
+        }
     }
 }

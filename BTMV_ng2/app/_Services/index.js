@@ -8,4 +8,5 @@ __export(require("./account.service"));
 __export(require("./dashboard.service"));
 __export(require("./list.service"));
 __export(require("./work.service"));
+__export(require("./profile.service"));
 //# sourceMappingURL=index.js.map

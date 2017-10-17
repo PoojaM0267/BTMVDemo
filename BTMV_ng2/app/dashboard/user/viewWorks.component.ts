@@ -1,10 +1,8 @@
 ﻿import { Component, OnInit, ElementRef } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 
-import { State } from '../../models/state';
-import { City } from '../../models/city';
-import { Department } from '../../models/department';
-import { IWorkModel } from '../../models/workModel';
+import { City, Department, State, IWorkModel } from '../../models/index';
 import { WorkService } from '../../_Services/index';
 
 @Component({
@@ -15,8 +13,10 @@ export class ViewWorkComponent {
 
     works: IWorkModel[];
     cols: any[];
+    hasErrorMessage: boolean = false;
+    errorMessage: string;
 
-    constructor(private workService: WorkService) { }
+    constructor(private workService: WorkService, private router: Router) { }
 
     ngOnInit() {
         this.cols = [
@@ -45,10 +45,19 @@ export class ViewWorkComponent {
                 }
                 else {
                    // show error
+                    this.hasErrorMessage = true;
+                    this.errorMessage = message;
                 }
             },
-            err => {
+             error => {
                // show error
+                this.hasErrorMessage = true;
+                this.errorMessage = 'Something went wrong. Please try again later.';
+
+                if (error.message === "403") {
+                    alert('Not authenticate User.');
+                    this.router.navigate(['/home']);
+                }
             });
     }
 }

@@ -3,13 +3,16 @@ import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms'
 import { Observable } from 'rxjs/Rx';
 
 //import { User } from '../models/userModel';
-import { State } from '../models/state';
-import { City } from '../models/city';
-import { Occupation } from '../models/occupation';
-import { ListService } from '../_Services/list.service';
-import { AccountService } from '../_Services/account.service';
+//import { State } from '../models/state';
+//import { City } from '../models/city';
+//import { Occupation } from '../models/occupation';
+//import { Department } from '../models/department';
+//import { ListService } from '../_Services/list.service';
+//import { AccountService } from '../_Services/account.service';
 import { matchPassword } from '../common/matchPasswordValidation';
-import { Department } from '../models/department';
+import { AccountService, ListService } from '../_Services/index';
+
+import { City, Department, Occupation, State } from '../models/index';
 
 @Component({
     selector: 'register-form',
@@ -31,7 +34,7 @@ export class RegisterComponent {
     email: FormControl;
     stateId: FormControl;
     cityId: FormControl;
-    departmentId: FormControl;
+    //departmentId: FormControl;
     occupationId: FormControl;
     password: FormControl;
    // confirmPassword: FormControl;
@@ -39,13 +42,14 @@ export class RegisterComponent {
     states: State[];
     cities: City[];
     occupations: Occupation[];
-    departments: Department[];
+    //departments: Department[];
 
     isRegistrationSuccess: boolean = false;
     //isSuccess: boolean;
     hasErrorMessage: boolean = false;
     errorMessage: string;
     isSubmitted = false;
+
     constructor(private accountService: AccountService, private listService: ListService) {
         debugger;
         this.listService.getStates().subscribe(
@@ -56,9 +60,9 @@ export class RegisterComponent {
             occupations => this.occupations = occupations
         );    
 
-        this.listService.getDepartments().subscribe(
-            departments => this.departments = departments
-        );
+        //this.listService.getDepartments().subscribe(
+        //    departments => this.departments = departments
+        //);
     }
 
     ngOnInit() {       
@@ -70,7 +74,7 @@ export class RegisterComponent {
         this.occupationId = new FormControl('', Validators.required);
         this.password = new FormControl('', Validators.required);
        // this.confirmPassword = new FormControl('', Validators.required, matchPassword)     
-        this.departmentId = new FormControl('', Validators.required);   
+       // this.departmentId = new FormControl('', Validators.required);   
 
         this.registrationForm = new FormGroup({
             firstName: this.firstName,
@@ -81,7 +85,7 @@ export class RegisterComponent {
             occupationId: this.occupationId,
             password: this.password,
            // confirmPassword: this.confirmPassword
-            departmentId: this.departmentId,
+           // departmentId: this.departmentId,
         },
              //matchPassword('confirmPassword','password')           
         );
@@ -111,15 +115,14 @@ export class RegisterComponent {
                     this.hasErrorMessage = false;
                 }
                 else {
-                   // debugger;
-                    //show error msg                    
+                   // debugger;                    
                     this.isRegistrationSuccess = false;
                     this.hasErrorMessage = true;
                     this.errorMessage = message;
                 }                  
                 
             },
-            err =>
+            error =>
             {
                 // show error msg
             });       

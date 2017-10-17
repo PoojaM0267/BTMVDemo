@@ -10,21 +10,49 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
+var index_1 = require("../_Services/index");
 var ProfileComponent = /** @class */ (function () {
-    function ProfileComponent() {
+    function ProfileComponent(profileService, router) {
+        this.profileService = profileService;
+        this.router = router;
         console.log('profile');
-        alert('ok');
     }
     ProfileComponent.prototype.ngOnInit = function () {
+        var _this = this;
         debugger;
-        console.log('profile 1');
+        this.profileService.getUserProfile().subscribe(function (data) {
+            debugger;
+            console.log(data);
+            _this.userDetails = data['userDetails'];
+            // this.userProfile = data.userDetails; 
+            _this.userDetails.firstName = data.userDetails.FirstName;
+            _this.userDetails.lastName = data.userDetails.LastName;
+            _this.userDetails.roleName = data.userDetails.RoleName;
+            _this.userDetails.email = data.userDetails.Email;
+            _this.userDetails.cityName = data.userDetails.CityName;
+            _this.userDetails.stateName = data.userDetails.StateName;
+            _this.userDetails.occupationName = data.userDetails.OccupationName;
+            _this.userDetails.address = data.userDetails.Address;
+            _this.userDetails.phoneNumber = data.userDetails.Phone;
+            _this.userDetails.dob = data.userDetails.DOB;
+            _this.userDetails.gender = data.userDetails.Gender;
+        }, function (error) {
+            debugger;
+            console.log(error.message);
+            alert('Something went wrong. Please try again later.');
+            if (error.message === "403") {
+                alert('Not authenticate User.');
+                _this.router.navigate(['/home']);
+            }
+        });
     };
     ProfileComponent = __decorate([
         core_1.Component({
             selector: 'profile',
             templateUrl: 'app/dashboard/profile.component.html'
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [index_1.ProfileService, router_1.Router])
     ], ProfileComponent);
     return ProfileComponent;
 }());

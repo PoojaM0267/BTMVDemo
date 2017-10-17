@@ -1,4 +1,7 @@
-﻿namespace BTMV_Core.Interfaces
+﻿using BTMV_Model.DataModel;
+using BTMV_Model.ViewModel;
+
+namespace BTMV_Core.Interfaces
 {
     public interface IAccountService
     {
@@ -9,5 +12,10 @@
         /// <param name="password">The password.</param>
         /// <returns></returns>
         string ComputeHash(string salt, string password);
+        UserInformation GetUserById(int userId);
+
+        //void UpdateBasicInfo(UserInformation userBasicInfo);
+        void UpdateBasicInfo(UserRegistrationViewModel userBasicInfo);
+        void UpdateContactInfo(UserRegistrationViewModel userContactInfo);      
     }
 }

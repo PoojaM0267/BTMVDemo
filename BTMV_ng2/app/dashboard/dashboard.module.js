@@ -12,13 +12,12 @@ var forms_1 = require("@angular/forms");
 var http_1 = require("@angular/http");
 var dashboard_routes_1 = require("./dashboard.routes");
 var dashboard_component_1 = require("./dashboard.component");
-var addWork_component_1 = require("./common/addWork.component");
 var sideNav_component_1 = require("./sideNav.component");
 var profile_component_1 = require("./profile.component");
 var userLayout_component_1 = require("./userLayout.component");
-var editProfile_component_1 = require("./common/editProfile.component");
-var viewWorks_component_1 = require("./user/viewWorks.component");
-var index_1 = require("../_Services/index");
+var index_1 = require("./common/index");
+var index_2 = require("./user/index");
+var index_3 = require("../_Services/index");
 var primeng_1 = require("primeng/primeng");
 var DashboardModule = /** @class */ (function () {
     function DashboardModule() {
@@ -37,17 +36,21 @@ var DashboardModule = /** @class */ (function () {
             ],
             declarations: [
                 dashboard_component_1.DashboardComponent,
-                addWork_component_1.AddWorkComponent,
+                index_1.AddWorkComponent,
                 sideNav_component_1.SideNavComponent,
                 profile_component_1.ProfileComponent,
                 userLayout_component_1.UserLayoutComponent,
-                editProfile_component_1.EditProfileComponent,
-                viewWorks_component_1.ViewWorkComponent
+                index_1.EditProfileComponent,
+                index_2.ViewWorkComponent,
+                index_2.ReportIssueComponent,
+                index_1.EditBasicInfoComponent,
+                index_1.EditContactInfoComponent
             ],
             providers: [
-                index_1.DashboardService,
-                index_1.ListService,
-                index_1.WorkService
+                index_3.DashboardService,
+                index_3.ListService,
+                index_3.WorkService,
+                index_3.ProfileService
             ]
         })
     ], DashboardModule);

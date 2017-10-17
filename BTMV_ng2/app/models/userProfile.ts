@@ -1,11 +1,11 @@
 ﻿export interface IUserProfile {
-     id: number;
+    userId: number;
     firstName: string;
     lastName: string;
     email: string;
     dob?: Date;
     gender?: string;
-    phoneNumber?: number;
+    phone?: number;
     address?: string;
     occupations?: string;
     stateName?: string;

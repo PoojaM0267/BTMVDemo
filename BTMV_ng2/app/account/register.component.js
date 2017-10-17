@@ -11,17 +11,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
-//import { User } from '../models/userModel';
-var state_1 = require("../models/state");
-var list_service_1 = require("../_Services/list.service");
-var account_service_1 = require("../_Services/account.service");
+var index_1 = require("../_Services/index");
+var index_2 = require("../models/index");
 var RegisterComponent = /** @class */ (function () {
     function RegisterComponent(accountService, listService) {
         var _this = this;
         this.accountService = accountService;
         this.listService = listService;
         // confirmPassword: FormControl;
-        this.selectedState = new state_1.State(0, 'Select State');
+        this.selectedState = new index_2.State(0, 'Select State');
+        //departments: Department[];
         this.isRegistrationSuccess = false;
         //isSuccess: boolean;
         this.hasErrorMessage = false;
@@ -29,7 +28,9 @@ var RegisterComponent = /** @class */ (function () {
         debugger;
         this.listService.getStates().subscribe(function (states) { return _this.states = states; });
         this.listService.getOccupations().subscribe(function (occupations) { return _this.occupations = occupations; });
-        this.listService.getDepartments().subscribe(function (departments) { return _this.departments = departments; });
+        //this.listService.getDepartments().subscribe(
+        //    departments => this.departments = departments
+        //);
     }
     RegisterComponent.prototype.ngOnInit = function () {
         this.firstName = new forms_1.FormControl('', forms_1.Validators.required);
@@ -40,7 +41,7 @@ var RegisterComponent = /** @class */ (function () {
         this.occupationId = new forms_1.FormControl('', forms_1.Validators.required);
         this.password = new forms_1.FormControl('', forms_1.Validators.required);
         // this.confirmPassword = new FormControl('', Validators.required, matchPassword)     
-        this.departmentId = new forms_1.FormControl('', forms_1.Validators.required);
+        // this.departmentId = new FormControl('', Validators.required);   
         this.registrationForm = new forms_1.FormGroup({
             firstName: this.firstName,
             lastName: this.lastName,
@@ -49,8 +50,6 @@ var RegisterComponent = /** @class */ (function () {
             cityId: this.cityId,
             occupationId: this.occupationId,
             password: this.password,
-            // confirmPassword: this.confirmPassword
-            departmentId: this.departmentId,
         });
     };
     RegisterComponent.prototype.onSelect = function (stateId) {
@@ -74,13 +73,12 @@ var RegisterComponent = /** @class */ (function () {
                 _this.hasErrorMessage = false;
             }
             else {
-                // debugger;
-                //show error msg                    
+                // debugger;                    
                 _this.isRegistrationSuccess = false;
                 _this.hasErrorMessage = true;
                 _this.errorMessage = message;
             }
-        }, function (err) {
+        }, function (error) {
             // show error msg
         });
     };
@@ -93,9 +91,9 @@ var RegisterComponent = /** @class */ (function () {
             selector: 'register-form',
             templateUrl: 'app/account/register.component.html',
             styles: ["\n        em{ float: right; color: #E05C65; padding-left: 10px}\n       .error input, .error select, .error textarea { border-left: 5px solid #a94442; border-right : 1px solid #a94442; border-top : 1px solid #a94442; border-bottom : 1px solid #a94442; }\n       .valid input, .valid select, .valid textarea { border-left: 5px solid #42A948; border-right: 1px solid #42A948;   border-top: 1px solid #42A948; border-bottom: 1px solid #42A948; }\n    "],
-            providers: [list_service_1.ListService]
+            providers: [index_1.ListService]
         }),
-        __metadata("design:paramtypes", [account_service_1.AccountService, list_service_1.ListService])
+        __metadata("design:paramtypes", [index_1.AccountService, index_1.ListService])
     ], RegisterComponent);
     return RegisterComponent;
 }());

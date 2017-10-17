@@ -1,13 +1,10 @@
 ﻿import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 
-import { State } from '../../models/state';
-import { City } from '../../models/city';
-import { Department } from '../../models/department';
-import { IWorkModel } from '../../models/workModel';
+import { State, City, Department, IWorkModel } from '../../models/index';
 import { ListService } from '../../_Services/list.service';
 import { WorkService } from '../../_Services/work.service';
-//import { WorkService } from '../../_Services/index';
 
 @Component({
     selector: 'addWork',
@@ -31,7 +28,6 @@ export class AddWorkComponent {
    // departmentId: FormControl;
     fundRequired: FormControl;
     selectedState: State = new State(0, 'Select State');
-   // selectedDepartment: Department = new Department(0, 'Select Department');
     states: State[];
     cities: City[];
    // departments: Department[];
@@ -42,7 +38,7 @@ export class AddWorkComponent {
     successMessage: string;
     isSubmitted = false;
 
-    constructor(private listService: ListService, private workService: WorkService ) {
+    constructor(private listService: ListService, private workService: WorkService, private router: Router ) {
         debugger;
         console.log('Add Work');
 
@@ -81,39 +77,45 @@ export class AddWorkComponent {
 
     addWork(formValues)
     {
-        debugger;
+        //debugger;
         this.isSubmitted = true;
         console.log(formValues);
 
         let result = this.workService.addWork(formValues).subscribe(
             data => {
-                 debugger;
+                 //debugger;
                 console.log(data);
                 let isSuccess = data.isSuccess;
                 let message = data.message;
 
                 if (isSuccess) {
-                     debugger;
+                     //debugger;
                      this.isWorkAdded = true;
                      this.successMessage = message;
                      this.hasErrorMessage = false; 
                      this.resetForm();                   
                 }
                 else {
-                     debugger;                    
+                    // debugger;                    
                     this.isWorkAdded = false;
                     this.hasErrorMessage = true;
                     this.errorMessage = message;
                 }
-
             },
-            err => {
+            error => {
                 // show error msg
+                this.hasErrorMessage = true;
+                this.errorMessage = 'Something went wrong. Please try again later.';
+
+                if (error.message === "403") {
+                    alert('Not authenticate User.');
+                    this.router.navigate(['/home']);
+                }
             }); 
     }
 
     resetForm() {
-        debugger;
+        //debugger;
         this.addWorkForm.reset();
         this.isWorkAdded = false;
         this.hasErrorMessage = false;

@@ -17,6 +17,7 @@ namespace BTMV.Db
         public DbSet<Department> Departments { get; set; }
         public DbSet<Work> Works { get; set; }
         public DbSet<WorkStatus> WorkStatus { get; set; }
+        public DbSet<ReportedIssue> ReportedIssues { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -31,6 +32,7 @@ namespace BTMV.Db
             modelBuilder.Configurations.Add(new UserRolesMapping());
             modelBuilder.Configurations.Add(new WorkMapping());
             modelBuilder.Configurations.Add(new WorkStatusMapping());
+            modelBuilder.Configurations.Add(new ReportedIssueMapping());
         }
     }
 }

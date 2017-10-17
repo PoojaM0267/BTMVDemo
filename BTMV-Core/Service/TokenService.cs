@@ -36,7 +36,7 @@ namespace BTMV_Core.Service
             var issueTime = DateTime.Now;
 
             var iat = (int)issueTime.Subtract(utc0).TotalSeconds;
-            var exp = (int)issueTime.AddMinutes(01).Subtract(utc0).TotalSeconds; // Expiration time is up to 1 hour, but lets play on safe side
+            var exp = (int)issueTime.AddMinutes(05).Subtract(utc0).TotalSeconds; // Expiration time is up to 1 hour, but lets play on safe side
 
             var payload = new
             {

@@ -11,7 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var http_1 = require("@angular/http");
 var core_1 = require("@angular/core");
-var Rx_1 = require("rxjs/Rx");
 var baseConfig_1 = require("../common/baseConfig");
 var auth_service_1 = require("./auth.service");
 var globalErrorHandler_service_1 = require("../common/globalErrorHandler.service");
@@ -38,9 +37,7 @@ var WorkService = /** @class */ (function () {
             var res = response.json();
             return res;
         })
-            .catch(function (error) {
-            return Rx_1.Observable.of(false);
-        });
+            .catch(this.globalErrorHandler.handleError);
     };
     // Get individual works
     WorkService.prototype.getUserWorks = function () {
@@ -59,9 +56,24 @@ var WorkService = /** @class */ (function () {
             console.log(res);
             return res;
         })
-            .catch(function (error) {
-            return Rx_1.Observable.of(false);
-        });
+            .catch(this.globalErrorHandler.handleError);
+    };
+    // Add Reported Problems
+    WorkService.prototype.addReportedProblem = function (reportedIssueDetails) {
+        debugger;
+        var user = localStorage.getItem('BTMV_currentUser');
+        if (user) {
+            var currentUser = JSON.parse(user);
+            this.options.headers.append('Authorization', 'Bearer ' + currentUser.token);
+            reportedIssueDetails.userId = currentUser.userId;
+        }
+        return this.http.post('/api/User/AddReportedIssue', JSON.stringify(reportedIssueDetails), this.options)
+            .map(function (response) {
+            debugger;
+            var res = response.json();
+            return res;
+        })
+            .catch(this.globalErrorHandler.handleError);
     };
     WorkService = __decorate([
         core_1.Injectable(),

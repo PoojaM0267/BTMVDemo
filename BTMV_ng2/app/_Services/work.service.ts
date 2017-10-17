@@ -3,7 +3,10 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 
 import { BaseConfig } from '../common/baseConfig';
-import { IWorkModel } from '../models/workModel';
+import {
+    IReportIssueModel,
+    IWorkModel
+} from '../models/index';
 import { AuthenticationService } from './auth.service';
 import { GlobalErrorHandler } from '../common/globalErrorHandler.service';
 
@@ -30,9 +33,7 @@ export class WorkService {
                 var res = response.json();                
                 return res;
             })
-            .catch(error => {
-                return Observable.of(false);
-            })
+            .catch(this.globalErrorHandler.handleError);   
     }
 
     // Get individual works
@@ -53,8 +54,25 @@ export class WorkService {
                 console.log(res);
                 return res;
             })
-            .catch(error => {
-                return Observable.of(false);
-            }) 
+            .catch(this.globalErrorHandler.handleError);
+    }
+
+    // Add Reported Problems
+    addReportedProblem(reportedIssueDetails: IReportIssueModel): Observable<any>{
+        debugger;
+        let user = localStorage.getItem('BTMV_currentUser');
+        if (user) {
+            let currentUser = JSON.parse(user);
+            this.options.headers.append('Authorization', 'Bearer ' + currentUser.token);
+            reportedIssueDetails.userId = currentUser.userId;
+        }
+
+        return this.http.post('/api/User/AddReportedIssue', JSON.stringify(reportedIssueDetails), this.options)
+            .map(response => {
+                debugger;
+                var res = response.json();
+                return res;
+            })
+            .catch(this.globalErrorHandler.handleError);
     }
 }

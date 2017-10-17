@@ -1,0 +1,66 @@
+﻿<div class="dashboardBody">
+
+    <div class="row ">
+        <!-- Side Navigation -->
+        <div class="col-md-2 col-xs-12" style="background: #125698; height: -webkit-fill-available;">
+            <sideNavigation></sideNavigation>
+        </div>
+        <!-- Dashboard Body -->
+        <div class="col-md-10 col-xs-12" style="background-color: #F7F7F7;">
+            <div class="titleLeft">
+                <h3>Report an Issue </h3>
+            </div>
+
+            <div class="profileBodyMainDiv">
+                <div class="alert alert-danger" *ngIf="hasErrorMessage">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                    <strong>Error ! </strong>{{ errorMessage }}
+                </div>
+                <div class="alert alert-success" *ngIf="isWorkAdded">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close" (click)="resetForm()">×</a>
+                    <strong>Success ! </strong>{{ successMessage }}
+                </div>
+                <div class="reportIssueDiv">
+                    <form [formGroup]="reportIssueForm" (ngSubmit)="addIssue(reportIssueForm.value)" autocomplete="off">
+                        <div class="form-group" [ngClass]="{'error': issueTitle.invalid && issueTitle.dirty}">
+                            <label for="issueTitle">Title:</label>
+                            <em *ngIf="reportIssueForm.controls.issueTitle?.invalid && (reportIssueForm.controls.issueTitle?.dirty)">Required</em>
+                            <input (ngModel)="issueTitle" name="issueTitle" required id="issueTitle" type="text" class="form-control" maxlength="100" placeholder="Title" formControlName="issueTitle" />
+                        </div>
+
+                        <!--<div class="form-group">
+                            <label for="occupation">Department:</label>
+                            <select class="form-control" formControlName="departmentId" name="departmentId" required>
+                                <option *ngFor="let department of departments" value={{department.DepartmentId}}> {{department.DepartmentName}} </option>
+                            </select>
+                        </div>-->
+
+                        <div class="form-group">
+                            <label for="state">State:</label>
+                            <select class="form-control" [(ngModel)]="selectedState.StateId" formControlName="stateId" name="stateId" required (change)="onSelect($event.target.value)">
+                                <option *ngFor="let state of states" value={{state.StateId}}> {{state.StateName}} </option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="city">City:</label>
+                            <select class="form-control" name="cityId" formControlName="cityId" required>
+                                <option *ngFor="let city of cities" value={{city.CityId}}> {{city.CityName}} </option>
+                            </select>
+                        </div>   
+                        
+                        <div class="form-group" [ngClass]="{'error': issueDetails.invalid && issueDetails.dirty}">
+                            <label for="issueDetails">Problem Details:</label>
+                            <em *ngIf="reportIssueForm.controls.issueDetails?.invalid && (reportIssueForm.controls.issueDetails?.dirty)">Required</em>
+                            <textarea (ngModel)="issueDetails" name="issueDetails" required id="issueDetails" type="text" class="form-control" maxlength="100" placeholder="Problem Description" formControlName="issueDetails"></textarea>
+                        </div>                     
+
+                        <button type="submit" [disabled]="!reportIssueForm.valid" class="btn btn-primary">Submit</button>
+                        <button type="button" class="btn btn-default" (click)="resetForm()">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

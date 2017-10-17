@@ -17,8 +17,7 @@ var GlobalErrorHandler = /** @class */ (function () {
         this.router = router;
     }
     GlobalErrorHandler.prototype.handleError = function (error) {
-        // debugger;
-        console.log(error.statusText);
+        alert(error.statusText);
         //TODO: Handle errors here based on error codes   
         //if (error.status === 403)
         //{

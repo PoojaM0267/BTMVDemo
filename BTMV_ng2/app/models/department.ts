@@ -1,6 +1,6 @@
 ﻿export class Department {
     constructor(
         public DepartmentId: number,
-        public DepartmentName: string,
+        public DepartmentName: string
     ) { }
 }

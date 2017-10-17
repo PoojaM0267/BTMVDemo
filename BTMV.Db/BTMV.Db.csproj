@@ -53,6 +53,7 @@
     <Compile Include="FluentMapping\CityMapping.cs" />
     <Compile Include="FluentMapping\DepartmentMapping.cs" />
     <Compile Include="FluentMapping\OccupationMapping.cs" />
+    <Compile Include="FluentMapping\ReportedIssueMapping.cs" />
     <Compile Include="FluentMapping\StateMapping.cs" />
     <Compile Include="FluentMapping\UserInformationMapping.cs" />
     <Compile Include="FluentMapping\UserRolesMapping.cs" />
@@ -93,6 +94,10 @@
     <Compile Include="Migrations\201710131251285_WorkStatusRelationshipAddedtoWork.cs" />
     <Compile Include="Migrations\201710131251285_WorkStatusRelationshipAddedtoWork.Designer.cs">
       <DependentUpon>201710131251285_WorkStatusRelationshipAddedtoWork.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710160922045_ReportedIssueTableAdded.cs" />
+    <Compile Include="Migrations\201710160922045_ReportedIssueTableAdded.Designer.cs">
+      <DependentUpon>201710160922045_ReportedIssueTableAdded.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -137,6 +142,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710131251285_WorkStatusRelationshipAddedtoWork.resx">
       <DependentUpon>201710131251285_WorkStatusRelationshipAddedtoWork.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710160922045_ReportedIssueTableAdded.resx">
+      <DependentUpon>201710160922045_ReportedIssueTableAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

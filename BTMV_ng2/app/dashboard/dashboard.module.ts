@@ -5,19 +5,34 @@ import { HttpModule } from '@angular/http';
 
 import { DashboardRoutesModule } from './dashboard.routes';
 import { DashboardComponent } from './dashboard.component';
-import { AddWorkComponent } from './common/addWork.component';
 import { SideNavComponent } from './sideNav.component';
 import { ProfileComponent } from './profile.component';
-import { UserLayoutComponent } from './userLayout.component'; 
-import { EditProfileComponent } from './common/editProfile.component';
-import { ViewWorkComponent } from './user/viewWorks.component';
+import { UserLayoutComponent } from './userLayout.component';
+
+import {
+    AddWorkComponent,
+    EditBasicInfoComponent,
+    EditProfileComponent,
+    EditContactInfoComponent
+} from './common/index';
+
+import {
+    ViewWorkComponent,
+    ReportIssueComponent
+} from './user/index';
+
 import {
     DashboardService,
     ListService,
-    WorkService
+    WorkService,
+    ProfileService
 } from '../_Services/index';
 
-import { DataTableModule, SharedModule, PaginatorModule } from 'primeng/primeng';
+import {
+    DataTableModule,
+    SharedModule,
+    PaginatorModule
+} from 'primeng/primeng';
 
 @NgModule({
     imports: [
@@ -37,12 +52,16 @@ import { DataTableModule, SharedModule, PaginatorModule } from 'primeng/primeng'
         ProfileComponent,
         UserLayoutComponent,
         EditProfileComponent,
-        ViewWorkComponent
+        ViewWorkComponent,
+        ReportIssueComponent,
+        EditBasicInfoComponent,
+        EditContactInfoComponent
     ],   
     providers: [
         DashboardService,
         ListService,
-        WorkService
+        WorkService,
+        ProfileService
     ]
 })
 export class DashboardModule { }

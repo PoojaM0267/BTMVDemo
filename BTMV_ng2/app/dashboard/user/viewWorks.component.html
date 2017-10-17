@@ -13,8 +13,16 @@
             </div>
 
             <div class="profileBodyMainDiv">
+                <div class="alert alert-danger" *ngIf="hasErrorMessage">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                    <strong>Error ! </strong>{{ errorMessage }}
+                </div>
                 <p-dataTable [value]="works" [rows]="5" [paginator]="true" [responsive]="true" [loading]="loading" loadingIcon="fa-spinner" sortMode="multiple" (onRowSelect)="onRowSelect($event)">
                     <p-column *ngFor="let col of cols" [field]="col.field" [header]="col.header" [sortable]="true"></p-column> 
+                    <p-column field="actions" header="Actions">
+                        <button>Edit</button>
+                        <button>Delete</button>
+                    </p-column> 
                 </p-dataTable>
             </div>
         </div>

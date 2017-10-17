@@ -1,50 +1,75 @@
-﻿<div class="titleLeft">
-                  <h3>User Profile</h3>
-              </div>
-<!--<div class="titleRight">
-    <h3>Anything</h3>
-</div>-->
-
-<!--<div class="profileBodyMainDiv">    
-    <div class="panel-group">
-        <div class="panel panel-default panelDiv">
-            <div class="panel-heading panelhead">Basic Info</div>
-            <div class="panel-body">
-                <div class="col-md-12 col-xs-12 col-sm-12">
-                    <ul class="tags list-group list-unstyled">
-                        <li>Name</li>
-                        <li>Email Id</li>
-                        <li>Occupation</li>
-                    </ul>
-
-                    <ul class="inputs list-group list-unstyled">
-                        <li>{{userDetails?.firstName}} {{userDetails?.lastName}}</li>
-                        <li>{{userDetails?.email}}</li>
-                        <li>{{userDetails?.occupationName}}</li>
-                    </ul>
-                </div>
-            </div>
+﻿<div class="dashboardBody">
+    <div class="row ">
+        <!-- Side Navigation -->
+        <div class="col-md-2 col-xs-12" style="background: #125698; height: -webkit-fill-available;">
+            <sideNavigation></sideNavigation>
         </div>
 
-        <div class="panel panel-default panelDiv">
-            <div class="panel-heading panelhead">Contact Info</div>
-            <div class="panel-body">
-                <div class="col-md-12 col-xs-12 col-sm-12">
-                    <ul class="tags list-group list-unstyled">
-                        <li>Phone No.</li>
-                        <li>Address</li>
-                        <li>City</li>
-                        <li>State</li>
-                    </ul>
+        <!-- Dashboard Body -->
+        <div class="col-md-10 col-xs-12" style="background-color: #F7F7F7;">
+            <div class="titleLeft">
+                <h3>Profile </h3>
+            </div>
 
-                    <ul class="inputs list-group list-unstyled">
-                        <li>{{userDetails?.phoneNumber}}</li>
-                        <li>{{userDetails?.address}}</li>
-                        <li>{{userDetails?.cityName}}</li>
-                        <li>{{userDetails?.stateName}}</li>
-                    </ul>
+            <div class="profileBodyMainDiv">
+                <div class="panel-group">
+                    <div class="panel panel-default panelDiv">
+                        <div class="panel-heading panelhead">
+                            Basic Info
+                            <span class="fa fa-edit cursorPointer pull-right" title="Edit" data-toggle="modal" data-target="#editBasicInfo"></span>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-md-12 col-xs-12 col-sm-12">
+                                <ul class="tags list-group list-unstyled">
+                                    <li>Name</li>
+                                    <li>Email Id</li>
+                                    <li>Occupation</li>
+                                    <li *ngIf="userDetails?.dob != null">DOB</li>
+                                    <li *ngIf="userDetails?.gender != null">Gender</li>
+                                </ul>
+
+                                <ul class="inputs list-group list-unstyled">
+                                    <li>{{userDetails?.firstName}} {{userDetails?.lastName}}</li>
+                                    <li>{{userDetails?.email}}</li>
+                                    <li>{{userDetails?.occupationName}}</li>
+                                    <li>{{userDetails?.dob | date:'shortDate' }}</li>
+                                    <li>{{userDetails?.gender}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default panelDiv">
+                        <div class="panel-heading panelhead">
+                            Contact Info
+                            <span class="fa fa-edit cursorPointer pull-right" title="Edit Contact Info" data-toggle="modal" data-target="#editContactInfo"></span>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-md-12 col-xs-12 col-sm-12">
+                                <ul class="tags list-group list-unstyled">
+                                    <li *ngIf="userDetails?.phoneNumber != null">Phone No.</li>
+                                    <li *ngIf="userDetails?.address != null">Address</li>
+                                    <li>City</li>
+                                    <li>State</li>
+                                </ul>
+
+                                <ul class="inputs list-group list-unstyled">
+                                    <li>{{userDetails?.phoneNumber}}</li>
+                                    <li>{{userDetails?.address}}</li>
+                                    <li>{{userDetails?.cityName}}</li>
+                                    <li>{{userDetails?.stateName}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>-->
+</div>
+
+
+<!--<edit-profile></edit-profile>-->
+<edit-basicInfo></edit-basicInfo>
+<edit-contactInfo></edit-contactInfo>
+

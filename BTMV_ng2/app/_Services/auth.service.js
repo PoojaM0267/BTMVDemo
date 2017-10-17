@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var router_1 = require("@angular/router");
+//import { IUserProfile } from '../models/userProfile';
 var AuthenticationService = /** @class */ (function () {
     function AuthenticationService(http, router) {
         this.http = http;

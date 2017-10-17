@@ -33,10 +33,10 @@ var LoginComponent = /** @class */ (function () {
     };
     LoginComponent.prototype.loginUser = function (formValues) {
         var _this = this;
-        //debugger;
+        debugger;
         console.log(formValues);
         this.accountService.loginUser(formValues).subscribe(function (data) {
-            //debugger;
+            debugger;
             console.log(data);
             var isUserValid = data.isUserValid;
             var message = data.message;

@@ -41,3 +41,7 @@ em{
     border-top: 1px solid #42A948; 
     border-bottom: 1px solid #42A948; 
 }
+
+.cursorPointer{
+    cursor: pointer;
+}

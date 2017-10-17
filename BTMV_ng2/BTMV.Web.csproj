@@ -50,6 +50,10 @@
       <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Elmah.Contrib.WebApi, Version=1.0.10.25, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Elmah.Contrib.WebApi.1.0.10.25\lib\net45\Elmah.Contrib.WebApi.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Elmah.Mvc, Version=2.1.2.1389, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Elmah.Mvc.2.1.2\lib\net40\Elmah.Mvc.dll</HintPath>
       <Private>True</Private>
@@ -223,11 +227,14 @@
     <Content Include="app\account\login.component.html" />
     <Content Include="app\account\register.component.html" />
     <Content Include="app\dashboard\common\addWork.component.html" />
+    <Content Include="app\dashboard\common\editBasicInfo.component.html" />
+    <Content Include="app\dashboard\common\editContactInfo.component.html" />
     <Content Include="app\dashboard\common\editProfile.component.html" />
     <Content Include="app\dashboard\dashboard.component.html" />
     <Content Include="app\dashboard\profile.component.html" />
     <Content Include="app\dashboard\sideNav.component.html" />
     <Content Include="app\dashboard\userLayout.component.html" />
+    <Content Include="app\dashboard\user\reportIssue.component.html" />
     <Content Include="app\dashboard\user\viewWorks.component.html" />
     <Content Include="app\home\aboutUs.component.html" />
     <Content Include="app\home\contactUs.component.html" />
@@ -380,8 +387,11 @@
     <TypeScriptCompile Include="app\common\matchPasswordValidation.ts" />
     <TypeScriptCompile Include="app\dashboard\admin\index.ts" />
     <TypeScriptCompile Include="app\dashboard\common\addWork.component.ts" />
+    <TypeScriptCompile Include="app\dashboard\common\editBasicInfo.component.ts" />
+    <TypeScriptCompile Include="app\dashboard\common\editContactInfo.component.ts" />
     <TypeScriptCompile Include="app\dashboard\common\editProfile.component.ts" />
     <TypeScriptCompile Include="app\dashboard\common\index.ts" />
+    <TypeScriptCompile Include="app\dashboard\user\reportIssue.component.ts" />
     <TypeScriptCompile Include="app\dashboard\user\viewWorks.component.ts" />
     <TypeScriptCompile Include="app\dashboard\dashboard.component.ts" />
     <TypeScriptCompile Include="app\dashboard\dashboard.module.ts" />
@@ -401,7 +411,9 @@
     <TypeScriptCompile Include="app\main.ts" />
     <TypeScriptCompile Include="app\models\city.ts" />
     <TypeScriptCompile Include="app\models\department.ts" />
+    <TypeScriptCompile Include="app\models\index.ts" />
     <TypeScriptCompile Include="app\models\occupation.ts" />
+    <TypeScriptCompile Include="app\models\reportIssueModel.ts" />
     <TypeScriptCompile Include="app\models\state.ts" />
     <TypeScriptCompile Include="app\models\userLoginModel.ts" />
     <TypeScriptCompile Include="app\models\userProfile.ts" />
@@ -416,6 +428,7 @@
     <TypeScriptCompile Include="app\_Services\dashboard.service.ts" />
     <TypeScriptCompile Include="app\_Services\index.ts" />
     <TypeScriptCompile Include="app\_Services\list.service.ts" />
+    <TypeScriptCompile Include="app\_Services\profile.service.ts" />
     <TypeScriptCompile Include="app\_Services\work.service.ts" />
   </ItemGroup>
   <ItemGroup>

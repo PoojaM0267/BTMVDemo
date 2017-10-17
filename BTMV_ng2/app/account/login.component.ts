@@ -45,12 +45,12 @@ export class LoginComponent {
         
 
     loginUser(formValues) {
-        //debugger;
+        debugger;
         console.log(formValues);
 
         this.accountService.loginUser(formValues).subscribe(      
             data => {
-                //debugger;
+                debugger;
                 console.log(data);
                 let isUserValid = data.isUserValid;
                 let message = data.message;

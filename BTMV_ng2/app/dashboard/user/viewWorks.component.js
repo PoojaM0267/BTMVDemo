@@ -10,10 +10,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
 var index_1 = require("../../_Services/index");
 var ViewWorkComponent = /** @class */ (function () {
-    function ViewWorkComponent(workService) {
+    function ViewWorkComponent(workService, router) {
         this.workService = workService;
+        this.router = router;
+        this.hasErrorMessage = false;
     }
     ViewWorkComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -40,9 +43,17 @@ var ViewWorkComponent = /** @class */ (function () {
             }
             else {
                 // show error
+                _this.hasErrorMessage = true;
+                _this.errorMessage = message;
             }
-        }, function (err) {
+        }, function (error) {
             // show error
+            _this.hasErrorMessage = true;
+            _this.errorMessage = 'Something went wrong. Please try again later.';
+            if (error.message === "403") {
+                alert('Not authenticate User.');
+                _this.router.navigate(['/home']);
+            }
         });
     };
     ViewWorkComponent = __decorate([
@@ -50,7 +61,7 @@ var ViewWorkComponent = /** @class */ (function () {
             selector: 'viewWorks',
             templateUrl: 'app/dashboard/user/viewWorks.component.html',
         }),
-        __metadata("design:paramtypes", [index_1.WorkService])
+        __metadata("design:paramtypes", [index_1.WorkService, router_1.Router])
     ], ViewWorkComponent);
     return ViewWorkComponent;
 }());

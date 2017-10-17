@@ -6,6 +6,7 @@ using BTMV.Common;
 using System;
 using System.Collections.Generic;
 using System.Web.Http;
+using BTMV_ng2.Filters;
 
 namespace BTMV_ng2.Controllers
 {
@@ -18,6 +19,7 @@ namespace BTMV_ng2.Controllers
             _workService = workService;
         }
 
+        [CustomAuthorize]
         [HttpPost]
         public IHttpActionResult AddWork(WorkViewModel workModel)
         {
@@ -27,7 +29,7 @@ namespace BTMV_ng2.Controllers
 
                 if (!ModelState.IsValid)
                 {
-                    return Json(new { isSuccess = false, message = "Please provide appropriate data." });
+                    return Json(new { isSuccess = false, message = BTMV.Common.BTMV.DataErrorMsg });
                 }
 
                 var work = new Work
@@ -42,18 +44,20 @@ namespace BTMV_ng2.Controllers
                     AddedOn = DateTime.Now
                 };
 
-                db.Works.Add(work);
-                db.SaveChanges();
+                _workService.SaveNewWork(work);
+                //db.Works.Add(work);
+                //db.SaveChanges();
 
-                return Json(new { isSuccess = true, message = "Work Added Successfully." });
+                return Json(new { isSuccess = true, message = BTMV.Common.BTMV.WorkAddedSuccessMsg });
             }
             catch (Exception ex)
             {
-                //Elmah.ErrorSignal.FromCurrentContext().Raise(ex);
-                return Json(new { isSuccess = false, message = "Work could not be added. Something went wrong. Please try again." });
+                Elmah.ErrorSignal.FromCurrentContext().Raise(ex);
+                return Json(new { isSuccess = false, message = BTMV.Common.BTMV.CommonErrorMsg });
             }
         }
 
+        [CustomAuthorize]
         [HttpPost]
         public IHttpActionResult GetUserWorks(IdDemo param)
         {
@@ -86,12 +90,49 @@ namespace BTMV_ng2.Controllers
                     return Json(new { isSuccess = true, userWorks = workDetails });
                 }
 
-                return Json(new { isSuccess = false, message = "Something went wrong. Please try again." });
+                return Json(new { isSuccess = false, message = BTMV.Common.BTMV.CommonErrorMsg });
             }
             catch (Exception ex)
             {
-                //Elmah.ErrorSignal.FromCurrentContext().Raise(ex);
-                return Json(new { isSuccess = false, message = "Something went wrong. Please try again." });
+                Elmah.ErrorSignal.FromCurrentContext().Raise(ex);
+                return Json(new { isSuccess = false, message = BTMV.Common.BTMV.CommonErrorMsg });
+            }
+        }
+
+        [CustomAuthorize]
+        [HttpPost]
+        public IHttpActionResult AddReportedIssue(ReportedIssueViewModel reportedIssue)
+        {
+            try
+            {
+                if (reportedIssue == null)
+                {
+                    return Json(new { isSuccess = false, message = BTMV.Common.BTMV.DataErrorMsg });
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    return Json(new { isSuccess = false, message = BTMV.Common.BTMV.DataErrorMsg });
+                }
+
+                var issueDetails = new ReportedIssue
+                {
+                    IssueTitle = reportedIssue.issueTitle,
+                    IssueDetails = reportedIssue.issueDetails,
+                    CityId = reportedIssue.cityId,
+                    // DepartmentId = reportedIssue.departmentId,
+                    DepartmentId = (int)BTMV_Enums.Department.Education,
+                    AddedOn = DateTime.Now,
+                    UserId = reportedIssue.userId,
+                };
+
+                _workService.SaveReportedIssue(issueDetails);
+                return Json(new { isSuccess = true, message = BTMV.Common.BTMV.IssueAddedSuccessMsg });
+            }
+            catch (Exception ex)
+            {
+                Elmah.ErrorSignal.FromCurrentContext().Raise(ex);
+                return Json(new { isSuccess = false, message = BTMV.Common.BTMV.IssueAddedFailureMsg });
             }
         }
     }

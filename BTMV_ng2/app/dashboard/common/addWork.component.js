@@ -10,17 +10,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
 var forms_1 = require("@angular/forms");
-var state_1 = require("../../models/state");
+var index_1 = require("../../models/index");
 var list_service_1 = require("../../_Services/list.service");
 var work_service_1 = require("../../_Services/work.service");
-//import { WorkService } from '../../_Services/index';
 var AddWorkComponent = /** @class */ (function () {
-    function AddWorkComponent(listService, workService) {
+    function AddWorkComponent(listService, workService, router) {
         var _this = this;
         this.listService = listService;
         this.workService = workService;
-        this.selectedState = new state_1.State(0, 'Select State');
+        this.router = router;
+        this.selectedState = new index_1.State(0, 'Select State');
         // departments: Department[];
         this.isWorkAdded = false;
         this.hasErrorMessage = false;
@@ -55,33 +56,39 @@ var AddWorkComponent = /** @class */ (function () {
     };
     AddWorkComponent.prototype.addWork = function (formValues) {
         var _this = this;
-        debugger;
+        //debugger;
         this.isSubmitted = true;
         console.log(formValues);
         var result = this.workService.addWork(formValues).subscribe(function (data) {
-            debugger;
+            //debugger;
             console.log(data);
             var isSuccess = data.isSuccess;
             var message = data.message;
             if (isSuccess) {
-                debugger;
+                //debugger;
                 _this.isWorkAdded = true;
                 _this.successMessage = message;
                 _this.hasErrorMessage = false;
                 _this.resetForm();
             }
             else {
-                debugger;
+                // debugger;                    
                 _this.isWorkAdded = false;
                 _this.hasErrorMessage = true;
                 _this.errorMessage = message;
             }
-        }, function (err) {
+        }, function (error) {
             // show error msg
+            _this.hasErrorMessage = true;
+            _this.errorMessage = 'Something went wrong. Please try again later.';
+            if (error.message === "403") {
+                alert('Not authenticate User.');
+                _this.router.navigate(['/home']);
+            }
         });
     };
     AddWorkComponent.prototype.resetForm = function () {
-        debugger;
+        //debugger;
         this.addWorkForm.reset();
         this.isWorkAdded = false;
         this.hasErrorMessage = false;
@@ -93,7 +100,7 @@ var AddWorkComponent = /** @class */ (function () {
             styles: ["\n        em{ float: right; color: #E05C65; padding-left: 10px}\n       .error input, .error select, .error textarea { border-left: 5px solid #a94442; border-right : 1px solid #a94442; border-top : 1px solid #a94442; border-bottom : 1px solid #a94442; }\n       .valid input, .valid select, .valid textarea { border-left: 5px solid #42A948; border-right: 1px solid #42A948;   border-top: 1px solid #42A948; border-bottom: 1px solid #42A948; }\n    "],
             providers: [list_service_1.ListService]
         }),
-        __metadata("design:paramtypes", [list_service_1.ListService, work_service_1.WorkService])
+        __metadata("design:paramtypes", [list_service_1.ListService, work_service_1.WorkService, router_1.Router])
     ], AddWorkComponent);
     return AddWorkComponent;
 }());

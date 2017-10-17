@@ -11,8 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
-var dashboard_service_1 = require("../_Services/dashboard.service");
-var auth_service_1 = require("../_Services/auth.service");
+var index_1 = require("../_Services/index");
 var DashboardComponent = /** @class */ (function () {
     function DashboardComponent(route, dashboardService, router, auth) {
         this.route = route;
@@ -24,9 +23,6 @@ var DashboardComponent = /** @class */ (function () {
     DashboardComponent.prototype.ngOnInit = function () {
         var _this = this;
         debugger;
-        //this.sub = this.route.params.subscribe(params => {
-        //    this.userId = +params['id']; // (+) converts string 'id' to a number
-        //});
         var user = localStorage.getItem('BTMV_currentUser');
         if (user) {
             var currentUser = JSON.parse(user);
@@ -34,12 +30,10 @@ var DashboardComponent = /** @class */ (function () {
         }
         console.log(this.userId);
         this.dashboardService.getUser(this.userId).subscribe(function (data) {
-            debugger;
+            //debugger;
             console.log(data);
-            //this.auth.checkAuthenticationStatus();
             _this.userDetails = data['userDetails'];
-            // this.userProfile = data.userDetails;              
-            // todo: map data to UI
+            // this.userDetails = data.userDetails;
             _this.userDetails.firstName = data.userDetails.FirstName;
             _this.userDetails.lastName = data.userDetails.LastName;
             _this.userDetails.roleName = data.userDetails.RoleName;
@@ -48,12 +42,11 @@ var DashboardComponent = /** @class */ (function () {
             _this.userDetails.stateName = data.userDetails.StateName;
             _this.userDetails.occupationName = data.userDetails.OccupationName;
             _this.userDetails.address = data.userDetails.Address;
-            _this.userDetails.phoneNumber = data.userDetails.PhoneNumber;
+            _this.userDetails.phoneNumber = data.userDetails.Phone;
         }, function (error) {
-            debugger;
+            //debugger;
             console.log(error.message);
-            //alert("Something went wrong. Please try again after sometime");
-            //this.router.navigate(['/home']);
+            alert("Something went wrong. Please try again after sometime");
             if (error.message === "403") {
                 alert('Not authenticate User.');
                 _this.router.navigate(['/home']);
@@ -65,7 +58,7 @@ var DashboardComponent = /** @class */ (function () {
             selector: 'dashboard',
             templateUrl: 'app/dashboard/dashboard.component.html'
         }),
-        __metadata("design:paramtypes", [router_1.ActivatedRoute, dashboard_service_1.DashboardService, router_1.Router, auth_service_1.AuthenticationService])
+        __metadata("design:paramtypes", [router_1.ActivatedRoute, index_1.DashboardService, router_1.Router, index_1.AuthenticationService])
     ], DashboardComponent);
     return DashboardComponent;
 }());
