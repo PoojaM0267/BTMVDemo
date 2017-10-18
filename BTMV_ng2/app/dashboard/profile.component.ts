@@ -11,7 +11,7 @@ import { ProfileService } from '../_Services/index'
 
 export class ProfileComponent {
 
-    userDetails: UserRegisterModel;
+    public userDetails: UserRegisterModel;
 
     constructor(private profileService: ProfileService, private router: Router) {
         console.log('profile');

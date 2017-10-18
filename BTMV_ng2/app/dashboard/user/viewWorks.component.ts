@@ -60,4 +60,11 @@ export class ViewWorkComponent {
                 }
             });
     }
+
+    showEditWorkForm(work: IWorkModel)
+    {
+        console.log(work);
+    }
+
+    
 }

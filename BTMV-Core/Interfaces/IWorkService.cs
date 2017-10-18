@@ -1,4 +1,5 @@
 ﻿using BTMV_Model.DataModel;
+using BTMV_Model.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,5 +28,18 @@ namespace BTMV_Core.Interfaces
         /// </summary>
         /// <param name="reportedIssue">The reported issue.</param>
         void SaveReportedIssue(ReportedIssue reportedIssue);
+
+        /// <summary>
+        /// Updates the work.
+        /// </summary>
+        /// <param name="workDetails">The work details.</param>
+        void UpdateWork(WorkViewModel workDetails);
+
+        /// <summary>
+        /// Gets the work by identifier.
+        /// </summary>
+        /// <param name="workId">The work identifier.</param>
+        /// <returns></returns>
+        Work GetWorkById(int workId);
     }
 }

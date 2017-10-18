@@ -75,6 +75,24 @@ var WorkService = /** @class */ (function () {
         })
             .catch(this.globalErrorHandler.handleError);
     };
+    //  Edit Work details
+    WorkService.prototype.editWork = function (workDetails) {
+        var user = localStorage.getItem('BTMV_currentUser');
+        //let param;
+        if (user) {
+            var currentUser = JSON.parse(user);
+            this.options.headers.delete('Authorization');
+            this.options.headers.append('Authorization', 'Bearer ' + currentUser.token);
+        }
+        return this.http.post('/api/User/EditUserWork', JSON.stringify(workDetails), this.options)
+            .map(function (response) {
+            //debugger;
+            var res = response.json();
+            console.log(res);
+            return res;
+        })
+            .catch(this.globalErrorHandler.handleError);
+    };
     WorkService = __decorate([
         core_1.Injectable(),
         __metadata("design:paramtypes", [http_1.Http, baseConfig_1.BaseConfig, auth_service_1.AuthenticationService, globalErrorHandler_service_1.GlobalErrorHandler])

@@ -75,4 +75,24 @@ export class WorkService {
             })
             .catch(this.globalErrorHandler.handleError);
     }
+
+    //  Edit Work details
+    editWork(workDetails: IWorkModel): Observable<any> {
+        let user = localStorage.getItem('BTMV_currentUser');
+        //let param;
+        if (user) {
+            let currentUser = JSON.parse(user);
+            this.options.headers.delete('Authorization');
+            this.options.headers.append('Authorization', 'Bearer ' + currentUser.token);
+        }
+
+        return this.http.post('/api/User/EditUserWork', JSON.stringify(workDetails), this.options)
+            .map(response => {
+                //debugger;
+                var res = response.json();
+                console.log(res);
+                return res;
+            })
+            .catch(this.globalErrorHandler.handleError);
+    }
 }

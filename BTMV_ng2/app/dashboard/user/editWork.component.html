@@ -1,0 +1,72 @@
+﻿<div id="editWorkModal" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                <h4 class="modal-title"> Edit Work Details</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="alert alert-danger" *ngIf="hasErrorMessage">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                    <strong>Error ! </strong>{{ errorMessage }}
+                </div>
+                <div class="alert alert-success" *ngIf="isWorkEdited">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close" (click)="resetForm()">×</a>
+                    <strong>Success ! </strong>{{ successMessage }}
+                </div>
+
+                <div class="col-md-6 col-xs-12">
+                    <form [formGroup]="workEditForm" (ngSubmit)="editWork(workEditForm.value)" autocomplete="off">
+
+                        <div class="form-group" [ngClass]="{'error': workTitle.invalid && workTitle.dirty}">
+                            <label for="workTitle">Title:</label>
+                            <em *ngIf="workEditForm.controls.workTitle?.invalid && (workEditForm.controls.workTitle?.dirty)">Required</em>
+                            <input (ngModel)="workTitle" name="workTitle" required id="workTitle" type="text" class="form-control" maxlength="100" placeholder="Title" formControlName="workTitle" />
+                        </div>
+
+                        <div class="form-group" [ngClass]="{'error': aim.invalid && aim.dirty}">
+                            <label for="aim">Aim:</label>
+                            <em *ngIf="workEditForm.controls.aim?.invalid && (workEditForm.controls.aim?.dirty)">Required</em>
+                            <input (ngModel)="aim" name="aim" required id="aim" type="text" class="form-control" maxlength="100" placeholder="Aim" formControlName="aim" />
+                        </div>
+
+                        <!--<div class="form-group">
+                            <label for="department">Department:</label>
+                            <select class="form-control" formControlName="departmentId" name="departmentId" required>
+                                <option *ngFor="let department of departments" value={{department.DepartmentId}}> {{department.DepartmentName}} </option>
+                            </select>
+                        </div>-->
+
+                        <div class="form-group">
+                            <label for="state">State:</label>
+                            <select class="form-control" [(ngModel)]="selectedState.StateId" formControlName="stateId" name="stateId" required (change)="onSelect($event.target.value)">
+                                <option *ngFor="let state of states" value={{state.StateId}}> {{state.StateName}} </option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="city">City:</label>
+                            <select class="form-control" name="cityId" formControlName="cityId" required>
+                                <option *ngFor="let city of cities" value={{city.CityId}}> {{city.CityName}} </option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" [ngClass]="{'error': fundRequired.invalid && fundRequired.dirty}">
+                            <label for="fundRequired">Required Fund:</label>
+                            <em *ngIf="workEditForm.controls.fundRequired?.invalid && (workEditForm.controls.fundRequired?.dirty)">Required</em>
+                            <input (ngModel)="fundRequired" name="fundRequired" required id="fundRequired" type="text" class="form-control" placeholder="Required Fund" formControlName="fundRequired" />
+                        </div>
+
+                        <div class="form-group">
+                            <input (ngModel)="id" name="id" type="hidden" class="form-control" formControlName="id" />
+                        </div>
+
+                        <button type="submit" [disabled]="!workEditForm.valid" class="btn btn-primary">Save</button>
+                        <button type="button" class="btn btn-default" (click)="resetForm()" data-dismiss="modal">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

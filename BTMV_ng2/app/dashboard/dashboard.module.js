@@ -44,7 +44,8 @@ var DashboardModule = /** @class */ (function () {
                 index_2.ViewWorkComponent,
                 index_2.ReportIssueComponent,
                 index_1.EditBasicInfoComponent,
-                index_1.EditContactInfoComponent
+                index_1.EditContactInfoComponent,
+                index_2.EditWorkComponent
             ],
             providers: [
                 index_3.DashboardService,

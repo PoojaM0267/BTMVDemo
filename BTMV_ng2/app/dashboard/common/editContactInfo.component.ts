@@ -12,7 +12,7 @@ import { ListService, ProfileService } from '../../_Services/index';
         em{ float: right; color: #E05C65; padding-left: 10px}
        .error input, .error select, .error textarea { border-left: 5px solid #a94442; border-right : 1px solid #a94442; border-top : 1px solid #a94442; border-bottom : 1px solid #a94442; }
        .valid input, .valid select, .valid textarea { border-left: 5px solid #42A948; border-right: 1px solid #42A948;   border-top: 1px solid #42A948; border-bottom: 1px solid #42A948; }
-       .modal-body {  min-height: 500px;}
+       .modal-body {  min-height: 550px;}
     `],
     providers: [ListService]
 })

@@ -14,80 +14,91 @@ var forms_1 = require("@angular/forms");
 var router_1 = require("@angular/router");
 var index_1 = require("../../models/index");
 var index_2 = require("../../_Services/index");
-var EditContactInfoComponent = /** @class */ (function () {
-    function EditContactInfoComponent(listService, profileService, router) {
+var EditWorkComponent = /** @class */ (function () {
+    function EditWorkComponent(listService, workService, router) {
         var _this = this;
         this.listService = listService;
-        this.profileService = profileService;
+        this.workService = workService;
         this.router = router;
         this.selectedState = new index_1.State(0, 'Select State');
-        this.isContactInfoEditSuccess = false;
+        // departments: Department[];
+        this.isWorkEdited = false;
         this.hasErrorMessage = false;
-        console.log('Edit Basic Info');
+        console.log('Edit Work');
         this.listService.getStates().subscribe(function (states) { return _this.states = states; });
+        //this.listService.getDepartments().subscribe(
+        //    departments => this.departments = departments
+        //); 
     }
-    EditContactInfoComponent.prototype.ngOnInit = function () {
+    EditWorkComponent.prototype.ngOnInit = function () {
+        this.workTitle = new forms_1.FormControl('', forms_1.Validators.required);
+        this.aim = new forms_1.FormControl('', forms_1.Validators.required);
         this.stateId = new forms_1.FormControl('', forms_1.Validators.required);
         this.cityId = new forms_1.FormControl('', forms_1.Validators.required);
-        this.address = new forms_1.FormControl('');
-        this.phone = new forms_1.FormControl();
-        this.contactInfoEditForm = new forms_1.FormGroup({
+        // this.departmentId = new FormControl('', Validators.required);
+        this.fundRequired = new forms_1.FormControl('');
+        this.id = new forms_1.FormControl('');
+        this.workEditForm = new forms_1.FormGroup({
+            workTitle: this.workTitle,
+            aim: this.aim,
             stateId: this.stateId,
             cityId: this.cityId,
-            address: this.address,
-            phone: this.phone
+            // departmentId: this.departmentId,
+            fundRequired: this.fundRequired
         });
     };
-    EditContactInfoComponent.prototype.onSelect = function (stateId) {
+    EditWorkComponent.prototype.editWork = function (formValues) {
         var _this = this;
-        this.listService.getCities(stateId).subscribe(function (cities) { return _this.cities = cities; });
-    };
-    EditContactInfoComponent.prototype.editContactInfo = function (formValues) {
-        var _this = this;
-        console.log(formValues);
-        var result = this.profileService.editContactInfo(formValues).subscribe(function (data) {
-            // debugger;
+        debugger;
+        alert('edit Work');
+        var result = this.workService.editWork(formValues).subscribe(function (data) {
+            //debugger;
             console.log(data);
             var isSuccess = data.isSuccess;
             var message = data.message;
             if (isSuccess) {
-                // debugger;
-                _this.isContactInfoEditSuccess = true;
-                _this.hasErrorMessage = false;
+                //debugger;
+                _this.isWorkEdited = true;
                 _this.successMessage = message;
-                _this.router.navigate(['/profile']);
+                _this.hasErrorMessage = false;
+                _this.resetForm();
             }
             else {
-                //debugger;
-                _this.isContactInfoEditSuccess = false;
+                // debugger;                    
+                _this.isWorkEdited = false;
                 _this.hasErrorMessage = true;
                 _this.errorMessage = message;
             }
         }, function (error) {
-            // debugger;
-            alert('Something went wrong. Please try again later.');
+            // show error msg
+            _this.hasErrorMessage = true;
+            _this.errorMessage = 'Something went wrong. Please try again later.';
             if (error.message === "403") {
                 alert('Not authenticate User.');
                 _this.router.navigate(['/home']);
             }
         });
     };
-    // Reset form
-    EditContactInfoComponent.prototype.resetForm = function () {
-        this.contactInfoEditForm.reset();
-        this.isContactInfoEditSuccess = false;
+    EditWorkComponent.prototype.deleteWork = function (work) {
+        alert('delete Work');
+        console.log(work);
+    };
+    EditWorkComponent.prototype.resetForm = function () {
+        //debugger;
+        this.workEditForm.reset();
+        this.isWorkEdited = false;
         this.hasErrorMessage = false;
     };
-    EditContactInfoComponent = __decorate([
+    EditWorkComponent = __decorate([
         core_1.Component({
-            selector: 'edit-contactInfo',
-            templateUrl: 'app/dashboard/common/editContactInfo.component.html',
+            selector: 'edit-Work',
+            templateUrl: 'app/dashboard/user/editWork.component.html',
             styles: ["\n        em{ float: right; color: #E05C65; padding-left: 10px}\n       .error input, .error select, .error textarea { border-left: 5px solid #a94442; border-right : 1px solid #a94442; border-top : 1px solid #a94442; border-bottom : 1px solid #a94442; }\n       .valid input, .valid select, .valid textarea { border-left: 5px solid #42A948; border-right: 1px solid #42A948;   border-top: 1px solid #42A948; border-bottom: 1px solid #42A948; }\n       .modal-body {  min-height: 550px;}\n    "],
             providers: [index_2.ListService]
         }),
-        __metadata("design:paramtypes", [index_2.ListService, index_2.ProfileService, router_1.Router])
-    ], EditContactInfoComponent);
-    return EditContactInfoComponent;
+        __metadata("design:paramtypes", [index_2.ListService, index_2.WorkService, router_1.Router])
+    ], EditWorkComponent);
+    return EditWorkComponent;
 }());
-exports.EditContactInfoComponent = EditContactInfoComponent;
-//# sourceMappingURL=editContactInfo.component.js.map
+exports.EditWorkComponent = EditWorkComponent;
+//# sourceMappingURL=editWork.component.js.map

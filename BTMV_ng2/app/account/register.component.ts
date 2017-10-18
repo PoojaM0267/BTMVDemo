@@ -3,15 +3,8 @@ import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms'
 import { Observable } from 'rxjs/Rx';
 
 //import { User } from '../models/userModel';
-//import { State } from '../models/state';
-//import { City } from '../models/city';
-//import { Occupation } from '../models/occupation';
-//import { Department } from '../models/department';
-//import { ListService } from '../_Services/list.service';
-//import { AccountService } from '../_Services/account.service';
 import { matchPassword } from '../common/matchPasswordValidation';
 import { AccountService, ListService } from '../_Services/index';
-
 import { City, Department, Occupation, State } from '../models/index';
 
 @Component({

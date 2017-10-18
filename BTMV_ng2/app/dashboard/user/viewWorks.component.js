@@ -56,6 +56,9 @@ var ViewWorkComponent = /** @class */ (function () {
             }
         });
     };
+    ViewWorkComponent.prototype.showEditWorkForm = function (work) {
+        console.log(work);
+    };
     ViewWorkComponent = __decorate([
         core_1.Component({
             selector: 'viewWorks',

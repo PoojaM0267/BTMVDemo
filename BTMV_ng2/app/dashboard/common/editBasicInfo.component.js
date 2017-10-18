@@ -14,6 +14,7 @@ var forms_1 = require("@angular/forms");
 var router_1 = require("@angular/router");
 var index_1 = require("../../_Services/index");
 var EditBasicInfoComponent = /** @class */ (function () {
+    //@Input() userDetails: UserRegisterModel;
     function EditBasicInfoComponent(listService, profileService, router) {
         var _this = this;
         this.listService = listService;
@@ -22,10 +23,11 @@ var EditBasicInfoComponent = /** @class */ (function () {
         this.isBasicInfoEditSuccess = false;
         this.hasErrorMessage = false;
         this.genders = [
-            { value: 'F', display: 'Female' },
-            { value: 'M', display: 'Male' }
+            { value: 'Female', display: 'Female' },
+            { value: 'Male', display: 'Male' }
         ];
         console.log('Edit Basic Info');
+        //console.log(this.userDetails);
         this.listService.getOccupations().subscribe(function (occupations) { return _this.occupations = occupations; });
     }
     EditBasicInfoComponent.prototype.ngOnInit = function () {
@@ -85,7 +87,7 @@ var EditBasicInfoComponent = /** @class */ (function () {
         core_1.Component({
             selector: 'edit-basicInfo',
             templateUrl: 'app/dashboard/common/editBasicInfo.component.html',
-            styles: ["\n        em{ float: right; color: #E05C65; padding-left: 10px}\n       .error input, .error select, .error textarea { border-left: 5px solid #a94442; border-right : 1px solid #a94442; border-top : 1px solid #a94442; border-bottom : 1px solid #a94442; }\n       .valid input, .valid select, .valid textarea { border-left: 5px solid #42A948; border-right: 1px solid #42A948;   border-top: 1px solid #42A948; border-bottom: 1px solid #42A948; }\n       .modal-body {  min-height: 500px;}\n    "],
+            styles: ["\n        em{ float: right; color: #E05C65; padding-left: 10px}\n       .error input, .error select, .error textarea { border-left: 5px solid #a94442; border-right : 1px solid #a94442; border-top : 1px solid #a94442; border-bottom : 1px solid #a94442; }\n       .valid input, .valid select, .valid textarea { border-left: 5px solid #42A948; border-right: 1px solid #42A948;   border-top: 1px solid #42A948; border-bottom: 1px solid #42A948; }\n       .modal-body {  min-height: 550px;}\n    "],
             providers: [index_1.ListService]
         }),
         __metadata("design:paramtypes", [index_1.ListService, index_1.ProfileService, router_1.Router])

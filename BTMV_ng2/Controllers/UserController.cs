@@ -81,7 +81,9 @@ namespace BTMV_ng2.Controllers
                             stateName = userWork.City.State.StateName,
                             cityName = userWork.City.CityName,
                             addedOn = userWork.AddedOn,
-                            workStatus = userWork.WorkStatus.WorkStatusName
+                            workStatus = userWork.WorkStatus.WorkStatusName,
+                            userId = userWork.UserId,
+                            id = userWork.Id
                         };
                         
                         workDetails.Add(workDetail);
@@ -133,6 +135,29 @@ namespace BTMV_ng2.Controllers
             {
                 Elmah.ErrorSignal.FromCurrentContext().Raise(ex);
                 return Json(new { isSuccess = false, message = BTMV.Common.BTMV.IssueAddedFailureMsg });
+            }
+        }
+
+        [CustomAuthorize]
+        [HttpPost]
+        public IHttpActionResult EditUserWork(WorkViewModel workDetails)
+        {
+            try
+            {
+                var db = new BTMVContext();
+                if (workDetails == null)
+                {
+                    return Json(new { isSuccess = false, message = BTMV.Common.BTMV.CommonErrorMsg });
+                }
+
+                _workService.UpdateWork(workDetails);
+
+                return Json(new { isSuccess = true, message = BTMV.Common.BTMV.WorkUpdateSuccessMsg });
+            }
+            catch (Exception ex)
+            {
+                Elmah.ErrorSignal.FromCurrentContext().Raise(ex);
+                return Json(new { isSuccess = false, message = BTMV.Common.BTMV.CommonErrorMsg });
             }
         }
     }

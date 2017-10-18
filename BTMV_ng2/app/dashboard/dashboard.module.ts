@@ -18,7 +18,8 @@ import {
 
 import {
     ViewWorkComponent,
-    ReportIssueComponent
+    ReportIssueComponent,
+    EditWorkComponent
 } from './user/index';
 
 import {
@@ -55,7 +56,8 @@ import {
         ViewWorkComponent,
         ReportIssueComponent,
         EditBasicInfoComponent,
-        EditContactInfoComponent
+        EditContactInfoComponent,
+        EditWorkComponent
     ],   
     providers: [
         DashboardService,

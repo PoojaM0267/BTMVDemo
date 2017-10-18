@@ -5,4 +5,5 @@ function __export(m) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(require("./viewWorks.component"));
 __export(require("./reportIssue.component"));
+__export(require("./editWork.component"));
 //# sourceMappingURL=index.js.map

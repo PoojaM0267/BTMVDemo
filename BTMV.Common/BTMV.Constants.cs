@@ -15,5 +15,6 @@
         public const string WorkAddedSuccessMsg = "Work Added Successfully.";
         public const string IssueAddedSuccessMsg = "Your issue has been added successfully.";
         public const string IssueAddedFailureMsg = "Issue could not be added. Something went wrong. Please try again.";
+        public const string WorkUpdateSuccessMsg = "Your work details are updated successfully.";
     }
 }

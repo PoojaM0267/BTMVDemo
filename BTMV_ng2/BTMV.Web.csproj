@@ -234,6 +234,7 @@
     <Content Include="app\dashboard\profile.component.html" />
     <Content Include="app\dashboard\sideNav.component.html" />
     <Content Include="app\dashboard\userLayout.component.html" />
+    <Content Include="app\dashboard\user\editWork.component.html" />
     <Content Include="app\dashboard\user\reportIssue.component.html" />
     <Content Include="app\dashboard\user\viewWorks.component.html" />
     <Content Include="app\home\aboutUs.component.html" />
@@ -391,6 +392,7 @@
     <TypeScriptCompile Include="app\dashboard\common\editContactInfo.component.ts" />
     <TypeScriptCompile Include="app\dashboard\common\editProfile.component.ts" />
     <TypeScriptCompile Include="app\dashboard\common\index.ts" />
+    <TypeScriptCompile Include="app\dashboard\user\editWork.component.ts" />
     <TypeScriptCompile Include="app\dashboard\user\reportIssue.component.ts" />
     <TypeScriptCompile Include="app\dashboard\user\viewWorks.component.ts" />
     <TypeScriptCompile Include="app\dashboard\dashboard.component.ts" />

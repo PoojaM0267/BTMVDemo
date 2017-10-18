@@ -58,7 +58,7 @@ namespace BTMV_ng2.Controllers
                     FirstName = userModel.FirstName,
                     LastName = userModel.LastName,
                     Email = userModel.Email,
-                    //DOB = Convert.ToDateTime("04/19/2016"),
+                    DOB = Convert.ToDateTime("04/19/2016"),
                     CityId = userModel.CityId,
                     OccupationId = userModel.OccupationId,
                     RoleId = 2,
