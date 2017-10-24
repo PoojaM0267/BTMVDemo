@@ -3,8 +3,7 @@ import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 import { State, City, Department, IWorkModel } from '../../models/index';
-import { ListService } from '../../_Services/list.service';
-import { WorkService } from '../../_Services/work.service';
+import { ListService, WorkService } from '../../_Services/index';
 
 @Component({
     selector: 'addWork',
@@ -53,7 +52,7 @@ export class AddWorkComponent {
 
 
     ngOnInit() {
-        debugger;
+       // debugger;
         this.workTitle = new FormControl('', Validators.required);
         this.aim = new FormControl('', Validators.required);
         this.stateId = new FormControl('', Validators.required);

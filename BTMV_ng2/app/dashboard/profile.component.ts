@@ -18,10 +18,10 @@ export class ProfileComponent {
     }
 
     ngOnInit() {
-        debugger;
+        //debugger;
         this.profileService.getUserProfile().subscribe(
             data => {
-                debugger;
+               // debugger;
                 console.log(data);
                 this.userDetails = data['userDetails'];
                 // this.userProfile = data.userDetails; 
@@ -40,7 +40,7 @@ export class ProfileComponent {
                 this.userDetails.gender = data.userDetails.Gender;
             },
             error => {
-                debugger;
+               // debugger;
                 console.log(error.message);
                 alert('Something went wrong. Please try again later.');
 

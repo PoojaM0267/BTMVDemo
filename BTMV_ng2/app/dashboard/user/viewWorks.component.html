@@ -7,33 +7,58 @@
        </div>
 
         <!-- Dashboard Body -->
-        <div class="col-md-10 col-xs-12" style="background-color: #F7F7F7;">
+        <div class="col-md-10 col-xs-12">
             <div class="titleLeft">
                 <h3>My Works</h3>
             </div>
 
-            <div class="profileBodyMainDiv">
+            <div class="profileBodyMainDiv panel panel-default">
                 <div class="alert alert-danger" *ngIf="hasErrorMessage">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
                     <strong>Error ! </strong>{{ errorMessage }}
                 </div>
-                <p-dataTable [value]="works" [rows]="5" [paginator]="true" [responsive]="true" [loading]="loading" loadingIcon="fa-spinner" sortMode="multiple" (onRowSelect)="onRowSelect($event)">
-                    <p-column *ngFor="let col of cols" [field]="col.field" [header]="col.header" [sortable]="true"></p-column>                      
-                    <p-column>                        
-                        <ng-template let-work="rowData" pTemplate="body">                            
-                            <button type="button" pButton ><span class="fa fa-edit cursorPointer" title="Edit" data-toggle="modal" data-target="#editWorkModal" (click)="showEditWorkForm(work)"></span>
-                            </button>
-                            <button type="button" pButton (click)="deleteWork(work)"><span class="fa fa-times cursorPointer" title="Delete"></span>
-                            </button>
-                        </ng-template>
-                    </p-column>
-                </p-dataTable>
+                <div class="panel-body">
+                    <p-dataTable [value]="works" [rows]="5" [paginator]="true" [responsive]="true" [loading]="loading" loadingIcon="fa-spinner" sortMode="multiple" (onRowSelect)="onRowSelect($event)">
+                        <p-column *ngFor="let col of cols" [field]="col.field" [header]="col.header" [sortable]="true"></p-column>
+                        <p-column>
+                            <ng-template let-work="rowData" pTemplate="body">
+                                <button class="cursorPointer" title="Edit" data-toggle="modal" data-target="#editWorkModal">
+                                    <span class="fa fa-edit"></span>
+                                </button>
+                                <button class="cursorPointer" title="Delete" (click)="confirmDelete(work)">
+                                    <span class="fa fa-times" title="Delete"></span>
+                                </button>
+                            </ng-template>
+                        </p-column>
+                    </p-dataTable>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 <edit-Work></edit-Work>
+
+<!--<p-confirmDialog header="Confirmation" icon="fa fa-question-circle" width="425" style="background-color:black"></p-confirmDialog>-->
+
+<!--<button type="button" pButton class="cursorPointer" (click)="showEditWorkForm(work)">
+                                <span class="fa fa-edit" title="Edit" data-toggle="modal" data-target="#editWorkModal"></span>
+                            </button>-->
+<!--<button type="button" pButton class="cursorPointer" (click)="confirmDelete(work)">
+    <span class="fa fa-times" title="Delete" (click)="deleteWork(work)"></span>
+    <span class="fa fa-times" title="Delete"></span>
+</button>-->
+
+
+
+<!--<button type="button" pButton>
+    <span class="fa fa-edit cursorPointer" title="Edit" data-toggle="modal" data-target="#editWorkModal" (click)="showEditWorkForm(work)"></span>
+</button>
+<button type="button" pButton (click)="deleteWork(work)">
+    <span class="fa fa-times cursorPointer" title="Delete"></span>
+</button>-->
+
+<!--<button type="text" (click)="confirm()" pButton icon="fa-check" label="Confirm"></button>-->
 
 <!--(click)="editWork(work)"-->
 <!--data-toggle="modal" data-target="#editWorkModal"-->

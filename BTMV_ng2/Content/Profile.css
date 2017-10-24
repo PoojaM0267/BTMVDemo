@@ -7,7 +7,7 @@
 }*/
 
 .profileBodyMainDiv{
-    min-height: 580px;
+    /*min-height: 580px;*/
     background-color: white;
     margin: 15px;
 }
@@ -95,7 +95,7 @@
 }
 
 .panelDiv {
-    margin-top: 10px;
+    /*margin-top: 10px;*/
     /*margin-right: 30px;*/
 }
 
@@ -133,6 +133,13 @@ ul.inputs li {
     width: 22%;
 }
 
+.changePasswordDiv
+{
+    margin-left: 10%;
+    padding-top: 30px;
+    /*width: 22%;*/
+}
+
 /*.dataTableHeader{
      background-color: #9ccdf0;
 }*/
@@ -161,5 +168,13 @@ th {
 
 .radioBtn{
     width: 35%;
+}
+
+.ui-dialog-content, .ui-dialog-footer{
+    background-color: #dddddd !important;
+}
+
+.ui-dialog-titlebar{
+     background-color: #cccccc !important;
 }
   

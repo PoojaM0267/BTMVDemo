@@ -9,4 +9,6 @@ __export(require("./occupation"));
 __export(require("./state"));
 __export(require("./userLoginModel"));
 __export(require("./userRegisterModel"));
+__export(require("./changePasswordModel"));
+__export(require("./basicUserInfoModel"));
 //# sourceMappingURL=index.js.map

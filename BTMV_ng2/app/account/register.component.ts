@@ -44,7 +44,7 @@ export class RegisterComponent {
     isSubmitted = false;
 
     constructor(private accountService: AccountService, private listService: ListService) {
-        debugger;
+        //debugger;
         this.listService.getStates().subscribe(
             states => this.states = states            
         );

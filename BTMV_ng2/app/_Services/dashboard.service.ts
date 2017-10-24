@@ -19,20 +19,22 @@ export class DashboardService {
     options = this.baseConfig.getBaseHttpConfiguration();
 
     // Get user profile details
-    getUser(userId: number): Observable<any> {
-        debugger;
-        let params = { Id: userId };
+    getUser(): Observable<any> {
+        //debugger;
+        //let params = { Id: userId };
 
         let user = localStorage.getItem('BTMV_currentUser');
+        let param;
         if (user)
         {
             let currentUser = JSON.parse(user);
             this.options.headers.append('Authorization', 'Bearer ' + currentUser.token);
+            param = { Id: currentUser.userId};
         }       
 
-        return this.http.post('/api/Account/GetUserDetailsById', JSON.stringify(params), this.options)
+        return this.http.post('/api/Account/GetUserDetailsById', JSON.stringify(param), this.options)
             .map(response => {
-                debugger;
+               // debugger;
                 var res = response.json();
                 console.log(res);
                 return res;

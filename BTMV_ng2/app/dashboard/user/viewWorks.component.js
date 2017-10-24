@@ -12,10 +12,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var index_1 = require("../../_Services/index");
+var primeng_1 = require("primeng/primeng");
 var ViewWorkComponent = /** @class */ (function () {
-    function ViewWorkComponent(workService, router) {
+    function ViewWorkComponent(workService, router, confirmationService) {
         this.workService = workService;
         this.router = router;
+        this.confirmationService = confirmationService;
         this.hasErrorMessage = false;
     }
     ViewWorkComponent.prototype.ngOnInit = function () {
@@ -56,15 +58,48 @@ var ViewWorkComponent = /** @class */ (function () {
             }
         });
     };
-    ViewWorkComponent.prototype.showEditWorkForm = function (work) {
+    // Delete selected work
+    ViewWorkComponent.prototype.deleteWork = function (work) {
+        var _this = this;
+        //debugger;
+        alert('delete Work');
         console.log(work);
+        this.workService.deleteWork(work.id).subscribe(function (data) {
+            //debugger;
+            console.log(data);
+            var isSuccess = data.isSuccess;
+            var message = data.message;
+            alert(message);
+            if (isSuccess) {
+                // debugger;
+                _this.ngOnInit();
+                //this.router.navigate(['/works']);
+            }
+        }, function (error) {
+            _this.hasErrorMessage = true;
+            _this.errorMessage = 'Something went wrong. Please try again later.';
+            if (error.message === "403") {
+                alert('Not authenticate User.');
+                _this.router.navigate(['/home']);
+            }
+        });
+    };
+    ViewWorkComponent.prototype.confirmDelete = function (work) {
+        var _this = this;
+        //debugger;
+        this.confirmationService.confirm({
+            message: 'Are you sure that you want to delete this work?',
+            accept: function () {
+                _this.deleteWork(work);
+            }
+        });
     };
     ViewWorkComponent = __decorate([
         core_1.Component({
             selector: 'viewWorks',
             templateUrl: 'app/dashboard/user/viewWorks.component.html',
         }),
-        __metadata("design:paramtypes", [index_1.WorkService, router_1.Router])
+        __metadata("design:paramtypes", [index_1.WorkService, router_1.Router, primeng_1.ConfirmationService])
     ], ViewWorkComponent);
     return ViewWorkComponent;
 }());

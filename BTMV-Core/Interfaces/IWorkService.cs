@@ -41,5 +41,23 @@ namespace BTMV_Core.Interfaces
         /// <param name="workId">The work identifier.</param>
         /// <returns></returns>
         Work GetWorkById(int workId);
+
+        /// <summary>
+        /// Deletes the work by identifier.
+        /// </summary>
+        /// <param name="workId">The work identifier.</param>
+        void DeleteWorkById(int workId);
+
+        /// <summary>
+        /// Gets the work requests.
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<Work> GetWorkRequests();
+
+        /// <summary>
+        /// Rejects the work request.
+        /// </summary>
+        /// <param name="workId">The work identifier.</param>
+        void RejectWorkRequest(int workId);
     }
 }

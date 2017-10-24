@@ -44,12 +44,13 @@ var EditWorkComponent = /** @class */ (function () {
             stateId: this.stateId,
             cityId: this.cityId,
             // departmentId: this.departmentId,
-            fundRequired: this.fundRequired
+            fundRequired: this.fundRequired,
+            id: this.id
         });
     };
     EditWorkComponent.prototype.editWork = function (formValues) {
         var _this = this;
-        debugger;
+        //debugger;
         alert('edit Work');
         var result = this.workService.editWork(formValues).subscribe(function (data) {
             //debugger;
@@ -78,10 +79,6 @@ var EditWorkComponent = /** @class */ (function () {
                 _this.router.navigate(['/home']);
             }
         });
-    };
-    EditWorkComponent.prototype.deleteWork = function (work) {
-        alert('delete Work');
-        console.log(work);
     };
     EditWorkComponent.prototype.resetForm = function () {
         //debugger;

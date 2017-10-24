@@ -7,4 +7,5 @@ __export(require("./addWork.component"));
 __export(require("./editProfile.component"));
 __export(require("./editbasicInfo.component"));
 __export(require("./editContactInfo.component"));
+__export(require("./changePassword.component"));
 //# sourceMappingURL=index.js.map

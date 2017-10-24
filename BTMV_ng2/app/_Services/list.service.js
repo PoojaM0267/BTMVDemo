@@ -20,7 +20,7 @@ var ListService = /** @class */ (function () {
     }
     // Get all states
     ListService.prototype.getStates = function () {
-        debugger;
+        //debugger;
         return this.http.get('/api/Common/GetAllStates').map(function (response) { return response.json(); });
     };
     // Get all cities based on state

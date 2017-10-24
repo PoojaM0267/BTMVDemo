@@ -25,7 +25,7 @@ var RegisterComponent = /** @class */ (function () {
         //isSuccess: boolean;
         this.hasErrorMessage = false;
         this.isSubmitted = false;
-        debugger;
+        //debugger;
         this.listService.getStates().subscribe(function (states) { return _this.states = states; });
         this.listService.getOccupations().subscribe(function (occupations) { return _this.occupations = occupations; });
         //this.listService.getDepartments().subscribe(

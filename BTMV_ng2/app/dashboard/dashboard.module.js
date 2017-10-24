@@ -17,8 +17,10 @@ var profile_component_1 = require("./profile.component");
 var userLayout_component_1 = require("./userLayout.component");
 var index_1 = require("./common/index");
 var index_2 = require("./user/index");
-var index_3 = require("../_Services/index");
+var index_3 = require("./admin/index");
+var index_4 = require("../_Services/index");
 var primeng_1 = require("primeng/primeng");
+//import { } from 'md-steppers';
 var DashboardModule = /** @class */ (function () {
     function DashboardModule() {
     }
@@ -32,7 +34,9 @@ var DashboardModule = /** @class */ (function () {
                 forms_1.ReactiveFormsModule,
                 primeng_1.DataTableModule,
                 primeng_1.SharedModule,
-                primeng_1.PaginatorModule
+                primeng_1.PaginatorModule,
+                primeng_1.ConfirmDialogModule,
+                primeng_1.StepsModule,
             ],
             declarations: [
                 dashboard_component_1.DashboardComponent,
@@ -45,13 +49,16 @@ var DashboardModule = /** @class */ (function () {
                 index_2.ReportIssueComponent,
                 index_1.EditBasicInfoComponent,
                 index_1.EditContactInfoComponent,
-                index_2.EditWorkComponent
+                index_2.EditWorkComponent,
+                index_1.ChangePasswordComponent,
+                index_3.WorkRequestsComponent
             ],
             providers: [
-                index_3.DashboardService,
-                index_3.ListService,
-                index_3.WorkService,
-                index_3.ProfileService
+                index_4.DashboardService,
+                index_4.ListService,
+                index_4.WorkService,
+                index_4.ProfileService,
+                primeng_1.ConfirmationService
             ]
         })
     ], DashboardModule);

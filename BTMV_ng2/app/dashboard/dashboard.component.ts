@@ -1,8 +1,6 @@
 ﻿import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-//import { DashboardService } from '../_Services/dashboard.service';
-//import { AuthenticationService } from '../_Services/auth.service';
 import { UserRegisterModel } from '../models/userRegisterModel';
 import { AuthenticationService, DashboardService } from '../_Services/index';
 
@@ -13,7 +11,7 @@ import { AuthenticationService, DashboardService } from '../_Services/index';
 
 export class DashboardComponent {
 
-    userId: number;
+    //userId: number;
     userDetails: UserRegisterModel;
 
     constructor(private route: ActivatedRoute, private dashboardService: DashboardService, private router: Router, private auth: AuthenticationService) {
@@ -21,16 +19,9 @@ export class DashboardComponent {
     }
 
     ngOnInit() {
-        debugger;
-        let user = localStorage.getItem('BTMV_currentUser');
-        if (user) {
-            let currentUser = JSON.parse(user);
-            this.userId = currentUser.userId;
-        }  
-           
-        console.log(this.userId);
+        //debugger;
 
-        this.dashboardService.getUser(this.userId).subscribe(
+        this.dashboardService.getUser().subscribe(
             data => {
                 //debugger;
                 console.log(data);

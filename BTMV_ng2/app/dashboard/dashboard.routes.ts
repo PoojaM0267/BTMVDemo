@@ -8,11 +8,20 @@ import { DashboardComponent } from './dashboard.component';
 import { AuthGuard } from '../_Guards/auth.guard';
 import { UserLayoutComponent } from '../dashboard/userLayout.component';
 import { ProfileComponent } from '../dashboard/profile.component';
-import { AddWorkComponent, EditProfileComponent } from '../dashboard/common/index';
+import {
+    AddWorkComponent,
+    EditProfileComponent,
+    ChangePasswordComponent
+} from '../dashboard/common/index';
 
-//import { ViewWorkComponent } from '../dashboard/user/viewWorks.component';
-//import { ReportIssueComponent } from '../dashboard/user/reportIssue.component';
-import { ViewWorkComponent, ReportIssueComponent } from '../dashboard/user/index';
+import {
+    ViewWorkComponent,
+    ReportIssueComponent
+} from '../dashboard/user/index';
+
+import {
+    WorkRequestsComponent
+} from '../dashboard/admin/index';
 
 // working
 //const routes: Routes = [
@@ -39,13 +48,14 @@ const routes: Routes = [
         { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
         { path: 'addWork', component: AddWorkComponent },
         { path: 'works', component: ViewWorkComponent },
-        { path: 'profile', component: ProfileComponent},        
-        //{ path: 'works', component: WorkComponent },        
+        { path: 'profile', component: ProfileComponent},     
         { path: 'reportIssue', component: ReportIssueComponent },       
-        //{ path: 'changePassword', component: ChangePasswordComponent },
-        //{ path: 'deleteAccount', component: DeleteAccountComponent },
-        
-    ]
+        { path: 'changePassword', component: ChangePasswordComponent },
+        { path: 'workRequests', component: WorkRequestsComponent },
+        //{ path: 'reportedIssues', component:  },
+        //{ path: 'allWorks', component:  },
+        //{ path: 'allUsers', component:  },
+        ]
     }     
  ]
 

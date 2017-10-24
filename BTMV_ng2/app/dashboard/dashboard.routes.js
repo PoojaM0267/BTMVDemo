@@ -12,9 +12,8 @@ var dashboard_component_1 = require("./dashboard.component");
 var auth_guard_1 = require("../_Guards/auth.guard");
 var profile_component_1 = require("../dashboard/profile.component");
 var index_1 = require("../dashboard/common/index");
-//import { ViewWorkComponent } from '../dashboard/user/viewWorks.component';
-//import { ReportIssueComponent } from '../dashboard/user/reportIssue.component';
 var index_2 = require("../dashboard/user/index");
+var index_3 = require("../dashboard/admin/index");
 // working
 //const routes: Routes = [
 //    {
@@ -40,8 +39,9 @@ var routes = [
             { path: 'addWork', component: index_1.AddWorkComponent },
             { path: 'works', component: index_2.ViewWorkComponent },
             { path: 'profile', component: profile_component_1.ProfileComponent },
-            //{ path: 'works', component: WorkComponent },        
             { path: 'reportIssue', component: index_2.ReportIssueComponent },
+            { path: 'changePassword', component: index_1.ChangePasswordComponent },
+            { path: 'workRequests', component: index_3.WorkRequestsComponent },
         ]
     }
 ];

@@ -226,7 +226,10 @@
   <ItemGroup>
     <Content Include="app\account\login.component.html" />
     <Content Include="app\account\register.component.html" />
+    <Content Include="app\dashboard\admin\workRequests.component.html" />
     <Content Include="app\dashboard\common\addWork.component.html" />
+    <Content Include="app\dashboard\common\changePassword.component.html" />
+    <Content Include="app\dashboard\common\deleteAccount.component.html" />
     <Content Include="app\dashboard\common\editBasicInfo.component.html" />
     <Content Include="app\dashboard\common\editContactInfo.component.html" />
     <Content Include="app\dashboard\common\editProfile.component.html" />
@@ -387,7 +390,10 @@
     <TypeScriptCompile Include="app\common\jQuery.service.ts" />
     <TypeScriptCompile Include="app\common\matchPasswordValidation.ts" />
     <TypeScriptCompile Include="app\dashboard\admin\index.ts" />
+    <TypeScriptCompile Include="app\dashboard\admin\workRequests.component.ts" />
     <TypeScriptCompile Include="app\dashboard\common\addWork.component.ts" />
+    <TypeScriptCompile Include="app\dashboard\common\changePassword.component.ts" />
+    <TypeScriptCompile Include="app\dashboard\common\deleteAccount.component.ts" />
     <TypeScriptCompile Include="app\dashboard\common\editBasicInfo.component.ts" />
     <TypeScriptCompile Include="app\dashboard\common\editContactInfo.component.ts" />
     <TypeScriptCompile Include="app\dashboard\common\editProfile.component.ts" />
@@ -411,6 +417,8 @@
     <TypeScriptCompile Include="app\home\account.service.ts" />
     <TypeScriptCompile Include="app\home\successStories.component.ts" />
     <TypeScriptCompile Include="app\main.ts" />
+    <TypeScriptCompile Include="app\models\basicUserInfoModel.ts" />
+    <TypeScriptCompile Include="app\models\changePasswordModel.ts" />
     <TypeScriptCompile Include="app\models\city.ts" />
     <TypeScriptCompile Include="app\models\department.ts" />
     <TypeScriptCompile Include="app\models\index.ts" />

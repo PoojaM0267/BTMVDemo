@@ -8,6 +8,7 @@ export class GlobalErrorHandler implements ErrorHandler {
     constructor(private router: Router) { }
 
     handleError(error) {
+        debugger;
         alert(error.statusText);
 
         //TODO: Handle errors here based on error codes   

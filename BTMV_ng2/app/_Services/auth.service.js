@@ -11,13 +11,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
+//import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 var router_1 = require("@angular/router");
-//import { IUserProfile } from '../models/userProfile';
 var AuthenticationService = /** @class */ (function () {
+    //private authStatus$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+    //set authenticated(status: boolean) {
+    //    this.authStatus$.next(status);
+    //}
+    //get isAuthenticated(): Observable<boolean> {
+    //    return this.authStatus$.asObservable();
+    //}
     function AuthenticationService(http, router) {
         this.http = http;
         this.router = router;
-        // debugger;       
+        //debugger;       
         var user = localStorage.getItem('BTMV_currentUser');
         this.currentUser = JSON.parse(user);
         console.log(this.currentUser);
@@ -35,6 +42,7 @@ var AuthenticationService = /** @class */ (function () {
     AuthenticationService.prototype.logout = function () {
         this.currentUser = null;
         localStorage.removeItem('BTMV_currentUser');
+        //this.authStatus$.next(false);
         this.router.navigate(['/home']);
     };
     AuthenticationService = __decorate([
@@ -44,4 +52,5 @@ var AuthenticationService = /** @class */ (function () {
     return AuthenticationService;
 }());
 exports.AuthenticationService = AuthenticationService;
+//return !!this.currentUser; 
 //# sourceMappingURL=auth.service.js.map

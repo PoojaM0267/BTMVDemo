@@ -25,17 +25,19 @@ var DashboardService = /** @class */ (function () {
         console.log(this.authenticationService.currentUser);
     }
     // Get user profile details
-    DashboardService.prototype.getUser = function (userId) {
-        debugger;
-        var params = { Id: userId };
+    DashboardService.prototype.getUser = function () {
+        //debugger;
+        //let params = { Id: userId };
         var user = localStorage.getItem('BTMV_currentUser');
+        var param;
         if (user) {
             var currentUser = JSON.parse(user);
             this.options.headers.append('Authorization', 'Bearer ' + currentUser.token);
+            param = { Id: currentUser.userId };
         }
-        return this.http.post('/api/Account/GetUserDetailsById', JSON.stringify(params), this.options)
+        return this.http.post('/api/Account/GetUserDetailsById', JSON.stringify(param), this.options)
             .map(function (response) {
-            debugger;
+            // debugger;
             var res = response.json();
             console.log(res);
             return res;

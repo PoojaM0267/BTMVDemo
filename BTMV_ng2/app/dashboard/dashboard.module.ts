@@ -13,7 +13,8 @@ import {
     AddWorkComponent,
     EditBasicInfoComponent,
     EditProfileComponent,
-    EditContactInfoComponent
+    EditContactInfoComponent,
+    ChangePasswordComponent
 } from './common/index';
 
 import {
@@ -21,6 +22,10 @@ import {
     ReportIssueComponent,
     EditWorkComponent
 } from './user/index';
+
+import {
+    WorkRequestsComponent
+} from './admin/index';
 
 import {
     DashboardService,
@@ -32,8 +37,13 @@ import {
 import {
     DataTableModule,
     SharedModule,
-    PaginatorModule
+    PaginatorModule,
+    ConfirmDialogModule,
+    ConfirmationService,
+    StepsModule
 } from 'primeng/primeng';
+
+//import { } from 'md-steppers';
 
 @NgModule({
     imports: [
@@ -44,7 +54,9 @@ import {
         ReactiveFormsModule,
         DataTableModule,
         SharedModule,
-        PaginatorModule           
+        PaginatorModule,
+        ConfirmDialogModule,
+        StepsModule,                           
     ],
     declarations: [
         DashboardComponent,
@@ -57,13 +69,16 @@ import {
         ReportIssueComponent,
         EditBasicInfoComponent,
         EditContactInfoComponent,
-        EditWorkComponent
+        EditWorkComponent,
+        ChangePasswordComponent,
+        WorkRequestsComponent
     ],   
     providers: [
         DashboardService,
         ListService,
         WorkService,
-        ProfileService
+        ProfileService,
+        ConfirmationService
     ]
 })
 export class DashboardModule { }

@@ -23,5 +23,6 @@ namespace BTMV_Model.ViewModel
         //public string UserName { get; set; }
         public DateTime addedOn { get; set; }
         public string workStatus { get; set; }
+        public string addedBy { get; set; }
     }
 }

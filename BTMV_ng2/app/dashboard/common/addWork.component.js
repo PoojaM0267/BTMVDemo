@@ -13,8 +13,7 @@ var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var forms_1 = require("@angular/forms");
 var index_1 = require("../../models/index");
-var list_service_1 = require("../../_Services/list.service");
-var work_service_1 = require("../../_Services/work.service");
+var index_2 = require("../../_Services/index");
 var AddWorkComponent = /** @class */ (function () {
     function AddWorkComponent(listService, workService, router) {
         var _this = this;
@@ -34,7 +33,7 @@ var AddWorkComponent = /** @class */ (function () {
         //); 
     }
     AddWorkComponent.prototype.ngOnInit = function () {
-        debugger;
+        // debugger;
         this.workTitle = new forms_1.FormControl('', forms_1.Validators.required);
         this.aim = new forms_1.FormControl('', forms_1.Validators.required);
         this.stateId = new forms_1.FormControl('', forms_1.Validators.required);
@@ -98,9 +97,9 @@ var AddWorkComponent = /** @class */ (function () {
             selector: 'addWork',
             templateUrl: 'app/dashboard/common/addWork.component.html',
             styles: ["\n        em{ float: right; color: #E05C65; padding-left: 10px}\n       .error input, .error select, .error textarea { border-left: 5px solid #a94442; border-right : 1px solid #a94442; border-top : 1px solid #a94442; border-bottom : 1px solid #a94442; }\n       .valid input, .valid select, .valid textarea { border-left: 5px solid #42A948; border-right: 1px solid #42A948;   border-top: 1px solid #42A948; border-bottom: 1px solid #42A948; }\n    "],
-            providers: [list_service_1.ListService]
+            providers: [index_2.ListService]
         }),
-        __metadata("design:paramtypes", [list_service_1.ListService, work_service_1.WorkService, router_1.Router])
+        __metadata("design:paramtypes", [index_2.ListService, index_2.WorkService, router_1.Router])
     ], AddWorkComponent);
     return AddWorkComponent;
 }());

@@ -34,7 +34,7 @@ export class LoginComponent {
 
     ngOnInit() {
        // this.email = new FormControl('', [Validators.required, validateEmail]);
-        this.email = new FormControl('pooja@test.in', [Validators.required, Validators.email]);
+        this.email = new FormControl('manish@test.in', [Validators.required, Validators.email]);
         this.password = new FormControl('Pooja123@', Validators.required);
 
         this.loginForm = new FormGroup({
@@ -45,12 +45,12 @@ export class LoginComponent {
         
 
     loginUser(formValues) {
-        debugger;
+        //debugger;
         console.log(formValues);
 
         this.accountService.loginUser(formValues).subscribe(      
             data => {
-                debugger;
+                //debugger;
                 console.log(data);
                 let isUserValid = data.isUserValid;
                 let message = data.message;
@@ -58,10 +58,10 @@ export class LoginComponent {
 
 
                 if (isUserValid) {
+                    //this.authService.authenticated = true;
                     this.isLoginSuccess = true;  
                     this.hasErrorMessage = false;
-                    this.closeModal();                    
-                   // this.router.navigate(['/dashboard', userId]);
+                    this.closeModal();                   
                     this.router.navigate(['/dashboard']);
                 }
                 else {                                 

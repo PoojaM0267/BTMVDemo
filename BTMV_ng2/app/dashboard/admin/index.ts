@@ -1,1 +1,1 @@
-﻿
+﻿export * from './workRequests.component';

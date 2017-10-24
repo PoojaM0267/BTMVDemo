@@ -74,6 +74,10 @@
     <Compile Include="Service\WorkService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BTMV.Common\BTMV.Common.csproj">
+      <Project>{FFC4F0FF-28E8-4FE0-8186-59D500CBA333}</Project>
+      <Name>BTMV.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BTMV.Db\BTMV.Db.csproj">
       <Project>{271DC27F-7763-42C0-A50B-D1919EB2584B}</Project>
       <Name>BTMV.Db</Name>

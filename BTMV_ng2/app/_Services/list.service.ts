@@ -17,7 +17,7 @@ export class ListService {
 
     // Get all states
     getStates() {
-        debugger;
+        //debugger;
         return this.http.get('/api/Common/GetAllStates').map(response => response.json());
     }
 

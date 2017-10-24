@@ -12,6 +12,7 @@
     public occupations?: string;
     public stateId?: number;
     public cityId?: number;
+    public roleId?: string;
     public password?: string;
     public confirmPassword?: string;
     public altPhoneNumber?: number;

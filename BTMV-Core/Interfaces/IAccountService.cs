@@ -16,6 +16,9 @@ namespace BTMV_Core.Interfaces
 
         //void UpdateBasicInfo(UserInformation userBasicInfo);
         void UpdateBasicInfo(UserRegistrationViewModel userBasicInfo);
-        void UpdateContactInfo(UserRegistrationViewModel userContactInfo);      
+        void UpdateContactInfo(UserRegistrationViewModel userContactInfo);
+        void UpdatePassword(ChangePasswordViewModel passwordModel);
+        void DeleteAccount(int userId);
+        //UserInformation GetUserCredentials(int userId);
     }
 }

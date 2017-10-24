@@ -24,7 +24,7 @@ var WorkService = /** @class */ (function () {
     }
     // Add new work
     WorkService.prototype.addWork = function (workDetails) {
-        debugger;
+        // debugger;
         var user = localStorage.getItem('BTMV_currentUser');
         if (user) {
             var currentUser = JSON.parse(user);
@@ -33,7 +33,7 @@ var WorkService = /** @class */ (function () {
         }
         return this.http.post('/api/User/AddWork', JSON.stringify(workDetails), this.options)
             .map(function (response) {
-            debugger;
+            // debugger;
             var res = response.json();
             return res;
         })
@@ -46,6 +46,7 @@ var WorkService = /** @class */ (function () {
         var param;
         if (user) {
             var currentUser = JSON.parse(user);
+            this.options.headers.delete('Authorization');
             this.options.headers.append('Authorization', 'Bearer ' + currentUser.token);
             param = { Id: currentUser.userId };
         }
@@ -60,7 +61,7 @@ var WorkService = /** @class */ (function () {
     };
     // Add Reported Problems
     WorkService.prototype.addReportedProblem = function (reportedIssueDetails) {
-        debugger;
+        // debugger;
         var user = localStorage.getItem('BTMV_currentUser');
         if (user) {
             var currentUser = JSON.parse(user);
@@ -92,6 +93,67 @@ var WorkService = /** @class */ (function () {
             return res;
         })
             .catch(this.globalErrorHandler.handleError);
+    };
+    // Delete Work
+    WorkService.prototype.deleteWork = function (workId) {
+        //debugger;
+        var user = localStorage.getItem('BTMV_currentUser');
+        if (user) {
+            var currentUser = JSON.parse(user);
+            this.options.headers.delete('Authorization');
+            this.options.headers.append('Authorization', 'Bearer ' + currentUser.token);
+        }
+        var param = { Id: workId };
+        return this.http.post('/api/User/DeleteWorkById', JSON.stringify(param), this.options)
+            .map(function (response) {
+            //debugger;
+            var res = response.json();
+            return res;
+        })
+            .catch(this.globalErrorHandler.handleError);
+    };
+    // Get all work requests
+    WorkService.prototype.getWorkRequests = function () {
+        // debugger;
+        var user = localStorage.getItem('BTMV_currentUser');
+        var param;
+        if (user) {
+            var currentUser = JSON.parse(user);
+            this.options.headers.delete('Authorization');
+            this.options.headers.append('Authorization', 'Bearer ' + currentUser.token);
+            // this.options.headers.append('Authorization', 'Bearer ' + currentUser.roleId);
+            param = currentUser.userId;
+        }
+        return this.http.post('/api/Admin/GetWorkRequests', JSON.stringify(param), this.options)
+            .map(function (response) {
+            // debugger;
+            var res = response.json();
+            console.log(res);
+            return res;
+        })
+            .catch(this.globalErrorHandler.handleError);
+    };
+    // Reject the selected work
+    WorkService.prototype.rejectWorkRequest = function (workId) {
+        //debugger;
+        var user = localStorage.getItem('BTMV_currentUser');
+        if (user) {
+            var currentUser = JSON.parse(user);
+            this.options.headers.delete('Authorization');
+            this.options.headers.append('Authorization', 'Bearer ' + currentUser.token);
+        }
+        var param = { Id: workId };
+        return this.http.post('/api/Admin/RejectWorkRequest', JSON.stringify(param), this.options)
+            .map(function (response) {
+            //debugger;
+            var res = response.json();
+            return res;
+        })
+            .catch(this.globalErrorHandler.handleError);
+    };
+    // Approve Work
+    WorkService.prototype.approveWork = function (work) {
+        return null;
     };
     WorkService = __decorate([
         core_1.Injectable(),

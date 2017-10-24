@@ -20,9 +20,9 @@ var ProfileComponent = /** @class */ (function () {
     }
     ProfileComponent.prototype.ngOnInit = function () {
         var _this = this;
-        debugger;
+        //debugger;
         this.profileService.getUserProfile().subscribe(function (data) {
-            debugger;
+            // debugger;
             console.log(data);
             _this.userDetails = data['userDetails'];
             // this.userProfile = data.userDetails; 
@@ -38,7 +38,7 @@ var ProfileComponent = /** @class */ (function () {
             _this.userDetails.dob = data.userDetails.DOB;
             _this.userDetails.gender = data.userDetails.Gender;
         }, function (error) {
-            debugger;
+            // debugger;
             console.log(error.message);
             alert('Something went wrong. Please try again later.');
             if (error.message === "403") {

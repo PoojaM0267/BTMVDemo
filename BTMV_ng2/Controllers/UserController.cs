@@ -13,6 +13,7 @@ namespace BTMV_ng2.Controllers
     public class UserController : CommonController
     {
         private readonly IWorkService _workService;
+        private BTMVContext db = new BTMVContext();
 
         public UserController(IWorkService workService)
         {
@@ -159,6 +160,28 @@ namespace BTMV_ng2.Controllers
                 Elmah.ErrorSignal.FromCurrentContext().Raise(ex);
                 return Json(new { isSuccess = false, message = BTMV.Common.BTMV.CommonErrorMsg });
             }
+        }
+
+        [CustomAuthorize]
+        [HttpPost]
+        public IHttpActionResult DeleteWorkById(IdDemo param)
+        {
+            try
+            {
+                if (param.Id <= 0)
+                {
+                    return Json(new { isSuccess = false, message = BTMV.Common.BTMV.CommonErrorMsg });
+                }
+
+                _workService.DeleteWorkById(param.Id);
+                return Json(new { isSuccess = true, message = BTMV.Common.BTMV.WorkDeletedMsg });
+            }
+            catch (Exception ex)
+            {
+                Elmah.ErrorSignal.FromCurrentContext().Raise(ex);
+                return Json(new { isSuccess = false, message = BTMV.Common.BTMV.CommonErrorMsg });
+            }
+
         }
     }
 }

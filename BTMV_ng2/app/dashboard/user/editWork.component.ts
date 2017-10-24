@@ -65,12 +65,13 @@ export class EditWorkComponent
             stateId: this.stateId,
             cityId: this.cityId,
             // departmentId: this.departmentId,
-            fundRequired: this.fundRequired
+            fundRequired: this.fundRequired,
+            id: this.id
         });
     }
 
     editWork(formValues) {
-        debugger;
+        //debugger;
         alert('edit Work');
         let result = this.workService.editWork(formValues).subscribe(
             data => {
@@ -85,6 +86,7 @@ export class EditWorkComponent
                     this.successMessage = message;
                     this.hasErrorMessage = false;
                     this.resetForm();
+                    
                 }
                 else {
                     // debugger;                    
@@ -103,11 +105,6 @@ export class EditWorkComponent
                     this.router.navigate(['/home']);
                 }
             });
-    }
-
-    deleteWork(work: IWorkModel) {
-        alert('delete Work');
-        console.log(work);
     }
 
     resetForm() {

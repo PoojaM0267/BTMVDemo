@@ -19,7 +19,7 @@ export class WorkService {
 
     // Add new work
     addWork(workDetails: IWorkModel): Observable<any> {
-        debugger;
+       // debugger;
         let user = localStorage.getItem('BTMV_currentUser');
         if (user) {
             let currentUser = JSON.parse(user);
@@ -29,7 +29,7 @@ export class WorkService {
 
         return this.http.post('/api/User/AddWork', JSON.stringify(workDetails), this.options)
             .map(response => {
-                debugger;
+               // debugger;
                 var res = response.json();                
                 return res;
             })
@@ -43,6 +43,7 @@ export class WorkService {
         let param;     
         if (user) {
             let currentUser = JSON.parse(user);
+            this.options.headers.delete('Authorization');
             this.options.headers.append('Authorization', 'Bearer ' + currentUser.token);
             param = { Id: currentUser.userId };
         }
@@ -59,7 +60,7 @@ export class WorkService {
 
     // Add Reported Problems
     addReportedProblem(reportedIssueDetails: IReportIssueModel): Observable<any>{
-        debugger;
+       // debugger;
         let user = localStorage.getItem('BTMV_currentUser');
         if (user) {
             let currentUser = JSON.parse(user);
@@ -94,5 +95,78 @@ export class WorkService {
                 return res;
             })
             .catch(this.globalErrorHandler.handleError);
+    }
+
+    // Delete Work
+    deleteWork(workId: number): Observable<any>
+    {
+        //debugger;
+        let user = localStorage.getItem('BTMV_currentUser');         
+        if (user) {
+            let currentUser = JSON.parse(user);
+            this.options.headers.delete('Authorization');
+            this.options.headers.append('Authorization', 'Bearer ' + currentUser.token);
+        }
+
+        let param = { Id: workId };
+
+        return this.http.post('/api/User/DeleteWorkById', JSON.stringify(param), this.options)
+            .map(response => {
+                //debugger;
+                var res = response.json();
+                return res;
+            })
+            .catch(this.globalErrorHandler.handleError);
+    }
+
+    // Get all work requests
+    getWorkRequests(): Observable<any> {
+       // debugger;
+        let user = localStorage.getItem('BTMV_currentUser');
+        let param;
+        if (user) {
+            let currentUser = JSON.parse(user);
+            this.options.headers.delete('Authorization');
+            this.options.headers.append('Authorization', 'Bearer ' + currentUser.token);
+           // this.options.headers.append('Authorization', 'Bearer ' + currentUser.roleId);
+            param = currentUser.userId;
+        }
+
+        return this.http.post('/api/Admin/GetWorkRequests', JSON.stringify(param), this.options)
+            .map(response => {
+               // debugger;
+                var res = response.json();
+                console.log(res);
+                return res;
+            })
+            .catch(this.globalErrorHandler.handleError);
+    }    
+
+    // Reject the selected work
+    rejectWorkRequest(workId: number): Observable<any>
+    {
+        //debugger;
+        let user = localStorage.getItem('BTMV_currentUser');
+        if (user) {
+            let currentUser = JSON.parse(user);
+            this.options.headers.delete('Authorization');
+            this.options.headers.append('Authorization', 'Bearer ' + currentUser.token);
+        }
+
+        let param = { Id: workId };
+
+        return this.http.post('/api/Admin/RejectWorkRequest', JSON.stringify(param), this.options)
+            .map(response => {
+                //debugger;
+                var res = response.json();
+                return res;
+            })
+            .catch(this.globalErrorHandler.handleError);
+    }
+
+    // Approve Work
+    approveWork(work: IWorkModel): Observable<any>
+    {
+        return null;
     }
 }

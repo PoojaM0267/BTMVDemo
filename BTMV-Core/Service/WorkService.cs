@@ -1,4 +1,5 @@
-﻿using BTMV.Db;
+﻿using BTMV.Common;
+using BTMV.Db;
 using BTMV_Core.Interfaces;
 using BTMV_Model.DataModel;
 using BTMV_Model.ViewModel;
@@ -18,7 +19,6 @@ namespace BTMV_Core.Service
         /// <returns></returns>
         public IEnumerable<Work> GetWorksByUserId(int userId)
         {
-            //var db = new BTMVContext();
             var worksList = db.Works.Where(x => x.UserId == userId).ToList();
             return worksList;
         }
@@ -29,7 +29,6 @@ namespace BTMV_Core.Service
         /// <param name="work">The work.</param>
         public void SaveNewWork(Work work)
         {
-            //var db = new BTMVContext();
             db.Works.Add(work);
             db.SaveChanges();
         }
@@ -51,13 +50,13 @@ namespace BTMV_Core.Service
         /// <param name="workDetails">The work details.</param>
         public void UpdateWork(WorkViewModel workDetails)
         {
-            var work = GetWorkById(workDetails.Id);
+            var work = GetWorkById(workDetails.id);
             if(work != null)
             {
-                work.WorkTitle = workDetails.WorkTitle;
-                work.Aim = workDetails.Aim;
-                work.CityId = workDetails.CityId;
-                work.FundRequired = workDetails.FundRequired;
+                work.WorkTitle = workDetails.workTitle;
+                work.Aim = workDetails.aim;
+                work.CityId = workDetails.cityId;
+                work.FundRequired = workDetails.fundRequired;
                 // map status, department, fund used etc
             }
             db.SaveChanges();
@@ -71,6 +70,38 @@ namespace BTMV_Core.Service
         public Work GetWorkById(int workId)
         {
             return db.Works.Where(x => x.Id == workId).FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Deletes the work by identifier.
+        /// </summary>
+        /// <param name="workId">The work identifier.</param>
+        public void DeleteWorkById(int workId)
+        {
+            var work = db.Works.Where(x => x.Id == workId).FirstOrDefault();
+            db.Works.Remove(work);
+            db.SaveChanges();
+        }
+
+        /// <summary>
+        /// Gets the work requests.
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<Work> GetWorkRequests()
+        {
+            var worksList = db.Works.Where(x => x.WorkStatusId == (int)BTMV_Enums.WorkStatus.Pending).ToList();
+            return worksList;
+        }
+
+        /// <summary>
+        /// Rejects the work request.
+        /// </summary>
+        /// <param name="workId">The work identifier.</param>
+        public void RejectWorkRequest(int workId)
+        {
+            var work = db.Works.Where(x => x.Id == workId).FirstOrDefault();
+            work.WorkStatusId = (int)BTMV_Enums.WorkStatus.Rejected;
+            db.SaveChanges();
         }
     }
 }

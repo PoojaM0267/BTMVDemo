@@ -11,7 +11,7 @@
                 <h3>Report an Issue </h3>
             </div>
 
-            <div class="profileBodyMainDiv">
+            <div class="profileBodyMainDiv panel panel-default">
                 <div class="alert alert-danger" *ngIf="hasErrorMessage">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
                     <strong>Error ! </strong>{{ errorMessage }}
@@ -20,7 +20,7 @@
                     <a href="#" class="close" data-dismiss="alert" aria-label="close" (click)="resetForm()">×</a>
                     <strong>Success ! </strong>{{ successMessage }}
                 </div>
-                <div class="reportIssueDiv">
+                <div class="panel-body reportIssueDiv">
                     <form [formGroup]="reportIssueForm" (ngSubmit)="addIssue(reportIssueForm.value)" autocomplete="off">
                         <div class="form-group" [ngClass]="{'error': issueTitle.invalid && issueTitle.dirty}">
                             <label for="issueTitle">Title:</label>

@@ -59,6 +59,7 @@
     <Compile Include="DataModel\Work.cs" />
     <Compile Include="DataModel\WorkStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModel\IdDemo.cs" />
     <Compile Include="ViewModel\ReportedIssueViewModel.cs" />
     <Compile Include="ViewModel\UserLoginViewModel.cs" />

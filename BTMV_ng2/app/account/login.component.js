@@ -24,7 +24,7 @@ var LoginComponent = /** @class */ (function () {
     }
     LoginComponent.prototype.ngOnInit = function () {
         // this.email = new FormControl('', [Validators.required, validateEmail]);
-        this.email = new forms_1.FormControl('pooja@test.in', [forms_1.Validators.required, forms_1.Validators.email]);
+        this.email = new forms_1.FormControl('manish@test.in', [forms_1.Validators.required, forms_1.Validators.email]);
         this.password = new forms_1.FormControl('Pooja123@', forms_1.Validators.required);
         this.loginForm = new forms_1.FormGroup({
             email: this.email,
@@ -33,19 +33,19 @@ var LoginComponent = /** @class */ (function () {
     };
     LoginComponent.prototype.loginUser = function (formValues) {
         var _this = this;
-        debugger;
+        //debugger;
         console.log(formValues);
         this.accountService.loginUser(formValues).subscribe(function (data) {
-            debugger;
+            //debugger;
             console.log(data);
             var isUserValid = data.isUserValid;
             var message = data.message;
             var userId = data.id;
             if (isUserValid) {
+                //this.authService.authenticated = true;
                 _this.isLoginSuccess = true;
                 _this.hasErrorMessage = false;
                 _this.closeModal();
-                // this.router.navigate(['/dashboard', userId]);
                 _this.router.navigate(['/dashboard']);
             }
             else {

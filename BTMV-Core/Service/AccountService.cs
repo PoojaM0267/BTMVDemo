@@ -75,5 +75,42 @@ namespace BTMV_Core.Service
 
             db.SaveChanges();
         }
+
+        /// <summary>
+        /// Updates the password.
+        /// </summary>
+        /// <param name="passwordModel">The password model.</param>
+        public void UpdatePassword(ChangePasswordViewModel passwordModel)
+        {
+            var user = GetUserById(passwordModel.userId);
+            var hashedPassword = ComputeHash(user.Email, passwordModel.newPassword);
+            user.Password = hashedPassword;
+            db.SaveChanges();
+        }
+
+        /// <summary>
+        /// Deletes the account.
+        /// </summary>
+        /// <param name="userId">The user identifier.</param>
+        public void DeleteAccount(int userId)
+        {
+            var user = db.UserInformation.Where(x => x.Id == userId).FirstOrDefault();
+            db.UserInformation.Remove(user);
+            db.SaveChanges();
+        }
+
+        //public UserInformation GetUserCredentials(int userId)
+        //{
+        //   var userCredentials =  db.UserInformation
+        //           .Where(x => x.Id == userId)
+        //           .Select(x => new
+        //           {
+        //               Email = x.Email,
+        //               Password = x.Password
+        //           })
+        //           .SingleOrDefault();
+
+        //    return userCredentials;
+        //}
     }
 }

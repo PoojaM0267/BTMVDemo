@@ -42,6 +42,11 @@ import {
 /* Routing Module */
 import { AppRoutesModule } from './routes';
 
+//import {
+//    ConfirmDialogModule,
+//    //ConfirmationService
+//} from 'primeng/primeng';
+
 declare let jQuery: Object; 
 
 @NgModule({
@@ -51,7 +56,8 @@ declare let jQuery: Object;
         BrowserAnimationsModule,
         FormsModule,
         HttpModule,
-        ReactiveFormsModule      
+        ReactiveFormsModule,
+        //ConfirmDialogModule      
     ],
     declarations: [
         AppComponent,
@@ -64,7 +70,8 @@ declare let jQuery: Object;
         LoginComponent,    
         GalleryComponent,
         ContactUsComponent,
-        SuccessStoriesComponent
+        SuccessStoriesComponent,
+        
       //  CustomValidation      
     ],
     providers: [
@@ -76,7 +83,8 @@ declare let jQuery: Object;
         BaseConfig,
         AuthenticationService,
         AuthGuard,
-        GlobalErrorHandler
+        GlobalErrorHandler,
+        //ConfirmationService
     ],
     bootstrap: [AppComponent]
 })

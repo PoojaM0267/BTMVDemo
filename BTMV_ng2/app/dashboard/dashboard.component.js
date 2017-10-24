@@ -21,15 +21,9 @@ var DashboardComponent = /** @class */ (function () {
         console.log('Dashboard');
     }
     DashboardComponent.prototype.ngOnInit = function () {
+        //debugger;
         var _this = this;
-        debugger;
-        var user = localStorage.getItem('BTMV_currentUser');
-        if (user) {
-            var currentUser = JSON.parse(user);
-            this.userId = currentUser.userId;
-        }
-        console.log(this.userId);
-        this.dashboardService.getUser(this.userId).subscribe(function (data) {
+        this.dashboardService.getUser().subscribe(function (data) {
             //debugger;
             console.log(data);
             _this.userDetails = data['userDetails'];

@@ -61,7 +61,7 @@ namespace BTMV_ng2.Controllers
                     DOB = Convert.ToDateTime("04/19/2016"),
                     CityId = userModel.CityId,
                     OccupationId = userModel.OccupationId,
-                    RoleId = 2,
+                    RoleId = (int)BTMV_Enums.UserRoles.Admin,
                    // isSelected = false,
                     Password = hashedPassword,
                     CreatedOn = DateTime.Now
@@ -104,7 +104,10 @@ namespace BTMV_ng2.Controllers
                         Email = x.Email,
                         Password = x.Password,
                         Id = x.Id,
-                        RoleId = x.RoleId
+                        RoleId = x.RoleId,
+                        RoleName = x.UserRoles.RoleName,
+                        FirstName = x.FirstName,
+                        LastName = x.LastName
                     })
                     .SingleOrDefault();
 
@@ -125,7 +128,16 @@ namespace BTMV_ng2.Controllers
                 
                 var token = _tokenService.GenerateToken(userCredentials.Email, userCredentials.RoleId); 
 
-                return Json(new { isUserValid = isUserValid, id = userCredentials.Id, message = BTMV.Common.BTMV.LoginSuccessMsg, jwtToken = token });
+                return Json(new {
+                    isUserValid = isUserValid,
+                    id = userCredentials.Id,
+                    message = BTMV.Common.BTMV.LoginSuccessMsg,
+                    jwtToken = token,
+                    roleId = userCredentials.RoleId,
+                    roleName = userCredentials.RoleName,
+                    firstName = userCredentials.FirstName,
+                    lastName = userCredentials.LastName
+                });
             }
             catch (Exception ex)
             {
@@ -150,10 +162,8 @@ namespace BTMV_ng2.Controllers
                 {
                     // return error
                 }
-
-                var user = db.UserInformation
-                       .Where(x => x.Id == param.Id)
-                       .SingleOrDefault();
+                
+                var user = _accountService.GetUserById(param.Id);
 
                 var userDetails = new UserRegistrationViewModel {
                     FirstName = user.FirstName,
@@ -176,63 +186,6 @@ namespace BTMV_ng2.Controllers
             {
                 Elmah.ErrorSignal.FromCurrentContext().Raise(ex);
                 return null;
-            }
-        }
-
-        [CustomAuthorize]
-        [HttpPost]
-        public IHttpActionResult EditProfile(UserRegistrationViewModel userModel)
-        {
-            try
-            {
-                var db = new BTMVContext();
-
-                if (!ModelState.IsValid)
-                {
-                    return Json(new { isSuccess = false, message = BTMV.Common.BTMV.DataErrorMsg });
-                }
-
-                if (string.IsNullOrEmpty(userModel.Email) && string.IsNullOrEmpty(userModel.Password))
-                {
-                    return Json(new { isSuccess = false, message = BTMV.Common.BTMV.EmptyInputMsg });
-                }
-
-                //var userExists = db.UserInformation
-                //   .Where(x => x.Email == userModel.Email)
-                //   .SingleOrDefault();
-
-                //// disable email edit or if not check for duplicate email
-                //if (userExists != null)
-                //{
-                //    return Json(new { isSuccess = false, message = "User with this Email Already Exists." });
-                //}
-                 
-                //// todo : change hashed password internally
-                //var hashedPassword = _accountService.ComputeHash(userModel.Email, userModel.Password);
-
-                //var user = new UserInformation
-                //{
-                //    FirstName = userModel.FirstName,
-                //    LastName = userModel.LastName,
-                //    Email = userModel.Email,
-                //    DOB = Convert.ToDateTime("04/19/2016"),
-                //    CityId = userModel.CityId,
-                //    OccupationId = userModel.OccupationId,
-                //    RoleId = 2,
-                //    // isSelected = false,
-                //    Password = hashedPassword,
-                //    CreatedOn = DateTime.Now
-                //};
-
-                //db.UserInformation.Add(user);
-                //db.SaveChanges();
-
-                return Json(new { isSuccess = true, message = BTMV.Common.BTMV.ProfileUpdateSuccessMsg });
-            }
-            catch (Exception ex)
-            {
-                Elmah.ErrorSignal.FromCurrentContext().Raise(ex);
-                return Json(new { isSuccess = false, message = BTMV.Common.BTMV.CommonErrorMsg });
             }
         }
 
@@ -300,6 +253,93 @@ namespace BTMV_ng2.Controllers
                 return Json(new { isSuccess = false, message = BTMV.Common.BTMV.CommonErrorMsg });
             }
 
+        }
+
+        [CustomAuthorize]
+        [HttpPost]
+        public IHttpActionResult ValidateCurrentPassword(ChangePasswordViewModel passwordModel)
+        {
+            try
+            {
+                var db = new BTMVContext();
+                var isPasswordValid = false;
+
+                if (passwordModel == null)
+                {
+                    return Json(new {isValid = false, message = BTMV.Common.BTMV.CommonErrorMsg });
+                }
+
+                //var userCredentials = _accountService.GetUserCredentials(passwordModel.userId);
+                // TODO : refactor this
+
+                var userCredentials = db.UserInformation
+                    .Where(x => x.Id == passwordModel.userId)
+                    .Select(x => new
+                    {
+                        Email = x.Email,
+                        Password = x.Password
+                    })
+                    .SingleOrDefault();
+
+                isPasswordValid = (userCredentials.Password == _accountService.ComputeHash(userCredentials.Email, passwordModel.currentPassword));
+
+               //var isValidPassword =  _accountService.ValidateCurrentPassword(passwordModel);
+
+               return Json(new {isValid = isPasswordValid });
+            }
+            catch (Exception ex)
+            {
+                Elmah.ErrorSignal.FromCurrentContext().Raise(ex);
+                return Json(new {isValid = false, message = BTMV.Common.BTMV.CommonErrorMsg });
+            }
+        }
+
+        [CustomAuthorize]
+        [HttpPost]
+        public IHttpActionResult ChangePassword(ChangePasswordViewModel passwordModel)
+        {
+            try
+            {
+                var db = new BTMVContext();
+
+                if (passwordModel == null)
+                {
+                    return Json(new { isSuccess = false, message = BTMV.Common.BTMV.CommonErrorMsg });
+                }
+
+                _accountService.UpdatePassword(passwordModel);
+
+                return Json(new { isSuccess = true, message = BTMV.Common.BTMV.PasswordUpdateSuccessMsg });
+            }
+            catch (Exception ex)
+            {
+                Elmah.ErrorSignal.FromCurrentContext().Raise(ex);
+                return Json(new { isSuccess = false, message = BTMV.Common.BTMV.CommonErrorMsg });
+            }
+        }
+
+        [CustomAuthorize]
+        [HttpPost]
+        public IHttpActionResult DeleteUserById(IdDemo param)
+        {
+            try
+            {
+                var db = new BTMVContext();
+
+                if (param.Id <= 0)
+                {
+                    return Json(new { isSuccess = false, message = BTMV.Common.BTMV.CommonErrorMsg });
+                }
+
+                _accountService.DeleteAccount(param.Id);
+
+                return Json(new { isSuccess = true, message = BTMV.Common.BTMV.AccountDeletedMsg });
+            }
+            catch (Exception ex)
+            {
+                Elmah.ErrorSignal.FromCurrentContext().Raise(ex);
+                return Json(new { isSuccess = false, message = BTMV.Common.BTMV.CommonErrorMsg });
+            }
         }
     }
 }

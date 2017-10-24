@@ -31,7 +31,7 @@ var AppModule = /** @class */ (function () {
                 animations_1.BrowserAnimationsModule,
                 forms_1.FormsModule,
                 http_1.HttpModule,
-                forms_1.ReactiveFormsModule
+                forms_1.ReactiveFormsModule,
             ],
             declarations: [
                 app_component_1.AppComponent,
@@ -44,8 +44,7 @@ var AppModule = /** @class */ (function () {
                 index_3.LoginComponent,
                 index_1.GalleryComponent,
                 index_1.ContactUsComponent,
-                index_1.SuccessStoriesComponent
-                //  CustomValidation      
+                index_1.SuccessStoriesComponent,
             ],
             providers: [
                 {
@@ -56,7 +55,7 @@ var AppModule = /** @class */ (function () {
                 index_2.BaseConfig,
                 index_4.AuthenticationService,
                 index_5.AuthGuard,
-                index_2.GlobalErrorHandler
+                index_2.GlobalErrorHandler,
             ],
             bootstrap: [app_component_1.AppComponent]
         })

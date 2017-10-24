@@ -32,7 +32,8 @@ export interface IWorkModel {
      fundUsed?: number;
      fundGranted?: number;
      addedOn?: Date;  
-     workStatus?: string   
+     workStatus?: string,
+     addedBy?: string      
 }
 
 //export class WorkModel implements IWorkModel {
